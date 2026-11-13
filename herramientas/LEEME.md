@@ -50,5 +50,15 @@ La web (`index.html`) no se toca: lee `data/*.json` al cargarse.
     - Excel para Drive, con enlaces relativos a la carpeta de fichas: `python3 -I herramientas/generar_excel.py . Seguimiento_Fondos.xlsx local AAAA-MM`, recalcular, mandar a la papelera el `Seguimiento_Fondos.xlsx` anterior de la carpeta raíz y subir el nuevo con ese mismo nombre.
     - Mantener la carpeta "_Herramientas (no tocar)" (id `1bwj66qaqc7DXislCgG5n_uRncQ7Xne-s`) como copia de seguridad opcional de `herramientas/`.
 
+## Cómo buscar fichas nuevas (y las que faltan)
+1. `python3 -I herramientas/buscar_fichas.py .` mira en fundinfo la ficha mensual más reciente de los 80 ISIN y marca NUEVA donde hay una más reciente que la nuestra (deja `/tmp/fichas_nuevas.json` con la URL). Las gestoras publican entre el día 5 y el 25: a día 10 muchas siguen en el mes anterior. Por eso hay una segunda pasada hacia el día 20 (`buscar_fichas.py` otra vez, y solo actualizar los fondos con ficha nueva).
+2. Fuentes directas que funcionan sin registro (comprobadas el 13/11/2026):
+   - Olea Neutral (ES0118537002): página `https://oleagestion.com/fondo-de-inversion/` → enlace `30102026_Informe-Mensual.pdf` (cambia el nombre cada mes; leerlo del HTML).
+   - Seilern World Growth EUR U R (IE00B2NXKW18): `https://www.seilernfunds.com/individual-strategies/` → enlace `Seilern-World-Growth-EUR-U-R-as-at-31st-October-2026.pdf`.
+   - Renta 4 (fondos propios): `https://www.r4.com/fondos/<isin en minúsculas>_mes.pdf` (suele salir antes que fundinfo).
+   - Carmignac, Buy & Hold, Storm, DNB (`documents.anevis-solutions.com/dnb/FACTSHEET-EN-LU-<ISIN>.pdf`; la variante `-CH-` da 403): ver pasos de arriba.
+3. Sin ficha mensual accesible a fecha 13/11/2026 (se reintenta cada mes): Avantage Fund FI B (r4.com solo tiene folleto/semestral), Numantia Patrimonio Global (igual), Horos Patrimonio (web horosam.com devolvía 502), Groupama Global Disruption y Global Active Equity (el informe público de h24finance sigue en marzo de 2026), DIP Paradigma, Ardtur, MFS Blended Research US Core (clase EUR), Finserve Global Defence, Polar Capital Global Insurance (polarcapitalfunds.com pide registrarse como inversor: no aceptar el aviso por el usuario), Goehring & Rozencwajg (solo ficha trimestral en gr-funds.com). No usar otros portales de fundinfo (LU, GB, CH, DE…): el usuario solo aceptó el aviso legal de España.
+4. Orden al incorporar una ficha nueva: copiar el PDF a `fichas/<Nombre> - Ficha <mes> <año>.pdf`, borrar el anterior, actualizar `fecha`/`fecha_ficha`, `pdf` y los datos de la ficha (tir, duración, posiciones, exposición en `exposicion.json`), y volver a pasar `comentarios.py`, `miniaturas.py` y `exposicion_aplicar.py`.
+
 ## Pendiente conocido
 LBPAM (FR0014004IP7), Cartesio Income (LU1966822956) y Sigma (LU1984948874, ISIN dudoso) no tienen ficha pública: van como "Sin ficha".

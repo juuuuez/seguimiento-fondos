@@ -12,13 +12,14 @@ REGLAS = {
     'lazard':  (r'Comentario de gestión\n', r'\n\x0cLAZARD CREDIT OPPORTUNITIES'),
     'carmig':  (r'ENTORNO DE MERCADO\n', r'\nPERSPECTIVAS Y ESTRATEGIA'),               # Carmignac Global Bond (entorno + rendimiento)
     'robeco':  (r'Comentarios sobre rentabilidad\n', r'\nExpectativas del gestor'),
+    'olea':    (r'Comentario de mercado\nOlea Neutral FI,\nValor Liquidativo desde Inicio del Fondo\n', r'\nRegistrado y regulado:'),
     'dunas':   (r'Vuelve la diferenciación|Los mercados|Septiembre|Octubre', r'media histórica\.'),
 }
 POR_ISIN = {
     'ES0128520006': 'r4', 'ES0176954008': 'r4', 'ES0128522002': 'r4', 'ES0173321003': 'r4',
     'ES0173286008': 'r4', 'ES0173130024': 'r4', 'ES0173128002': 'r4', 'ES0173130016': 'r4',
     'LU1694789535': 'dnca', 'FR0010230490': 'lazard', 'LU0336083497': 'carmig', 'LU0203975437': 'robeco',
-    'ES0175414012': 'dunas', 'ES0175316019': 'dunas',
+    'ES0118537002': 'olea', 'ES0175414012': 'dunas', 'ES0175316019': 'dunas',
 }
 
 

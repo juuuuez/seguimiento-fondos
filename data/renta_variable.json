@@ -291,7 +291,7 @@
   "gestora": "Invesco",
   "bloque": "Renta variable",
   "estilo": "Global dividendo creciente (40-50 valores)",
-  "fecha_ficha": "30/09/2026",
+  "fecha_ficha": "31/10/2026",
   "mes": 5.25,
   "ytd": 17.59,
   "a1": 16.4,
@@ -301,47 +301,47 @@
   "comentario": "Sin comentario en la ficha.",
   "lectura": "Muy buen 2026 (+17,6% YTD): el estilo dividendo de calidad está funcionando.",
   "ficha": "",
-  "pdf": "fichas/Invesco Global Equity Income A EUR Acc - Ficha sep 2026.pdf",
+  "pdf": "fichas/Invesco Global Equity Income A EUR Acc - Ficha oct 2026.pdf",
   "r3": 18.67,
   "r5": null,
   "r10": null,
   "literal": "",
-  "mini": "fichas/miniaturas/Invesco Global Equity Income A EUR Acc - Ficha sep 2026.jpg",
+  "mini": "fichas/miniaturas/Invesco Global Equity Income A EUR Acc - Ficha oct 2026.jpg",
   "sectores": [
    [
     "Industrial",
-    27.6,
+    27.8,
     10.8
    ],
    [
     "Financiero",
-    26.0,
-    15.7
+    25.9,
+    16.1
    ],
    [
     "Tecnología",
-    15.0,
-    31.8
+    13.5,
+    29.8
    ],
    [
     "Salud",
-    7.7,
-    9.2
+    7.6,
+    10.2
    ],
    [
     "Consumo discrecional",
-    7.2,
-    8.4
+    7.0,
+    8.7
    ],
    [
-    "Consumo básico",
-    5.8,
-    4.8
+    "Materiales",
+    6.0,
+    3.2
    ]
   ],
   "geografia": [],
   "calidad": {},
-  "destaca": "Sobreponderación: Industrial (27,6 % frente a 10,8 % del índice). Infraponderación: Tecnología (15,0 % frente a 31,8 %).",
+  "destaca": "Sobreponderación: Industrial (27,8 % frente a 10,8 % del índice). Infraponderación: Tecnología (13,5 % frente a 29,8 %).",
   "aprox": false
  },
  {
@@ -1042,24 +1042,66 @@
   "gestora": "Seilern",
   "bloque": "Renta variable",
   "estilo": "Global growth calidad (≈20 valores)",
-  "fecha_ficha": "Sin ficha",
+  "fecha_ficha": "31/10/2026",
   "mes": 10.68,
   "ytd": 6.88,
   "a1": 3.03,
   "per": "",
   "dividendo": "",
-  "posiciones": "",
-  "comentario": "Sin ficha mensual pública accesible.",
+  "posiciones": "Mastercard, Veeva Systems, UnitedHealth, IDEXX, SAP (top 10 = 50,4 %; 17-25 valores).",
+  "comentario": "Ficha de octubre en inglés, sin comentario del gestor.",
   "lectura": "Año flojo (+6,9% YTD, +3,0% a 1 año) pese a un gran octubre (+10,7%).",
   "ficha": "",
-  "pdf": "",
+  "pdf": "fichas/Seilern World Growth EUR U R - Ficha oct 2026.pdf",
   "r3": 3.66,
   "r5": -1.12,
   "r10": 9.39,
   "literal": "",
-  "mini": "",
-  "sectores": [],
-  "geografia": [],
+  "mini": "fichas/miniaturas/Seilern World Growth EUR U R - Ficha oct 2026.jpg",
+  "sectores": [
+   [
+    "Salud",
+    41.2
+   ],
+   [
+    "Tecnología",
+    30.3
+   ],
+   [
+    "Financiero",
+    12.5
+   ],
+   [
+    "Industrial",
+    7.0
+   ],
+   [
+    "Consumo discrecional",
+    4.2
+   ],
+   [
+    "Comunicación",
+    3.8
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    69.8
+   ],
+   [
+    "Zona euro",
+    16.8
+   ],
+   [
+    "Suiza",
+    8.1
+   ],
+   [
+    "Reino Unido",
+    4.3
+   ]
+  ],
   "calidad": {},
   "destaca": "",
   "aprox": false
@@ -2780,7 +2822,7 @@
   "gestora": "DWS",
   "bloque": "Renta variable",
   "estilo": "Global alta convicción (43 valores)",
-  "fecha_ficha": "30/09/2026",
+  "fecha_ficha": "30/10/2026",
   "mes": 0.83,
   "ytd": 33.41,
   "a1": 37.7,
@@ -2790,62 +2832,62 @@
   "comentario": "La ficha remite a los informes anuales; sin comentario mensual.",
   "lectura": "+33,4% YTD: excelente año.",
   "ficha": "",
-  "pdf": "fichas/DWS Invest II Global Equity High Conviction LC - Ficha sep 2026.pdf",
+  "pdf": "fichas/DWS Invest II Global Equity High Conviction LC - Ficha oct 2026.pdf",
   "r3": 26.68,
   "r5": 16.14,
   "r10": 14.31,
   "literal": "",
-  "mini": "fichas/miniaturas/DWS Invest II Global Equity High Conviction LC - Ficha sep 2026.jpg",
+  "mini": "fichas/miniaturas/DWS Invest II Global Equity High Conviction LC - Ficha oct 2026.jpg",
   "sectores": [
    [
     "Tecnología",
-    31.5
+    29.1
    ],
    [
     "Financiero",
-    23.1
+    24.7
    ],
    [
     "Salud",
     15.6
    ],
    [
-    "Comunicación",
-    7.4
+    "Industrial",
+    6.0
    ],
    [
-    "Industrial",
-    6.6
+    "Comunicación",
+    5.7
    ],
    [
     "Energía",
-    4.3
+    5.5
    ]
   ],
   "geografia": [
    [
     "EE.UU.",
-    40.9
-   ],
-   [
-    "Corea del Sur",
-    10.4
-   ],
-   [
-    "Taiwán",
-    9.5
+    42.9
    ],
    [
     "Francia",
-    7.9
+    9.1
+   ],
+   [
+    "Taiwán",
+    8.8
+   ],
+   [
+    "Corea del Sur",
+    8.1
    ],
    [
     "Alemania",
-    6.3
+    6.2
    ],
    [
     "Suiza",
-    4.7
+    5.0
    ]
   ],
   "calidad": {},
@@ -2914,24 +2956,54 @@
   "gestora": "Olea Gestión",
   "bloque": "Mixto",
   "estilo": "Mixto equilibrado / neutral (fondo subordinado)",
-  "fecha_ficha": "Sin ficha",
+  "fecha_ficha": "30/10/2026",
   "mes": -0.14,
   "ytd": 0.4,
   "a1": 1.08,
   "per": "",
   "dividendo": "",
-  "posiciones": "",
-  "comentario": "Sin ficha mensual pública. Nota: el nombre correcto es Olea Neutral, no 'Olea Natural'.",
+  "posiciones": "Renta fija 65,7 % (gobiernos 40,8 %, bancos 12,0 %, corporativos 12,0 %), renta variable 28,3 %.",
+  "comentario": "Informe mensual de octubre de Olea Gestión.",
   "lectura": "+0,4% YTD.",
   "ficha": "",
-  "pdf": "",
+  "pdf": "fichas/Olea Neutral FI - Ficha oct 2026.pdf",
   "r3": 6.54,
   "r5": 3.25,
   "r10": 4.04,
-  "literal": "",
-  "mini": "",
-  "sectores": [],
-  "geografia": [],
+  "literal": "Olea Neutral, FI ha obtenido en octubre un resultado del −0,14%. La revalorización en 2026 se sitúa en el +0,40 %, con una volatilidad a un año del 3,6 %.\n\nEl impacto negativo del mes procede de la renta variable, que ha restado un 1,40 %, sobre todo por el sector tecnológico. El oro también ha restado un 0,15 % tras caer un 6,8 %. En sentido contrario, la renta fija ha aportado un +1,41 % gracias a la fuerte bajada de las rentabilidades de los bonos a largo plazo, tanto en Europa como, sobre todo, en EE. UU. Los bonos soberanos europeos a 10 años se sitúan cerca del 3,75 % y el estadounidense a 10 años, en el 4,90 %. La cartera de renta fija del fondo ofrece actualmente una rentabilidad media cercana al 4,5 %.\n\nEn octubre se intensificaron las tensiones en los precios del petróleo y del gas. Aun así, la inflación subyacente se mantiene en niveles previos a la guerra de Irán (2,5 %). Este contexto, unido a una corrección bastante generalizada de las bolsas, ha impulsado la compra de bonos a largo plazo de los emisores soberanos más solventes. Francia ha sido la excepción, como viene siendo habitual este año: sus bonos a largo plazo han alcanzado el 5 %, a pesar de que Moody's le mantuvo la calificación en Aa3. Por su parte, los resultados empresariales del tercer trimestre siguen creciendo con fuerza y dan soporte al mercado.\n\nYa en noviembre, las elecciones de mitad de mandato en EE. UU. se han saldado con la victoria de los demócratas. El mercado ha empezado a descontar una política menos favorable al desarrollo indiscriminado de la IA, menor presión arancelaria, menor gasto en defensa, más posibilidades de acuerdos y menores precios de la energía. Creemos, sin embargo, que cambios de este calado difícilmente se materializarán sin una presidencia demócrata, ya que requerirían el consenso de Trump, algo que no parece probable.\n\nPor ahora, la evolución de los mercados tras las elecciones ha favorecido al fondo, y somos optimistas de cara al final de año. Como refleja su volatilidad, hemos reducido el riesgo ante las incertidumbres actuales: políticas, geoestratégicas, inflacionistas (con sus efectos) e incluso tecnológicas. Esta decisión responde a nuestro mandato de preservación de capital. Como en ciclos anteriores, discriminar las subidas apoyadas en fundamentales más débiles implica no capturar todo el recorrido alcista del mercado, aunque nos permite alcanzar nuestros objetivos por un camino algo más lento, pero con menor riesgo.",
+  "mini": "fichas/miniaturas/Olea Neutral FI - Ficha oct 2026.jpg",
+  "sectores": [
+   [
+    "Renta fija: gobiernos",
+    40.8
+   ],
+   [
+    "Renta variable",
+    28.3
+   ],
+   [
+    "Renta fija: bancos",
+    12.0
+   ],
+   [
+    "Renta fija: corporativos",
+    12.0
+   ]
+  ],
+  "geografia": [
+   [
+    "Renta variable Europa",
+    12.5
+   ],
+   [
+    "Renta variable EE.UU.",
+    12.1
+   ],
+   [
+    "Renta variable emergentes",
+    3.7
+   ]
+  ],
   "calidad": {},
   "destaca": "",
   "aprox": false

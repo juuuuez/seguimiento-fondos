@@ -3,33 +3,33 @@
   "sec": [
    [
     "Industrial",
-    27.6,
+    27.8,
     10.8
    ],
    [
     "Financiero",
-    26.0,
-    15.7
+    25.9,
+    16.1
    ],
    [
     "Tecnología",
-    15.0,
-    31.8
+    13.5,
+    29.8
    ],
    [
     "Salud",
-    7.7,
-    9.2
+    7.6,
+    10.2
    ],
    [
     "Consumo discrecional",
-    7.2,
-    8.4
+    7.0,
+    8.7
    ],
    [
-    "Consumo básico",
-    5.8,
-    4.8
+    "Materiales",
+    6.0,
+    3.2
    ]
   ]
  },
@@ -1693,53 +1693,53 @@
   "sec": [
    [
     "Tecnología",
-    31.5
+    29.1
    ],
    [
     "Financiero",
-    23.1
+    24.7
    ],
    [
     "Salud",
     15.6
    ],
    [
-    "Comunicación",
-    7.4
+    "Industrial",
+    6.0
    ],
    [
-    "Industrial",
-    6.6
+    "Comunicación",
+    5.7
    ],
    [
     "Energía",
-    4.3
+    5.5
    ]
   ],
   "geo": [
    [
     "EE.UU.",
-    40.9
-   ],
-   [
-    "Corea del Sur",
-    10.4
-   ],
-   [
-    "Taiwán",
-    9.5
+    42.9
    ],
    [
     "Francia",
-    7.9
+    9.1
+   ],
+   [
+    "Taiwán",
+    8.8
+   ],
+   [
+    "Corea del Sur",
+    8.1
    ],
    [
     "Alemania",
-    6.3
+    6.2
    ],
    [
     "Suiza",
-    4.7
+    5.0
    ]
   ]
  },
@@ -1756,5 +1756,85 @@
    "hy": 0.0,
    "sr": 0.0
   }
+ },
+ "IE00B2NXKW18": {
+  "sec": [
+   [
+    "Salud",
+    41.2
+   ],
+   [
+    "Tecnología",
+    30.3
+   ],
+   [
+    "Financiero",
+    12.5
+   ],
+   [
+    "Industrial",
+    7.0
+   ],
+   [
+    "Consumo discrecional",
+    4.2
+   ],
+   [
+    "Comunicación",
+    3.8
+   ]
+  ],
+  "geo": [
+   [
+    "EE.UU.",
+    69.8
+   ],
+   [
+    "Zona euro",
+    16.8
+   ],
+   [
+    "Suiza",
+    8.1
+   ],
+   [
+    "Reino Unido",
+    4.3
+   ]
+  ]
+ },
+ "ES0118537002": {
+  "sec": [
+   [
+    "Renta fija: gobiernos",
+    40.8
+   ],
+   [
+    "Renta variable",
+    28.3
+   ],
+   [
+    "Renta fija: bancos",
+    12.0
+   ],
+   [
+    "Renta fija: corporativos",
+    12.0
+   ]
+  ],
+  "geo": [
+   [
+    "Renta variable Europa",
+    12.5
+   ],
+   [
+    "Renta variable EE.UU.",
+    12.1
+   ],
+   [
+    "Renta variable emergentes",
+    3.7
+   ]
+  ]
  }
 }
