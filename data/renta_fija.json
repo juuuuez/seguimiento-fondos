@@ -226,8 +226,38 @@
   "literal": "",
   "mini": "fichas/miniaturas/Evli Corporate Bond B - Ficha oct 2026.jpg",
   "sectores": [],
-  "geografia": [],
-  "calidad": {},
+  "geografia": [
+   [
+    "Alemania",
+    16.1
+   ],
+   [
+    "Suecia",
+    14.3
+   ],
+   [
+    "Francia",
+    10.9
+   ],
+   [
+    "Países Bajos",
+    10.3
+   ],
+   [
+    "Finlandia",
+    9.7
+   ],
+   [
+    "EE.UU.",
+    6.6
+   ]
+  ],
+  "calidad": {
+   "ig": 70.2,
+   "hy": 21.6,
+   "sr": 7.9,
+   "nota": "En sin rating, 6,6 % sin calificar"
+  },
   "destaca": "",
   "aprox": false
  },
@@ -258,7 +288,32 @@
   "literal": "",
   "mini": "fichas/miniaturas/PIMCO GIS Income Fund E EUR (Hedged) Acc - Ficha sep 2026.jpg",
   "sectores": [],
-  "geografia": [],
+  "geografia": [
+   [
+    "EE.UU.",
+    77.9
+   ],
+   [
+    "Reino Unido",
+    10.3
+   ],
+   [
+    "Australia",
+    5.3
+   ],
+   [
+    "Unión Europea",
+    1.5
+   ],
+   [
+    "Sudáfrica",
+    1.4
+   ],
+   [
+    "Brasil",
+    1.3
+   ]
+  ],
   "calidad": {},
   "destaca": "",
   "aprox": false
@@ -291,7 +346,11 @@
   "mini": "fichas/miniaturas/Flossbach von Storch Bond Opportunities RT - Ficha oct 2026.jpg",
   "sectores": [],
   "geografia": [],
-  "calidad": {},
+  "calidad": {
+   "ig": 96.6,
+   "hy": 3.4,
+   "sr": 0
+  },
   "destaca": "",
   "aprox": false
  },
@@ -322,8 +381,37 @@
   "literal": "",
   "mini": "fichas/miniaturas/M&G (Lux) Optimal Income EUR A Acc - Ficha sep 2026.jpg",
   "sectores": [],
-  "geografia": [],
-  "calidad": {},
+  "geografia": [
+   [
+    "EE.UU.",
+    51.9
+   ],
+   [
+    "Reino Unido",
+    12.3
+   ],
+   [
+    "Alemania",
+    6.1
+   ],
+   [
+    "Francia",
+    5.6
+   ],
+   [
+    "Japón",
+    3.3
+   ],
+   [
+    "Italia",
+    3.3
+   ]
+  ],
+  "calidad": {
+   "ig": 88.9,
+   "hy": 7.9,
+   "sr": 3.2
+  },
   "destaca": "",
   "aprox": false
  },
@@ -354,8 +442,38 @@
   "literal": "",
   "mini": "fichas/miniaturas/Man Global Investment Grade Opportunities - Ficha oct 2026.jpg",
   "sectores": [],
-  "geografia": [],
-  "calidad": {},
+  "geografia": [
+   [
+    "América del Norte",
+    44.3
+   ],
+   [
+    "Europa ex Reino Unido",
+    23.8
+   ],
+   [
+    "Latinoamérica",
+    18.6
+   ],
+   [
+    "Reino Unido",
+    9.6
+   ],
+   [
+    "Asia ex Japón",
+    1.7
+   ],
+   [
+    "Oriente Medio",
+    1.7
+   ]
+  ],
+  "calidad": {
+   "ig": 79.9,
+   "hy": 19.9,
+   "sr": 0.2,
+   "nota": "Normalizado a 100 (la ficha suma algo más por derivados)"
+  },
   "destaca": "",
   "aprox": false
  },
@@ -386,8 +504,38 @@
   "literal": "",
   "mini": "fichas/miniaturas/Man Dynamic Income DB H EUR - Ficha oct 2026.jpg",
   "sectores": [],
-  "geografia": [],
-  "calidad": {},
+  "geografia": [
+   [
+    "América del Norte",
+    38.3
+   ],
+   [
+    "Europa ex Reino Unido",
+    36.8
+   ],
+   [
+    "Latinoamérica",
+    17.7
+   ],
+   [
+    "Reino Unido",
+    10.2
+   ],
+   [
+    "Asia ex Japón",
+    2.1
+   ],
+   [
+    "Oriente Medio",
+    1.3
+   ]
+  ],
+  "calidad": {
+   "ig": 15.0,
+   "hy": 81.1,
+   "sr": 3.9,
+   "nota": "Normalizado a 100 (la ficha suma algo más por derivados)"
+  },
   "destaca": "",
   "aprox": false
  },
@@ -418,8 +566,38 @@
   "literal": "",
   "mini": "fichas/miniaturas/Man High Yield Opportunities D EUR - Ficha oct 2026.jpg",
   "sectores": [],
-  "geografia": [],
-  "calidad": {},
+  "geografia": [
+   [
+    "América del Norte",
+    28.2
+   ],
+   [
+    "Europa ex Reino Unido",
+    26.4
+   ],
+   [
+    "Reino Unido",
+    19.1
+   ],
+   [
+    "Latinoamérica",
+    16.0
+   ],
+   [
+    "Supranacional",
+    2.2
+   ],
+   [
+    "Asia ex Japón",
+    1.7
+   ]
+  ],
+  "calidad": {
+   "ig": 2.3,
+   "hy": 92.8,
+   "sr": 4.9,
+   "nota": "El resto es efectivo y derivados"
+  },
   "destaca": "",
   "aprox": false
  },
@@ -450,8 +628,33 @@
   "literal": "",
   "mini": "fichas/miniaturas/Man Euro Corporate Bond D EUR - Ficha oct 2026.jpg",
   "sectores": [],
-  "geografia": [],
-  "calidad": {},
+  "geografia": [
+   [
+    "Europa ex Reino Unido",
+    44.1
+   ],
+   [
+    "América del Norte",
+    36.7
+   ],
+   [
+    "Latinoamérica",
+    10.1
+   ],
+   [
+    "Reino Unido",
+    9.2
+   ],
+   [
+    "Supranacional",
+    0.6
+   ]
+  ],
+  "calidad": {
+   "ig": 78.4,
+   "hy": 20.7,
+   "sr": 0.8
+  },
   "destaca": "",
   "aprox": false
  },
@@ -483,7 +686,11 @@
   "mini": "fichas/miniaturas/AXA WF (BNPP AM) Euro Credit Total Return A EUR - Ficha oct 2026.jpg",
   "sectores": [],
   "geografia": [],
-  "calidad": {},
+  "calidad": {
+   "ig": 70.7,
+   "hy": 28.3,
+   "sr": 1.0
+  },
   "destaca": "",
   "aprox": false
  },
@@ -515,7 +722,11 @@
   "mini": "fichas/miniaturas/MS INVF Emerging Markets Debt Opportunities AH (EUR) - Ficha sep 2026.jpg",
   "sectores": [],
   "geografia": [],
-  "calidad": {},
+  "calidad": {
+   "ig": 42.0,
+   "hy": 50.3,
+   "sr": 7.7
+  },
   "destaca": "",
   "aprox": false
  },
@@ -547,7 +758,11 @@
   "mini": "fichas/miniaturas/MS INVF Emerging Markets Debt Opportunities A (EUR) - Ficha sep 2026.jpg",
   "sectores": [],
   "geografia": [],
-  "calidad": {},
+  "calidad": {
+   "ig": 42.0,
+   "hy": 50.3,
+   "sr": 7.7
+  },
   "destaca": "",
   "aprox": false
  },
@@ -674,9 +889,44 @@
   "literal": "",
   "mini": "fichas/miniaturas/Schroder ISF EURO Credit Conviction Short Duration A EUR - Ficha oct 2026.jpg",
   "sectores": [],
-  "geografia": [],
-  "calidad": {},
-  "destaca": "",
+  "geografia": [
+   [
+    "EE.UU.",
+    17.3,
+    12.3
+   ],
+   [
+    "Reino Unido",
+    12.1,
+    5.8
+   ],
+   [
+    "Alemania",
+    11.9,
+    15.9
+   ],
+   [
+    "Francia",
+    6.8,
+    19.3
+   ],
+   [
+    "Hungría",
+    5.3,
+    0.5
+   ],
+   [
+    "Polonia",
+    4.2,
+    0.8
+   ]
+  ],
+  "calidad": {
+   "ig": 76.0,
+   "hy": 22.9,
+   "sr": 1.1
+  },
+  "destaca": "Más peso: Reino Unido (12,1 % frente a 5,8 % del índice). Menos peso: Francia (6,8 % frente a 19,3 %).",
   "aprox": false
  },
  {
@@ -738,10 +988,39 @@
   "literal": "El mes de septiembre se caracterizó por un nuevo agravamiento de la crisis energética y por el giro restrictivo de los principales bancos centrales. En un contexto marcado por nuevos ataques estadounidenses contra Irán y el ataque a un petrolero en el estrecho de Ormuz, el barril de Brent se ha disparado hasta los 110 $/b (aproximadamente 90 $/b a finales de agosto) y el contrato de gas europeo ha alcanzado más de 80 €/MWh, su nivel más alto desde finales de 2022. Los bancos centrales permanecieron alerta, ya sea subiendo los tipos de interés o dando pistas sobre futuras subidas. A finales de mes, la fragmentación de la deuda soberana europea tomó el relevo, en un contexto de marcado aumento de los rendimientos a nivel mundial. A lo largo del mes, los rendimientos y los diferenciales soberanos han repuntado drásticamente en todas las curvas. En Estados Unidos, la Reserva Federal subió su tipo de interés de referencia en 25 pb, situando su límite superior en el 4 %, en una decisión unánime. La inflación del IPC de agosto se sitúa en un +0,4 % respecto al mes anterior y en un +3,4 % respecto al mismo mes del año anterior, acorde con las previsiones. El índice subyacente ha sorprendido con un aumento del 0,3 % en el mes, frente al 0,2 % previsto, con los servicios, excluida la vivienda, en un 0,6 %, aunque la variación interanual se ha reducido al 2,4 %. El tipo a dos años subió 54 pb a lo largo del mes, hasta el 4,89 %, y el de diez años cerró en el 5,28 %. La pendiente de 2/10 se mantiene estable en 40 pb. En la zona euro, el BCE elevó su tipo de depósito al 2,50 %, tal y como se preveía a finales de agosto. Prevé una inflación del 3,0 % en 2026, del 2,5 % en 2027 y del 2,1 % en 2028, y se ha interpretado que Christine Lagarde —quien ha señalado riesgos al alza en la inflación, al tiempo que mantiene un enfoque «reunión a reunión»— da por válida una tasa terminal superior al 3 %. A lo largo del mes, el Schatz a 2 años subió hasta el 3,21 % y el Bund a 10 años hasta el 3,50 %, su máximo desde 2011. En Francia, el tipo a diez años subió cerca del 5 %. La incertidumbre política y presupuestaria provocó un marcado aumento del diferencial entre los bonos OAT y los Bund a 10 años. A lo largo del mes, el diferencial OAT-Bund cerró en torno a los 127 pb y el BTP-Bund, en torno a los 103 pb. En el Reino Unido, el Comité de Política Monetaria mantuvo el tipo de interés de referencia en el 3,75 %, adoptando un tono más firme respecto a los riesgos de inflación, que ahora se consideran «más al alza que en el momento del informe de julio». En Japón, el Banco de Japón (BoJ) subió su tipo de interés de referencia en 25 pb, hasta el 1,25 %, lo que sitúa el tipo en el extremo inferior del rango de tipos neutros que estima (1,10 %-2,50 %). El tipo de interés japonés a diez años supera a sus homólogos al subir 13 pb, hasta el 3,07 %.\n\nEn el mercado financiero, el diferencial de los bonos bancarios Seniors se amplía en +14 pb, el de los bonos bancarios Tier 2 en +19 pb y el de los bonos AT1 en +24 pb (€AT1 +50 pb). En el sector de los seguros, el diferencial de los bonos Seniors se amplía en +9 pb y el de los bonos Subordinados en +21 pb. Los resultados fueron negativos en todos los segmentos: los títulos bancarios Seniors retrocedieron un -1,2 %, los de Tier 2 un -1,3 % y los AT1 un -1,8 % (€AT1: -2,2 %). En cuanto a seguros, los Senior perdieron un -1,1% y los Subordinados un -2,0%. El mercado primario mostró activo a lo largo del mes, con un volumen de emisión de deuda subordinada de unos 11 800 millones de euros. En el mercado de crédito corporativo IG, los diferenciales de crédito se ampliaron a lo largo del mes, en 9 pb para los bonos senior y en 20 pb para los híbridos, en un contexto de fuerte volatilidad y tensiones en los tipos de interés, alimentadas por los temores inflacionistas, las expectativas sobre la política monetaria y la preocupación por el deterioro de las finanzas públicas francesas. La rentabilidad de esta clase de activos fue negativa, con un -1,48 %, penalizada principalmente por el impacto de los tipos de interés. La dispersión sectorial, que a principios de mes era reducida (+1 a +4 pb), se acentuó notablemente a finales de mes. El sector del automóvil (+19 pb), seguido del inmobiliario (+18 pb) debido a su sensibilidad a los tipos de interés, el sector del ocio (+12 pb) y el del transporte (+12 pb) registran un rendimiento inferior al del mercado, mientras que los sectores tecnológico, de los medios de comunicación, sanitario y de las telecomunicaciones registran un rendimiento superior al del mercado. La actividad primaria de Corporate IG se mantuvo en 50 000 millones de euros, a pesar de la fuerte volatilidad y la tensión en los tipos de interés a lo largo del mes.\n\nEl mercado de bonos de alto rendimiento (high yield) registró una rentabilidad del -1,64 %, lastrada tanto por la subida de los tipos de interés como por la ampliación de los diferenciales. Los diferenciales se ampliaron en 40 pb, hasta situarse en 302 pb, un nivel que no se había registrado desde marzo-abril, tras el estallido del conflicto en Oriente Medio. En este contexto, la rentabilidad del mercado europeo de alto rendimiento ha alcanzado el 6,7 %, un nivel superior a su media histórica. Los bonos con calificación B obtuvieron mejores resultados que los títulos con calificación BB, ya que estos últimos se vieron más afectados por la subida de los tipos de interés debido a su mayor sensibilidad. Todos los sectores registraron un rendimiento negativo. El sector inmobiliario (Heimstaden, Vivion, CPI Property) registró las mayores caídas debido a su elevada sensibilidad al aumento de los tipos de interés. Las telecomunicaciones (Virgin Media O2, Sunrise, SES) y el ocio (Merlin, eDreams, Essendi) también figuran entre los principales factores que contribuyen negativamente. Por último, el sector del transporte (Mobico, TAP, Air France) se vio afectado, lastrado por la subida constante de los precios del petróleo. No obstante, el mercado primario fue especialmente dinámico, con 18 700 millones de euros de emisiones a lo largo del mes.\n\nLa rentabilidad de la cartera fue negativa este mes, con un -4,21 % en el compartimento PVC. La rentabilidad se vio muy afectada por la tensión en los tipos de interés. El efecto del crédito también es negativo debido a la ampliación de los diferenciales de riesgo; y de forma más acusada en los activos de riesgo (bonos corporativos de alto rendimiento y deuda financiera subordinada). La sensibilidad crediticia se mantiene estable en 3,2. La sensibilidad a los tipos de interés se sitúa cerca del límite superior del rango permitido, en 9,8.",
   "mini": "fichas/miniaturas/Lazard Credit Opportunities RC EUR - Ficha sep 2026.jpg",
   "sectores": [],
-  "geografia": [],
-  "calidad": {},
+  "geografia": [
+   [
+    "Francia",
+    17
+   ],
+   [
+    "Alemania",
+    12
+   ],
+   [
+    "Italia",
+    12
+   ],
+   [
+    "España",
+    12
+   ],
+   [
+    "Grecia",
+    7
+   ],
+   [
+    "Países Bajos",
+    7
+   ]
+  ],
+  "calidad": {
+   "ig": 66,
+   "hy": 27,
+   "sr": 7
+  },
   "destaca": "",
-  "aprox": false
+  "aprox": true
  },
  {
   "isin": "LU3003216580",
@@ -771,7 +1050,11 @@
   "mini": "fichas/miniaturas/Carmignac Portfolio Credit (clase E EUR Acc) - Ficha oct 2026.jpg",
   "sectores": [],
   "geografia": [],
-  "calidad": {},
+  "calidad": {
+   "ig": 64.2,
+   "hy": 35.7,
+   "sr": 0.1
+  },
   "destaca": "",
   "aprox": false
  },
@@ -803,7 +1086,11 @@
   "mini": "fichas/miniaturas/Carmignac Portfolio Global Bond A EUR Acc - Ficha oct 2026.jpg",
   "sectores": [],
   "geografia": [],
-  "calidad": {},
+  "calidad": {
+   "ig": 67.5,
+   "hy": 32.5,
+   "sr": 0
+  },
   "destaca": "",
   "aprox": false
  },
@@ -834,8 +1121,34 @@
   "literal": "",
   "mini": "fichas/miniaturas/Algebris Global Credit Opportunities R EUR - Ficha ago 2026.jpg",
   "sectores": [],
-  "geografia": [],
-  "calidad": {},
+  "geografia": [
+   [
+    "Norteamérica",
+    36.8
+   ],
+   [
+    "Europa",
+    20.4
+   ],
+   [
+    "Mercados emergentes",
+    18.5
+   ],
+   [
+    "Reino Unido",
+    9.4
+   ],
+   [
+    "Asia-Pacífico",
+    0.9
+   ]
+  ],
+  "calidad": {
+   "ig": 39.5,
+   "hy": 45.3,
+   "sr": 15.2,
+   "nota": "Normalizado a 100 (posiciones largas = 86 % del patrimonio); ficha de agosto"
+  },
   "destaca": "",
   "aprox": false
  },

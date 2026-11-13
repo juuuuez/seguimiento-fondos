@@ -1836,5 +1836,465 @@
     3.7
    ]
   ]
+ },
+ "LU1481583711": {
+  "cal": {
+   "ig": 96.6,
+   "hy": 3.4,
+   "sr": 0
+  }
+ },
+ "LU1670724373": {
+  "cal": {
+   "ig": 88.9,
+   "hy": 7.9,
+   "sr": 3.2
+  },
+  "geo": [
+   [
+    "EE.UU.",
+    51.9
+   ],
+   [
+    "Reino Unido",
+    12.3
+   ],
+   [
+    "Alemania",
+    6.1
+   ],
+   [
+    "Francia",
+    5.6
+   ],
+   [
+    "Japón",
+    3.3
+   ],
+   [
+    "Italia",
+    3.3
+   ]
+  ]
+ },
+ "IE000MI53C66": {
+  "cal": {
+   "ig": 79.9,
+   "hy": 19.9,
+   "sr": 0.2,
+   "nota": "Normalizado a 100 (la ficha suma algo más por derivados)"
+  },
+  "geo": [
+   [
+    "América del Norte",
+    44.3
+   ],
+   [
+    "Europa ex Reino Unido",
+    23.8
+   ],
+   [
+    "Latinoamérica",
+    18.6
+   ],
+   [
+    "Reino Unido",
+    9.6
+   ],
+   [
+    "Asia ex Japón",
+    1.7
+   ],
+   [
+    "Oriente Medio",
+    1.7
+   ]
+  ]
+ },
+ "IE000WFG9PJ8": {
+  "cal": {
+   "ig": 15.0,
+   "hy": 81.1,
+   "sr": 3.9,
+   "nota": "Normalizado a 100 (la ficha suma algo más por derivados)"
+  },
+  "geo": [
+   [
+    "América del Norte",
+    38.3
+   ],
+   [
+    "Europa ex Reino Unido",
+    36.8
+   ],
+   [
+    "Latinoamérica",
+    17.7
+   ],
+   [
+    "Reino Unido",
+    10.2
+   ],
+   [
+    "Asia ex Japón",
+    2.1
+   ],
+   [
+    "Oriente Medio",
+    1.3
+   ]
+  ]
+ },
+ "IE00BDTYYP61": {
+  "cal": {
+   "ig": 2.3,
+   "hy": 92.8,
+   "sr": 4.9,
+   "nota": "El resto es efectivo y derivados"
+  },
+  "geo": [
+   [
+    "América del Norte",
+    28.2
+   ],
+   [
+    "Europa ex Reino Unido",
+    26.4
+   ],
+   [
+    "Reino Unido",
+    19.1
+   ],
+   [
+    "Latinoamérica",
+    16.0
+   ],
+   [
+    "Supranacional",
+    2.2
+   ],
+   [
+    "Asia ex Japón",
+    1.7
+   ]
+  ]
+ },
+ "IE000JM1MJ59": {
+  "cal": {
+   "ig": 78.4,
+   "hy": 20.7,
+   "sr": 0.8
+  },
+  "geo": [
+   [
+    "Europa ex Reino Unido",
+    44.1
+   ],
+   [
+    "América del Norte",
+    36.7
+   ],
+   [
+    "Latinoamérica",
+    10.1
+   ],
+   [
+    "Reino Unido",
+    9.2
+   ],
+   [
+    "Supranacional",
+    0.6
+   ]
+  ]
+ },
+ "LU2784407020": {
+  "cal": {
+   "ig": 42.0,
+   "hy": 50.3,
+   "sr": 7.7
+  }
+ },
+ "LU2784406998": {
+  "cal": {
+   "ig": 42.0,
+   "hy": 50.3,
+   "sr": 7.7
+  }
+ },
+ "LU1164219682": {
+  "cal": {
+   "ig": 70.7,
+   "hy": 28.3,
+   "sr": 1.0
+  }
+ },
+ "LU1293074719": {
+  "cal": {
+   "ig": 76.0,
+   "hy": 22.9,
+   "sr": 1.1
+  },
+  "geo": [
+   [
+    "EE.UU.",
+    17.3,
+    12.3
+   ],
+   [
+    "Reino Unido",
+    12.1,
+    5.8
+   ],
+   [
+    "Alemania",
+    11.9,
+    15.9
+   ],
+   [
+    "Francia",
+    6.8,
+    19.3
+   ],
+   [
+    "Hungría",
+    5.3,
+    0.5
+   ],
+   [
+    "Polonia",
+    4.2,
+    0.8
+   ]
+  ]
+ },
+ "FI0008801097": {
+  "cal": {
+   "ig": 70.2,
+   "hy": 21.6,
+   "sr": 7.9,
+   "nota": "En sin rating, 6,6 % sin calificar"
+  },
+  "geo": [
+   [
+    "Alemania",
+    16.1
+   ],
+   [
+    "Suecia",
+    14.3
+   ],
+   [
+    "Francia",
+    10.9
+   ],
+   [
+    "Países Bajos",
+    10.3
+   ],
+   [
+    "Finlandia",
+    9.7
+   ],
+   [
+    "EE.UU.",
+    6.6
+   ]
+  ]
+ },
+ "IE00B84J9L26": {
+  "geo": [
+   [
+    "EE.UU.",
+    77.9
+   ],
+   [
+    "Reino Unido",
+    10.3
+   ],
+   [
+    "Australia",
+    5.3
+   ],
+   [
+    "Unión Europea",
+    1.5
+   ],
+   [
+    "Sudáfrica",
+    1.4
+   ],
+   [
+    "Brasil",
+    1.3
+   ]
+  ],
+  "nota": "Países por contribución a la duración"
+ },
+ "LU0336083497": {
+  "cal": {
+   "ig": 67.5,
+   "hy": 32.5,
+   "sr": 0
+  }
+ },
+ "LU3003216580": {
+  "cal": {
+   "ig": 64.2,
+   "hy": 35.7,
+   "sr": 0.1
+  }
+ },
+ "IE00BYT35X57": {
+  "cal": {
+   "ig": 39.5,
+   "hy": 45.3,
+   "sr": 15.2,
+   "nota": "Normalizado a 100 (posiciones largas = 86 % del patrimonio); ficha de agosto"
+  },
+  "geo": [
+   [
+    "Norteamérica",
+    36.8
+   ],
+   [
+    "Europa",
+    20.4
+   ],
+   [
+    "Mercados emergentes",
+    18.5
+   ],
+   [
+    "Reino Unido",
+    9.4
+   ],
+   [
+    "Asia-Pacífico",
+    0.9
+   ]
+  ]
+ },
+ "FR0010230490": {
+  "cal": {
+   "ig": 66,
+   "hy": 27,
+   "sr": 7
+  },
+  "geo": [
+   [
+    "Francia",
+    17
+   ],
+   [
+    "Alemania",
+    12
+   ],
+   [
+    "Italia",
+    12
+   ],
+   [
+    "España",
+    12
+   ],
+   [
+    "Grecia",
+    7
+   ],
+   [
+    "Países Bajos",
+    7
+   ]
+  ],
+  "aprox": true
+ },
+ "LU1989765471": {
+  "sec": [
+   [
+    "Oro",
+    91.1,
+    90.8
+   ],
+   [
+    "Plata",
+    5.9,
+    4.3
+   ],
+   [
+    "Metales y minería",
+    2.1,
+    3.8
+   ],
+   [
+    "Metales preciosos",
+    0.5,
+    0.1
+   ]
+  ],
+  "geo": [
+   [
+    "Norteamérica",
+    69.0,
+    61.6
+   ],
+   [
+    "Mercados emergentes",
+    15.1,
+    20.0
+   ],
+   [
+    "Asia ex Japón",
+    14.1,
+    16.6
+   ],
+   [
+    "Otros",
+    1.6,
+    1.9
+   ]
+  ]
+ },
+ "LU1833929729": {
+  "sec": [
+   [
+    "Tecnología",
+    41.4
+   ],
+   [
+    "Salud",
+    9.5
+   ],
+   [
+    "Comercio minorista",
+    9.3
+   ],
+   [
+    "Petróleo y gas",
+    6.1
+   ],
+   [
+    "Industrial",
+    5.3
+   ],
+   [
+    "Financiero",
+    5.0
+   ]
+  ],
+  "geo": [
+   [
+    "EE.UU.",
+    97.6
+   ],
+   [
+    "Irlanda",
+    1.3
+   ],
+   [
+    "Suiza",
+    0.2
+   ]
+  ]
  }
 }

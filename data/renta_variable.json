@@ -2319,8 +2319,46 @@
   "r10": null,
   "literal": "",
   "mini": "fichas/miniaturas/ODDO BHF US Equity Trend (Algo Trends) CR-EUR - Ficha oct 2026.jpg",
-  "sectores": [],
-  "geografia": [],
+  "sectores": [
+   [
+    "Tecnología",
+    41.4
+   ],
+   [
+    "Salud",
+    9.5
+   ],
+   [
+    "Comercio minorista",
+    9.3
+   ],
+   [
+    "Petróleo y gas",
+    6.1
+   ],
+   [
+    "Industrial",
+    5.3
+   ],
+   [
+    "Financiero",
+    5.0
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    97.6
+   ],
+   [
+    "Irlanda",
+    1.3
+   ],
+   [
+    "Suiza",
+    0.2
+   ]
+  ],
   "calidad": {},
   "destaca": "",
   "aprox": false
@@ -3086,10 +3124,52 @@
   "r10": 11.27,
   "literal": "",
   "mini": "fichas/miniaturas/CPR Invest Global Gold Mines A EUR Acc - Ficha oct 2026.jpg",
-  "sectores": [],
-  "geografia": [],
+  "sectores": [
+   [
+    "Oro",
+    91.1,
+    90.8
+   ],
+   [
+    "Plata",
+    5.9,
+    4.3
+   ],
+   [
+    "Metales y minería",
+    2.1,
+    3.8
+   ],
+   [
+    "Metales preciosos",
+    0.5,
+    0.1
+   ]
+  ],
+  "geografia": [
+   [
+    "Norteamérica",
+    69.0,
+    61.6
+   ],
+   [
+    "Mercados emergentes",
+    15.1,
+    20.0
+   ],
+   [
+    "Asia ex Japón",
+    14.1,
+    16.6
+   ],
+   [
+    "Otros",
+    1.6,
+    1.9
+   ]
+  ],
   "calidad": {},
-  "destaca": "",
+  "destaca": "Más peso: Norteamérica (69,0 % frente a 61,6 % del índice). Menos peso: Mercados emergentes (15,1 % frente a 20,0 %).",
   "aprox": false
  },
  {
