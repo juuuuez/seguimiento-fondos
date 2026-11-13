@@ -88,7 +88,7 @@ a{color:var(--accent)}
   <header id="cabecera" style="display:flex;flex-direction:column;gap:var(--cds-gap-sm)">
     <h1>Seguimiento de fondos</h1>
     <p class="pf-lead" data-read lang="es">En renta fija, los fondos que sigues ofrecen una TIR media del <b data-draw="tirMedia" data-source="resumen" data-field="tir_media" data-row="0">—</b> con una duración media de <b data-draw="durMedia" data-source="resumen" data-field="dur_media" data-row="0">—</b> años. En renta variable, el fondo medio sube un <b data-draw="ytdRv" data-source="resumen" data-field="ytd_rv" data-row="0">—</b> en el año; el mejor es <b data-draw="mejorRv" data-source="resumen" data-field="mejor_rv" data-row="0">—</b>.</p>
-    <p class="pf-muted">Datos de las fichas mensuales de cada gestora (septiembre y octubre de 2026). Rentabilidades de la clase en euros. Las fichas en PDF están en la pestaña Fichas.</p>
+    <p class="pf-muted">Datos de las fichas mensuales más recientes de cada gestora. Rentabilidades de la clase en euros a cierre de <b data-draw="cierre">—</b>. Última actualización: <b data-draw="actualizado">—</b>. Las fichas en PDF están en la pestaña Fichas.</p>
   </header>
 
   <nav class="pf-tabs" role="tablist" aria-label="Bloques">
@@ -137,7 +137,7 @@ a{color:var(--accent)}
     </div>
     <div class="pf-card" id="rv-ranking">
       <h2>Rentabilidad en el año, de mayor a menor</h2>
-      <p class="pf-muted">Clase en euros, a 31/10/2026, calculada con el valor liquidativo.</p>
+      <p class="pf-muted">Clase en euros, a cierre de <b data-draw="cierre">—</b>, calculada con el valor liquidativo.</p>
       <div class="pf-chart" data-draw="rvBars" data-source="rv"></div>
     </div>
     <div class="pf-card" id="rv-tabla">
@@ -149,7 +149,7 @@ a{color:var(--accent)}
             <th data-field="fondo" data-sort="fondo">Fondo</th>
             <th data-field="bloque" data-sort="bloque">Bloque</th>
             <th data-field="estilo" data-sort="estilo">Estilo</th>
-            <th class="num" data-field="mes" data-sort="mes">Octubre</th>
+            <th class="num" data-field="mes" data-sort="mes">Último mes</th>
             <th class="num" data-field="ytd" data-sort="ytd">En el año</th>
             <th class="num" data-field="a1" data-sort="a1">1 año</th>
           </tr></thead>
@@ -189,7 +189,7 @@ a{color:var(--accent)}
 /* Mini-runtime: carga los JSON de /data y dibuja cada bloque marcado con data-draw. Sin dependencias externas salvo d3. */
 (function () {
   const DS = {}, DRAWS = {}, CALCS = {}, made = new WeakMap();
-  const SRC = {rf: 'data/renta_fija.json', rv: 'data/renta_variable.json', vision: 'data/vision_general.json'};
+  const SRC = {rf: 'data/renta_fija.json', rv: 'data/renta_variable.json', vision: 'data/vision_general.json', meta: 'data/meta.json'};
   window.dash = {
     colors: ['var(--accent)'],
     data(id) { return DS[id] || {status: 'loading', data: id === 'resumen' ? null : [], columns: []}; },
@@ -382,6 +382,15 @@ function pfVision(name, bloque) {
 pfVision('visionRf', 'Renta fija');
 pfVision('visionRv', 'Renta variable');
 
+function pfMeta(name, key) {
+  dash.draw(name, (el) => {
+    const d = dash.data('meta');
+    el.textContent = (d.status === 'ok' && d.data && d.data[key]) ? d.data[key] : '—';
+  });
+}
+pfMeta('cierre', 'cierre');
+pfMeta('actualizado', 'actualizado');
+
 PF.q = '';
 function pfFiles(name, src, fechaKey) {
   dash.draw(name, (ul) => {
@@ -470,7 +479,7 @@ dash.draw('rvBars', {
     g.on('pointerenter pointermove', (ev, r) => {
       tip.attr('hidden', null).html('');
       tip.append('strong').text(r.fondo);
-      tip.append('span').text(r.estilo + ' · Octubre ' + PF.pct(r.mes, true) + ' · 1 año ' + PF.pct(r.a1, true));
+      tip.append('span').text(r.estilo + ' · Último mes ' + PF.pct(r.mes, true) + ' · 1 año ' + PF.pct(r.a1, true));
       const [px, py] = d3.pointer(ev, el);
       tip.style('left', Math.min(Math.max(px + 10, 0), (el.clientWidth || W) - 240) + 'px').style('top', Math.max(py - 50, 0) + 'px');
     }).on('pointerleave', () => tip.attr('hidden', true));
