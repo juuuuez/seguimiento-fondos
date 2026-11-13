@@ -38,7 +38,13 @@ La web (`index.html`) no se toca: lee `data/*.json` al cargarse.
 5. `vision_general.json`: qué dicen las gestoras, en qué coinciden y discrepan, ganadores y perdedores del año, qué ha cambiado respecto al mes anterior, conclusiones propias (no es recomendación personalizada).
 6. Poner `pdf` en cada fila, borrar de `fichas/` las del mes anterior y escribir las nuevas. Actualizar `meta.json`.
 7. Comprobar: JSON válido, 29 filas de renta fija y 51 de variable, cada `pdf` existe, ningún archivo supera 25 MB.
-8. `git add -A`, commit y `git -c push.negotiate=true push origin main`. Esperar 1-2 minutos y comprobar con curl que `https://juuuuez.github.io/seguimiento-fondos/data/meta.json` muestra la fecha nueva.
+8. Excel del repositorio: `python3 -I herramientas/generar_excel.py . descargas/Seguimiento_Fondos.xlsx web`, y recalcular con LibreOffice (el skill `xlsx` trae `scripts/recalc.py`; debe dar 0 errores). La web lo ofrece en «Descargar el Excel».
+9. `git add -A`, commit y `git -c push.negotiate=true push origin main`. Esperar 1-2 minutos y comprobar con curl que `https://juuuuez.github.io/seguimiento-fondos/data/meta.json` muestra la fecha nueva.
+10. Google Drive (solo si hay conector de Drive en la sesión; si no, decirlo en el resumen):
+    - Carpeta raíz "Asesor Financiero Renta 4 Banco": id `15WahWLXw9kLS2VIfU-LYDJJZYrKpwLm4`. Dentro, "Fichas fondos": id `1ZsPThxHxR1ltbz7Yk7qUIPGoZGsmgiYb`, con una subcarpeta por mes (`AAAA-MM`).
+    - Crear la subcarpeta del mes y subir ahí las fichas nuevas con el mismo nombre que en `fichas/` (una por llamada; límite de ~3 MB por archivo en el conector: comprimir con pypdf los PDF mayores).
+    - Excel para Drive, con enlaces relativos a la carpeta de fichas: `python3 -I herramientas/generar_excel.py . Seguimiento_Fondos.xlsx local AAAA-MM`, recalcular, mandar a la papelera el `Seguimiento_Fondos.xlsx` anterior de la carpeta raíz y subir el nuevo con ese mismo nombre.
+    - Mantener la carpeta "_Herramientas (no tocar)" (id `1bwj66qaqc7DXislCgG5n_uRncQ7Xne-s`) como copia de seguridad opcional de `herramientas/`.
 
 ## Pendiente conocido
 LBPAM (FR0014004IP7), Cartesio Income (LU1966822956) y Sigma (LU1984948874, ISIN dudoso) no tienen ficha pública: van como "Sin ficha".
