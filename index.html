@@ -139,6 +139,8 @@ h2{margin:0;font-family:var(--serif);font-optical-sizing:auto;font-size:clamp(31
 .fund .sub{color:var(--muted);font-size:14px;margin-bottom:28px}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:10px}
 .tile{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+.tile.key{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.tile.key small{color:var(--bg);opacity:.65}
 .tile small{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
 .tile strong{font-size:22px;font-weight:400;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .note{font-size:12px;color:var(--muted);margin:10px 2px 0}
@@ -378,9 +380,9 @@ function viewFund(isin) {
   const rf = f.kind === 'rf';
   const tiles = [['Último mes', f.mes], ['Año', f.ytd], ['1 año', f.a1], ['3 años', f.r3], ['5 años', f.r5], ['10 años', f.r10]];
   const extra = [];
-  if (rf) { extra.push(['TIR', f.tir == null ? null : nf(f.tir, 2) + '%'], ['Duración', f.duracion == null ? null : nf(f.duracion, 1) + ' años']); }
+  if (rf) { extra.push(['TIR', f.tir == null ? null : nf(f.tir, 2) + '%'], ['Duración, años', f.duracion == null ? null : nf(f.duracion, 1)]); }
   else { if (f.per) extra.push(['PER', f.per]); if (f.dividendo) extra.push(['Dividendo', f.dividendo]); }
-  const tile = (l, v, raw) => h('div', { class: 'tile' }, h('small', {}, l), h('strong', { class: raw ? '' : cls(v) }, raw ? (v == null ? '–' : v) : pct(v, 2)));
+  const tile = (l, v, raw, key) => h('div', { class: 'tile' + (key ? ' key' : '') }, h('small', {}, l), h('strong', { class: raw ? '' : cls(v) }, raw ? (v == null ? '–' : v) : pct(v, 2)));
   const blocks = [];
   const add = (t, txt) => { if (!placeholder(txt)) blocks.push(h('div', {}, h('h3', {}, t), h('p', {}, txt))); };
   const pasado = () => {
@@ -405,7 +407,7 @@ function viewFund(isin) {
     h('span', { class: 'ft' }, h('b', {}, 'Ficha mensual'), h('small', {}, f.fecha || f.fecha_ficha || ''), h('span', { class: 'dl' }, 'Descargar PDF'))) : null;
   return h('section', { class: 'fund' }, h('h2', {}, f.fondo),
     h('div', { class: 'sub' }, f.gestora + ' · ' + f.isin + (f.estilo ? ' · ' + f.estilo : f.tipo ? ' · ' + f.tipo : '')),
-    h('div', { class: 'tiles' }, tiles.map(([l, v]) => tile(l, v)), extra.map(([l, v]) => tile(l, v, true))),
+    h('div', { class: 'tiles' }, ...(rf ? [extra.map(([l, v]) => tile(l, v, true, true)), tiles.map(([l, v]) => tile(l, v))] : [tiles.map(([l, v]) => tile(l, v)), extra.map(([l, v]) => tile(l, v, true))])),
     h('p', { class: 'note' }, 'Rentabilidad de la clase en euros. A 3, 5 y 10 años, anualizada.'),
     ficha,
     h('div', { class: 'blocks' }, blocks));
