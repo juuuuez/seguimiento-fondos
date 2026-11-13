@@ -60,6 +60,9 @@ La web (`index.html`) no se toca: lee `data/*.json` al cargarse.
 3. Sin ficha mensual accesible a fecha 13/11/2026 (se reintenta cada mes): Avantage Fund FI B (r4.com solo tiene folleto/semestral), Numantia Patrimonio Global (igual), Horos Patrimonio (web horosam.com devolvía 502), Groupama Global Disruption y Global Active Equity (el informe público de h24finance sigue en marzo de 2026), DIP Paradigma, Ardtur, MFS Blended Research US Core (clase EUR), Finserve Global Defence, Polar Capital Global Insurance (polarcapitalfunds.com pide registrarse como inversor: no aceptar el aviso por el usuario), Goehring & Rozencwajg (solo ficha trimestral en gr-funds.com). No usar otros portales de fundinfo (LU, GB, CH, DE…): el usuario solo aceptó el aviso legal de España.
 4. Orden al incorporar una ficha nueva: copiar el PDF a `fichas/<Nombre> - Ficha <mes> <año>.pdf`, borrar el anterior, actualizar `fecha`/`fecha_ficha`, `pdf` y los datos de la ficha (tir, duración, posiciones, exposición en `exposicion.json`), y volver a pasar `comentarios.py`, `miniaturas.py` y `exposicion_aplicar.py`.
 
+## Logos de las carpetas de gestoras
+La portada de renta fija agrupa los fondos en carpetas por gestora (`GEST` y `famOf` en `index.html`). Cada logo está en `logos/<clave>.png` (favicons/logos públicos de cada gestora; Evli, Morgan Stanley, Algebris, GAM y Carmignac recortados de sus propias fichas). Si entra una gestora nueva en `rf.tsv`/`rv.tsv`, añadir su línea en `GEST` y su logo; si no hay logo, la carpeta enseña las iniciales.
+
 ## Pendiente conocido
 LBPAM (FR0014004IP7), Cartesio Income (LU1966822956) y Sigma (LU1984948874, ISIN dudoso) no tienen ficha pública: van como "Sin ficha".
 

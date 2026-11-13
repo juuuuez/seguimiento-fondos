@@ -176,6 +176,19 @@ h2{margin:0;font-family:var(--serif);font-optical-sizing:auto;font-size:clamp(31
 .qleg{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:13px;color:var(--muted)}
 .qleg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
 .qleg b{color:var(--ink);font-weight:500}
+.folders{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:22px 14px;margin:6px 0 30px}
+.folder{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:14px 14px 12px;background:var(--surface);border:1px solid var(--line);border-radius:4px 14px 14px 14px;cursor:pointer;box-shadow:var(--shadow);transition:border-color .18s ease}
+.folder::before{content:"";position:absolute;left:-1px;top:-9px;width:46%;height:10px;background:var(--surface);border:1px solid var(--line);border-bottom:0;border-radius:7px 7px 0 0;transition:border-color .18s ease}
+.folder:hover,.folder[aria-pressed="true"]{border-color:var(--ink)}
+.folder:hover::before,.folder[aria-pressed="true"]::before{border-color:var(--ink)}
+.folder[aria-pressed="true"]{background:var(--soft)}
+.folder[aria-pressed="true"]::before{background:var(--soft)}
+.flogo{display:flex;align-items:center;justify-content:flex-start;width:100%;height:46px;margin-bottom:4px}
+.flogo img{box-sizing:border-box;max-width:100%;height:44px;width:auto;object-fit:contain;background:#fff;padding:5px;border-radius:8px;border:1px solid var(--line)}
+.flogo b{display:grid;place-items:center;width:44px;height:44px;border-radius:8px;background:var(--soft);color:var(--muted);font-weight:500;font-size:14px}
+.fname{font-size:13px;font-weight:500;line-height:1.25}
+.fcount{font-size:12px;color:var(--muted)}
+@media (max-width:640px){.folders{grid-template-columns:repeat(2,1fr)}}
 .btn{display:inline-flex;align-items:center;gap:8px;margin-top:30px;padding:12px 20px;border-radius:12px;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:500;font-size:14px}
 .btn:hover{opacity:.88}
 .btn small{font-weight:400;opacity:.65}
@@ -218,7 +231,7 @@ const icon = {
 };
 
 let D = { rf: [], rv: [], vis: [], meta: {} }, ALL = [];
-const ST = { rf: { key: 'ytd', dir: -1, mode: 'lista', q: '' }, rv: { key: 'ytd', dir: -1, mode: 'lista', q: '', chip: 'Todos', per: 'ytd' } };
+const ST = { rf: { key: 'ytd', dir: -1, mode: 'lista', q: '', g: '' }, rv: { key: 'ytd', dir: -1, mode: 'lista', q: '', chip: 'Todos', per: 'ytd' } };
 const PERIODS = [['ytd', 'Año'], ['a1', '1 año'], ['r3', '3 años'], ['r5', '5 años'], ['r10', '10 años']];
 
 async function load() {
@@ -288,6 +301,10 @@ function sortRows(rows, st) {
     return (typeof x === 'number' ? x - y : String(x).localeCompare(String(y), 'es')) * st.dir;
   });
 }
+const GEST = [[/renta 4/i, 'renta4', 'Renta 4'], [/buy ?& ?hold/i, 'buyandhold', 'Buy & Hold'], [/evli/i, 'evli', 'Evli'], [/pimco/i, 'pimco', 'PIMCO'], [/flossbach/i, 'fvs', 'Flossbach von Storch'],
+  [/m&g/i, 'mg', 'M&G'], [/man group/i, 'man', 'Man Group'], [/bnp|axa/i, 'bnp', 'BNP Paribas AM'], [/morgan stanley/i, 'ms', 'Morgan Stanley IM'], [/dnca/i, 'dnca', 'DNCA'], [/dunas/i, 'dunas', 'Dunas'],
+  [/schroders/i, 'schroders', 'Schroders'], [/jupiter/i, 'jupiter', 'Jupiter'], [/lazard/i, 'lazard', 'Lazard'], [/carmignac/i, 'carmignac', 'Carmignac'], [/algebris/i, 'algebris', 'Algebris'], [/gam/i, 'gam', 'GAM'], [/storm/i, 'storm', 'Storm']];
+const famOf = f => { const g = GEST.find(x => x[0].test(f.gestora)); return g ? { key: g[1], nombre: g[2], logo: 'logos/' + g[1] + '.png' } : { key: norm(f.gestora), nombre: f.gestora, logo: '' }; };
 function viewSection(kind) {
   const st = ST[kind], rf = kind === 'rf';
   const title = rf ? 'Renta fija' : 'Renta variable y mixtos';
@@ -295,6 +312,7 @@ function viewSection(kind) {
   const draw = () => {
     let rows = ALL.filter(f => f.kind === kind);
     if (!rf && st.chip !== 'Todos') rows = rows.filter(f => f.bloque === st.chip);
+    if (rf && st.g) rows = rows.filter(f => famOf(f).key === st.g);
     const q = norm(st.q).split(/\s+/).filter(Boolean);
     if (q.length) rows = rows.filter(f => { const hay = norm(f.fondo + ' ' + f.gestora + ' ' + f.isin); return q.every(x => hay.includes(x)); });
     body.replaceChildren(st.mode === 'lista' ? list(rows) : chart(rows));
@@ -339,8 +357,22 @@ function viewSection(kind) {
       h('button', { 'data-c': c, 'aria-pressed': st.chip === c, onclick: () => { st.chip = c; [...chips.querySelectorAll('button')].forEach(b => b.setAttribute('aria-pressed', String(b.dataset.c === c))); draw(); } }, l)));
     filters.prepend(chips);
   }
+  const carpetas = () => {
+    const m = new Map();
+    ALL.filter(f => f.kind === kind).forEach(f => { const g = famOf(f); if (!m.has(g.key)) m.set(g.key, { ...g, n: 0 }); m.get(g.key).n++; });
+    const items = [...m.values()].sort((a, b) => b.n - a.n || a.nombre.localeCompare(b.nombre, 'es'));
+    const grid = h('div', { class: 'folders' });
+    items.forEach(g => {
+      const b = h('button', { type: 'button', class: 'folder', 'data-g': g.key, 'aria-pressed': st.g === g.key, title: g.nombre },
+        h('span', { class: 'flogo' }, g.logo ? h('img', { src: g.logo, alt: '', loading: 'lazy' }) : h('b', {}, g.nombre.slice(0, 2).toUpperCase())),
+        h('span', { class: 'fname' }, g.nombre), h('span', { class: 'fcount' }, g.n + (g.n === 1 ? ' fondo' : ' fondos')));
+      b.onclick = () => { st.g = st.g === g.key ? '' : g.key; [...grid.children].forEach(x => x.setAttribute('aria-pressed', String(x.dataset.g === st.g))); draw(); };
+      grid.append(b);
+    });
+    return grid;
+  };
   const root = h('section', {}, h('div', { class: 'sechead' }, h('h2', {}, title),
-    h('div', { class: 'tools' }, seg, h('a', { class: 'linkbtn', href: '#/vision/' + kind }, 'Visión general'))), filters, body);
+    h('div', { class: 'tools' }, seg, h('a', { class: 'linkbtn', href: '#/vision/' + kind }, 'Visión general'))), rf ? carpetas() : null, filters, body);
   draw(); renderPer();
   return root;
 }
