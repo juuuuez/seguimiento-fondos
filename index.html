@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Seguimiento de fondos</title>
+<style>
+:root{
+  --color-fg:#1f2430; --color-fg-muted:#5d6678; --color-bg:#f6f7f9; --color-panel:#ffffff; --color-border-line:#dfe3ea;
+  --color-ok:#1c7c54; --color-warn:#a15c07; --color-bad:#b3261e;
+  --font-anthropic-sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --font-anthropic-serif:Georgia,"Times New Roman",serif;
+  --cds-font-size-caption:13px; --cds-font-size-body:15px; --cds-font-size-heading:18px; --cds-font-size-title:30px; --cds-font-weight-medium:600;
+  --cds-gap-xs:6px; --cds-gap-sm:10px; --cds-gap-md:16px; --cds-gap-lg:24px;
+  --cds-pad-xs:6px; --cds-pad-sm:10px; --cds-pad-md:16px; --cds-pad-lg:20px; --cds-radius:8px;
+  --cds-text-secondary:#4b5365; --cds-chart-axis:#9aa3b2; --cds-chart-grid:#e6e9ef; --cds-chart-reference:#6b7487; --cds-chart-status-critical:#b3261e;
+  --cds-surface-popover:#ffffff; --cds-border:#cfd5df; --cds-shadow-popover:0 4px 14px rgba(20,28,45,.16);
+  --accent:#2f5d8a;
+}
+@media (prefers-color-scheme: dark){ :root{
+  --color-fg:#e8ebf1; --color-fg-muted:#a3acbd; --color-bg:#12151b; --color-panel:#1b2029; --color-border-line:#2c3340;
+  --color-ok:#5cc79a; --color-warn:#e0a24a; --color-bad:#f07d73;
+  --cds-text-secondary:#b4bccb; --cds-chart-axis:#667086; --cds-chart-grid:#2a303c; --cds-chart-reference:#8892a6; --cds-chart-status-critical:#f07d73;
+  --cds-surface-popover:#232a35; --cds-border:#3a4352; --cds-shadow-popover:0 4px 14px rgba(0,0,0,.5); --accent:#7fb0e0; color-scheme:dark; } }
+html,body{margin:0}
+body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-anthropic-sans);font-size:var(--cds-font-size-body);
+  padding-block:24px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));}
+#dash-root{max-width:1120px;margin:0 auto}
+.dash-select{font:inherit;padding:6px 10px;border:1px solid var(--color-border-line);border-radius:var(--cds-radius);background-color:var(--color-panel);color:var(--color-fg)}
+a{color:var(--accent)}
+.pf-aviso{font-size:12px;color:var(--color-fg-muted);border-top:1px solid var(--color-border-line);padding-top:var(--cds-pad-md);margin-top:var(--cds-gap-lg);max-width:80ch;line-height:1.5}
+</style>
+</head>
+<body>
+<div id="dash-root">
+<style>
+.pf { display: flex; flex-direction: column; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); color: var(--color-fg); }
+.pf h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.pf h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; text-wrap: balance; }
+.pf p { margin: 0; max-width: 72ch; line-height: 1.5; }
+.pf-muted { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.pf-lead { font-size: var(--cds-font-size-body); }
+.pf-lead b { font-variant-numeric: tabular-nums; }
+.pf-tabs { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); border-bottom: 1px solid var(--color-border-line); }
+.pf-tab { appearance: none; background: none; border: 0; border-bottom: 2px solid transparent; padding: var(--cds-pad-sm) var(--cds-pad-md); font: inherit; color: var(--color-fg-muted); cursor: pointer; }
+.pf-tab[aria-selected="true"] { color: var(--color-fg); border-bottom-color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+.pf-tab:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.pf-section { display: flex; flex-direction: column; gap: var(--cds-gap-lg); }
+.pf-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-width: 0; }
+.pf-chart { position: relative; min-height: 300px; }
+.pf-chart svg text { fill: var(--cds-text-secondary); font-size: var(--cds-font-size-caption); }
+.pf-chart .domain, .pf-chart .tick line { stroke: var(--cds-chart-axis); }
+.pf-chart .grid line { stroke: var(--cds-chart-grid); }
+.pf-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); box-shadow: var(--cds-shadow-popover); border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); max-width: 240px; z-index: 2; }
+.pf-tip strong { display: block; color: var(--color-fg); }
+.pf-tip span { color: var(--cds-text-secondary); }
+.pf-tablewrap { overflow-x: auto; }
+.pf-table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.pf-table th { text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; cursor: pointer; user-select: none; }
+.pf-table th.num, .pf-table td.num { text-align: right; }
+.pf-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+.pf-table tr.pf-row { cursor: pointer; }
+.pf-table tr.pf-row:hover td { background: var(--color-bg); }
+.pf-table td.fund { min-width: 200px; font-weight: var(--cds-font-weight-medium); }
+.pf-table td.fund small { display: block; font-weight: 400; color: var(--color-fg-muted); }
+.pos { color: var(--color-ok); } .neg { color: var(--color-bad); }
+.pf-detail td { background: var(--color-bg); }
+.pf-detail dl { display: grid; grid-template-columns: minmax(110px, 160px) 1fr; gap: var(--cds-gap-xs) var(--cds-gap-md); margin: 0; font-size: var(--cds-font-size-caption); }
+.pf-detail dt { color: var(--color-fg-muted); }
+.pf-detail dd { margin: 0; line-height: 1.5; max-width: 80ch; }
+@media (max-width: 520px) { .pf-detail dl { grid-template-columns: 1fr; } }
+.pf-detail a { color: inherit; }
+.pf-controls { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; }
+.pf-vision { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--cds-gap-lg); }
+.pf-vision h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: var(--cds-gap-sm) 0 0; }
+.pf-vision p { font-size: var(--cds-font-size-caption); }
+[data-dash-source-state=refreshing] { opacity: .5; }
+.pf-links { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); }
+.pf-links a:first-child { font-weight: var(--cds-font-weight-medium); }
+.pf-search { font: inherit; padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background-color: var(--color-bg); color: var(--color-fg); min-width: 0; width: min(360px, 100%); }
+.pf-files { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.pf-files li { display: flex; justify-content: space-between; gap: var(--cds-gap-sm); padding: var(--cds-pad-xs) 0; border-bottom: 1px solid var(--color-border-line); font-size: var(--cds-font-size-caption); }
+.pf-files li a { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); min-width: 0; }
+.pf-files li span { color: var(--color-fg-muted); white-space: nowrap; }
+</style>
+<div class="pf">
+  <header id="cabecera" style="display:flex;flex-direction:column;gap:var(--cds-gap-sm)">
+    <h1>Seguimiento de fondos</h1>
+    <p class="pf-lead" data-read lang="es">En renta fija, los fondos que sigues ofrecen una TIR media del <b data-draw="tirMedia" data-source="resumen" data-field="tir_media" data-row="0">—</b> con una duración media de <b data-draw="durMedia" data-source="resumen" data-field="dur_media" data-row="0">—</b> años. En renta variable, el fondo medio sube un <b data-draw="ytdRv" data-source="resumen" data-field="ytd_rv" data-row="0">—</b> en el año; el mejor es <b data-draw="mejorRv" data-source="resumen" data-field="mejor_rv" data-row="0">—</b>.</p>
+    <p class="pf-muted">Datos de las fichas mensuales de cada gestora (septiembre y octubre de 2026). Rentabilidades de la clase en euros. Las fichas en PDF están en la pestaña Fichas.</p>
+  </header>
+
+  <nav class="pf-tabs" role="tablist" aria-label="Bloques">
+    <button class="pf-tab" role="tab" id="tab-rf" data-target="rf" aria-selected="true">Renta fija</button>
+    <button class="pf-tab" role="tab" id="tab-rv" data-target="rv" aria-selected="false">Renta variable, mixtos y metales</button>
+    <button class="pf-tab" role="tab" id="tab-vision" data-target="vision" aria-selected="false">Visión general</button>
+    <button class="pf-tab" role="tab" id="tab-fichas" data-target="fichas" aria-selected="false">Fichas</button>
+  </nav>
+
+  <section class="pf-section" id="rf" role="tabpanel" aria-labelledby="tab-rf">
+    <div class="pf-card" id="rf-mapa">
+      <h2>Rentabilidad que ofrece cada fondo frente a su riesgo de tipos</h2>
+      <p class="pf-muted">TIR o yield en euros (eje vertical) frente a duración en años (eje horizontal). Arriba a la izquierda: mucho cupón con poco riesgo de tipos. Pasa el dedo o el ratón por un punto para ver el fondo.</p>
+      <div class="pf-chart" data-draw="rfScatter" data-source="rf"></div>
+    </div>
+    <div class="pf-card" id="rf-tabla">
+      <h2>Los 29 fondos de renta fija</h2>
+      <p class="pf-muted">Pulsa una columna para ordenar y una fila para ver el comentario de la gestora y la ficha. Breakeven: cuántos puntos básicos pueden subir los tipos en un año antes de perder dinero.</p>
+      <div class="pf-tablewrap">
+        <table class="pf-table" data-source="rf" data-row-key="isin">
+          <thead><tr>
+            <th data-field="fondo" data-sort="fondo">Fondo</th>
+            <th data-field="tipo" data-sort="tipo">Tipo</th>
+            <th class="num" data-field="tir" data-sort="tir">TIR</th>
+            <th class="num" data-field="duracion" data-sort="duracion">Duración</th>
+            <th class="num" data-field="mes" data-sort="mes">Último mes</th>
+            <th class="num" data-field="ytd" data-sort="ytd">En el año</th>
+            <th class="num" data-field="a1" data-sort="a1">1 año</th>
+            <th class="num" data-field="breakeven_pb" data-sort="breakeven_pb">Breakeven</th>
+          </tr></thead>
+          <tbody data-draw="rfTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pf-section" id="rv" role="tabpanel" aria-labelledby="tab-rv" hidden>
+    <div class="pf-controls">
+      <label for="rv-bloque" class="pf-muted">Mostrar</label>
+      <select class="dash-select" id="rv-bloque" aria-label="Bloque">
+        <option value="">Todos (51 fondos)</option>
+        <option value="Renta variable">Renta variable</option>
+        <option value="Mixto">Mixtos</option>
+        <option value="Metales / recursos">Metales y recursos</option>
+      </select>
+    </div>
+    <div class="pf-card" id="rv-ranking">
+      <h2>Rentabilidad en el año, de mayor a menor</h2>
+      <p class="pf-muted">Clase en euros, a 31/10/2026, calculada con el valor liquidativo.</p>
+      <div class="pf-chart" data-draw="rvBars" data-source="rv"></div>
+    </div>
+    <div class="pf-card" id="rv-tabla">
+      <h2>Detalle por fondo</h2>
+      <p class="pf-muted">Pulsa una fila para ver principales posiciones, comentario de la gestora y lectura propia.</p>
+      <div class="pf-tablewrap">
+        <table class="pf-table" data-source="rv" data-row-key="isin">
+          <thead><tr>
+            <th data-field="fondo" data-sort="fondo">Fondo</th>
+            <th data-field="bloque" data-sort="bloque">Bloque</th>
+            <th data-field="estilo" data-sort="estilo">Estilo</th>
+            <th class="num" data-field="mes" data-sort="mes">Octubre</th>
+            <th class="num" data-field="ytd" data-sort="ytd">En el año</th>
+            <th class="num" data-field="a1" data-sort="a1">1 año</th>
+          </tr></thead>
+          <tbody data-draw="rvTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pf-section" id="vision" role="tabpanel" aria-labelledby="tab-vision" hidden>
+    <p class="pf-muted">Qué dicen las gestoras y conclusiones propias. No es una recomendación personalizada.</p>
+    <div class="pf-vision">
+      <div class="pf-card" id="vision-rf"><h2>Renta fija</h2><div data-draw="visionRf" data-source="vision" data-read lang="es"></div></div>
+      <div class="pf-card" id="vision-rv"><h2>Renta variable, mixtos y metales</h2><div data-draw="visionRv" data-source="vision" data-read lang="es"></div></div>
+    </div>
+  </section>
+
+  <section class="pf-section" id="fichas" role="tabpanel" aria-labelledby="tab-fichas" hidden>
+    <div class="pf-controls">
+      <label for="fichas-buscar" class="pf-muted">Buscar</label>
+      <input id="fichas-buscar" class="pf-search" type="search" placeholder="Nombre del fondo, gestora o ISIN" aria-label="Buscar ficha">
+    </div>
+    <p class="pf-muted">Fichas mensuales en PDF, guardadas en esta página. Se abren en una pestaña nueva.</p>
+    <div class="pf-vision">
+      <div class="pf-card" id="fichas-rf"><h2>Renta fija</h2><ul class="pf-files" data-draw="fichasRf" data-source="rf"></ul></div>
+      <div class="pf-card" id="fichas-rv"><h2>Renta variable, mixtos y metales</h2><ul class="pf-files" data-draw="fichasRv" data-source="rv"></ul></div>
+    </div>
+  </section>
+</div>
+
+
+<p class="pf-aviso">Documento de uso interno y orientativo, elaborado a partir de las fichas mensuales publicadas por cada gestora. No constituye asesoramiento personalizado ni una oferta de venta o suscripcion. Las rentabilidades pasadas no garantizan rentabilidades futuras. Las fichas en PDF son material de las gestoras, muchas de ellas dirigido solo a inversores profesionales.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+/* Mini-runtime: carga los JSON de /data y dibuja cada bloque marcado con data-draw. Sin dependencias externas salvo d3. */
+(function () {
+  const DS = {}, DRAWS = {}, CALCS = {}, made = new WeakMap();
+  const SRC = {rf: 'data/renta_fija.json', rv: 'data/renta_variable.json', vision: 'data/vision_general.json'};
+  window.dash = {
+    colors: ['var(--accent)'],
+    data(id) { return DS[id] || {status: 'loading', data: id === 'resumen' ? null : [], columns: []}; },
+    calc(id, c) { CALCS[id] = c; },
+    draw(name, fn) { if (fn === undefined) { run(name); return; } DRAWS[name] = fn; },
+    setLink(name) { try { history.replaceState(null, '', '#' + name); } catch (e) {} setTimeout(redrawAll, 30); },
+    params() { return {}; }, setParams() {}, resetParams() {}, refresh() {}, onData() {}, loader() {},
+    redrawAll
+  };
+  function run(name) {
+    const fn = DRAWS[name]; if (!fn) return;
+    document.querySelectorAll('[data-draw="' + name + '"]').forEach((el) => {
+      try {
+        if (typeof fn === 'function') fn(el);
+        else { if (!made.has(el)) made.set(el, fn.mount ? fn.mount(el) : undefined); fn.update(el, made.get(el)); }
+      } catch (e) { console.error('draw ' + name, e); }
+    });
+  }
+  function redrawAll() { Object.keys(DRAWS).forEach(run); }
+  function computeCalcs() {
+    Object.keys(CALCS).forEach((id) => {
+      const c = CALCS[id];
+      try { DS[id] = {status: 'ok', data: c.fn.apply(null, c.inputs.map((i) => (DS[i] ? DS[i].data : [])))}; }
+      catch (e) { DS[id] = {status: 'error', data: null}; console.error(e); }
+    });
+  }
+  let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(redrawAll, 120); });
+  window.dashStart = function () {
+    Promise.all(Object.keys(SRC).map((k) =>
+      fetch(SRC[k]).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then((d) => { DS[k] = {status: 'ok', data: d}; })
+        .catch(() => { DS[k] = {status: 'error', data: []}; })
+    )).then(() => { computeCalcs(); redrawAll(); });
+  };
+})();
+</script>
+<script>
+window.PF = window.PF || {};
+PF.pct = (v, signed) => (v == null || v === '' || isNaN(+v)) ? 'n.d.' : ((signed && +v > 0 ? '+' : '') + (+v).toLocaleString('es-ES', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '%');
+PF.num = (v, d) => (v == null || v === '' || isNaN(+v)) ? 'n.d.' : (+v).toLocaleString('es-ES', {minimumFractionDigits: d, maximumFractionDigits: d});
+PF.cls = (v) => (v == null || isNaN(+v)) ? '' : (+v >= 0 ? 'pos' : 'neg');
+PF.sort = {rf: {key: 'ytd', dir: -1}, rv: {key: 'ytd', dir: -1}};
+PF.open = {rf: null, rv: null};
+PF.bloque = '';
+PF.sorted = (rows, s) => rows.slice().sort((a, b) => {
+  const x = a[s.key], y = b[s.key];
+  const nx = x == null || x === '' || (typeof x === 'number' && isNaN(x)), ny = y == null || y === '' || (typeof y === 'number' && isNaN(y));
+  if (nx && ny) return 0; if (nx) return 1; if (ny) return -1;
+  return (typeof x === 'number' ? x - y : String(x).localeCompare(String(y), 'es')) * s.dir;
+});
+
+dash.calc('resumen', {
+  title: 'Resumen del universo',
+  description: 'Media de TIR y duración en renta fija, media de rentabilidad en el año en renta variable y mejor fondo.',
+  inputs: ['rf', 'rv'],
+  fn: (rentaFija, rentaVariable) => {
+    const tirs = rentaFija.filter(r => r.tir != null), durs = rentaFija.filter(r => r.duracion != null);
+    const acc = rentaVariable.filter(r => r.bloque === 'Renta variable' && r.ytd != null);
+    const best = acc.reduce((m, r) => (!m || r.ytd > m.ytd) ? r : m, null);
+    return [{
+      tir_media: tirs.reduce((s, r) => s + r.tir, 0) / (tirs.length || 1),
+      dur_media: durs.reduce((s, r) => s + r.duracion, 0) / (durs.length || 1),
+      ytd_rv: acc.reduce((s, r) => s + r.ytd, 0) / (acc.length || 1),
+      mejor_rv: best ? best.fondo + ' (' + PF.pct(best.ytd, true) + ')' : ''
+    }];
+  }
+});
+
+function pfLead(name, fmt) {
+  dash.draw(name, (el) => {
+    const d = dash.data('resumen');
+    el.textContent = (d.status === 'ok' && d.data && d.data[0]) ? fmt(d.data[0]) : '—';
+  });
+}
+pfLead('tirMedia', r => PF.pct(r.tir_media));
+pfLead('durMedia', r => PF.num(r.dur_media, 1));
+pfLead('ytdRv', r => PF.pct(r.ytd_rv));
+pfLead('mejorRv', r => r.mejor_rv);
+
+// Pestañas
+document.querySelectorAll('.pf-tab').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const t = btn.getAttribute('data-target');
+    document.querySelectorAll('.pf-tab').forEach(b => b.setAttribute('aria-selected', String(b === btn)));
+    document.querySelectorAll('.pf-section').forEach(s => { s.hidden = s.id !== t; });
+    dash.setLink(t);
+  });
+});
+(function () {
+  const h = (location.hash || '').replace('#', '');
+  if (!h) return;
+  document.querySelectorAll('.pf-tab').forEach(b => { if (b.getAttribute('data-target') === h) b.click(); });
+})();
+
+// Ordenar al pulsar cabecera
+document.querySelectorAll('.pf-table').forEach((tbl) => {
+  const src = tbl.getAttribute('data-source');
+  tbl.querySelectorAll('th[data-sort]').forEach((th) => {
+    th.addEventListener('click', () => {
+      const k = th.getAttribute('data-sort'), s = PF.sort[src];
+      if (s.key === k) s.dir = -s.dir; else { s.key = k; s.dir = (k === 'fondo' || k === 'tipo' || k === 'bloque' || k === 'estilo') ? 1 : -1; }
+      dash.draw(src === 'rf' ? 'rfTable' : 'rvTable');
+    });
+  });
+});
+
+const sel = document.getElementById('rv-bloque');
+if (sel) sel.addEventListener('change', () => { PF.bloque = sel.value; dash.draw('rvTable'); dash.draw('rvBars'); });
+</script>
+
+<script>
+function pfDetailRow(cols, items, link) {
+  const tr = document.createElement('tr'); tr.className = 'pf-detail';
+  const td = document.createElement('td'); td.colSpan = cols; tr.appendChild(td);
+  const dl = document.createElement('dl'); td.appendChild(dl);
+  items.forEach(([k, v]) => {
+    if (!v) return;
+    const dt = document.createElement('dt'); dt.textContent = k;
+    const dd = document.createElement('dd'); dd.textContent = v;
+    dl.append(dt, dd);
+  });
+  const links = (link || []).filter(l => l && l[1]);
+  if (links.length) {
+    const dt = document.createElement('dt'); dt.textContent = 'Ficha';
+    const dd = document.createElement('dd'); dd.className = 'pf-links';
+    links.forEach(([txt, href]) => { const a = document.createElement('a'); a.href = href; a.target = '_blank'; a.rel = 'noopener'; a.textContent = txt; dd.appendChild(a); });
+    dl.append(dt, dd);
+  }
+  return tr;
+}
+function pfCell(tr, text, cls) { const td = document.createElement('td'); td.textContent = text; if (cls) td.className = cls; tr.appendChild(td); return td; }
+
+dash.draw('rfTable', (tb) => {
+  const d = dash.data('rf');
+  tb.replaceChildren();
+  if (d.status !== 'ok') { const tr = document.createElement('tr'); pfCell(tr, d.status === 'error' ? 'No se han podido cargar los datos' : '—'); tb.appendChild(tr); return; }
+  PF.sorted(d.data, PF.sort.rf).forEach((r) => {
+    const tr = document.createElement('tr'); tr.className = 'pf-row'; tr.setAttribute('data-key', encodeURIComponent(r.isin)); tr.tabIndex = 0;
+    const f = pfCell(tr, r.fondo, 'fund'); const sm = document.createElement('small'); sm.textContent = r.gestora + ' · ' + r.isin + ' · ficha ' + r.fecha; f.appendChild(sm);
+    pfCell(tr, r.tipo);
+    pfCell(tr, PF.pct(r.tir), 'num');
+    pfCell(tr, PF.num(r.duracion, 2), 'num');
+    pfCell(tr, PF.pct(r.mes, true), 'num ' + PF.cls(r.mes));
+    pfCell(tr, PF.pct(r.ytd, true), 'num ' + PF.cls(r.ytd));
+    pfCell(tr, PF.pct(r.a1, true), 'num ' + PF.cls(r.a1));
+    pfCell(tr, r.breakeven_pb == null ? 'n.a.' : PF.num(r.breakeven_pb, 0) + ' pb', 'num');
+    const toggle = () => { PF.open.rf = PF.open.rf === r.isin ? null : r.isin; dash.draw('rfTable'); };
+    tr.addEventListener('click', toggle);
+    tr.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+    tb.appendChild(tr);
+    if (PF.open.rf === r.isin) tb.appendChild(pfDetailRow(8, [
+      ['Tipo de yield', r.tipo_yield], ['Patrimonio', r.patrimonio], ['Qué ha pasado', r.que_ha_pasado], ['Posicionamiento', r.posicionamiento],
+      ['Perspectivas / opinión', r.perspectivas], ['Ha aportado', r.aporta], ['Ha restado', r.resta], ['Fuente', r.fuente]], [['Ver ficha (PDF)', r.pdf], ['Web de la gestora', r.ficha]]));
+  });
+});
+
+dash.draw('rvTable', (tb) => {
+  const d = dash.data('rv');
+  tb.replaceChildren();
+  if (d.status !== 'ok') { const tr = document.createElement('tr'); pfCell(tr, d.status === 'error' ? 'No se han podido cargar los datos' : '—'); tb.appendChild(tr); return; }
+  PF.sorted(d.data.filter(r => !PF.bloque || r.bloque === PF.bloque), PF.sort.rv).forEach((r) => {
+    const tr = document.createElement('tr'); tr.className = 'pf-row'; tr.setAttribute('data-key', encodeURIComponent(r.isin)); tr.tabIndex = 0;
+    const f = pfCell(tr, r.fondo, 'fund'); const sm = document.createElement('small'); sm.textContent = r.gestora + ' · ' + r.isin + ' · ficha: ' + r.fecha_ficha; f.appendChild(sm);
+    pfCell(tr, r.bloque); pfCell(tr, r.estilo);
+    pfCell(tr, PF.pct(r.mes, true), 'num ' + PF.cls(r.mes));
+    pfCell(tr, PF.pct(r.ytd, true), 'num ' + PF.cls(r.ytd));
+    pfCell(tr, PF.pct(r.a1, true), 'num ' + PF.cls(r.a1));
+    const toggle = () => { PF.open.rv = PF.open.rv === r.isin ? null : r.isin; dash.draw('rvTable'); };
+    tr.addEventListener('click', toggle);
+    tr.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+    tb.appendChild(tr);
+    if (PF.open.rv === r.isin) tb.appendChild(pfDetailRow(6, [
+      ['Principales posiciones', r.posiciones], ['PER', r.per], ['Rentabilidad por dividendo', r.dividendo],
+      ['Qué dice la gestora', r.comentario], ['Lectura propia', r.lectura]], [['Ver ficha (PDF)', r.pdf], ['Web de la gestora', r.ficha]]));
+  });
+});
+
+function pfVision(name, bloque) {
+  dash.draw(name, (el) => {
+    const d = dash.data('vision');
+    el.replaceChildren();
+    if (d.status !== 'ok') { el.textContent = '—'; return; }
+    let sec = null;
+    d.data.filter(r => r.bloque === bloque).forEach((r) => {
+      if (r.seccion !== sec) { sec = r.seccion; const h = document.createElement('h3'); h.textContent = sec; el.appendChild(h); }
+      const p = document.createElement('p'); p.textContent = r.texto; el.appendChild(p);
+    });
+  });
+}
+pfVision('visionRf', 'Renta fija');
+pfVision('visionRv', 'Renta variable');
+
+PF.q = '';
+function pfFiles(name, src, fechaKey) {
+  dash.draw(name, (ul) => {
+    const d = dash.data(src);
+    ul.replaceChildren();
+    if (d.status !== 'ok') { const li = document.createElement('li'); li.textContent = '—'; ul.appendChild(li); return; }
+    const q = PF.q.toLowerCase();
+    const rows = d.data.filter(r => r.pdf).filter(r => !q || (r.fondo + ' ' + r.gestora + ' ' + r.isin).toLowerCase().includes(q))
+      .sort((a, b) => a.fondo.localeCompare(b.fondo, 'es'));
+    if (!rows.length) { const li = document.createElement('li'); li.textContent = 'Ninguna ficha coincide con la búsqueda'; ul.appendChild(li); return; }
+    rows.forEach((r) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a'); a.href = r.pdf; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.fondo;
+      const s = document.createElement('span'); s.textContent = 'ficha ' + r[fechaKey];
+      li.append(a, s); ul.appendChild(li);
+    });
+  });
+}
+pfFiles('fichasRf', 'rf', 'fecha');
+pfFiles('fichasRv', 'rv', 'fecha_ficha');
+const busc = document.getElementById('fichas-buscar');
+if (busc) busc.addEventListener('input', () => { PF.q = busc.value.trim(); dash.draw('fichasRf'); dash.draw('fichasRv'); });
+</script>
+
+<script>
+dash.draw('rfScatter', {
+  mount(el) {
+    const svg = d3.select(el).append('svg').attr('role', 'img').attr('aria-label', 'Gráfico de dispersión: TIR frente a duración de cada fondo de renta fija');
+    const tip = d3.select(el).append('div').attr('class', 'pf-tip').attr('hidden', true);
+    return {svg, tip};
+  },
+  update(el, {svg, tip}) {
+    const d = dash.data('rf');
+    svg.selectAll('*').remove();
+    if (d.status !== 'ok') { svg.attr('height', 40).append('text').attr('x', 0).attr('y', 20).text(d.status === 'error' ? 'No se ha podido cargar' : '—'); return; }
+    const rows = d.data.filter(r => r.tir != null && r.duracion != null);
+    const W = el.clientWidth || 600, H = 320, m = {t: 12, r: 16, b: 40, l: 44};
+    svg.attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
+    const x = d3.scaleLinear().domain([0, d3.max(rows, r => r.duracion) * 1.05]).nice().range([m.l, W - m.r]);
+    const y = d3.scaleLinear().domain([0, d3.max(rows, r => r.tir) * 1.08]).nice().range([H - m.b, m.t]);
+    svg.append('g').attr('class', 'grid').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(W - m.l - m.r)).tickFormat('')).call(g => g.select('.domain').remove());
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(Math.max(3, Math.floor(W / 90))).tickFormat(v => PF.num(v, 0)));
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(v => PF.num(v, 0) + '%'));
+    svg.append('text').attr('x', W - m.r).attr('y', H - 6).attr('text-anchor', 'end').text('Duración (años)');
+    const show = (ev, r) => {
+      tip.attr('hidden', null).html('');
+      tip.append('strong').text(r.fondo);
+      tip.append('span').text('TIR ' + PF.pct(r.tir) + ' · Duración ' + PF.num(r.duracion, 2) + ' · En el año ' + PF.pct(r.ytd, true));
+      const [px, py] = d3.pointer(ev, el);
+      const tw = 240, left = Math.min(Math.max(px + 10, 0), (el.clientWidth || W) - tw);
+      tip.style('left', left + 'px').style('top', Math.max(py - 50, 0) + 'px');
+    };
+    svg.append('g').selectAll('circle').data(rows).join('circle')
+      .attr('cx', r => x(r.duracion)).attr('cy', r => y(r.tir)).attr('r', 6)
+      .style('fill', dash.colors[0]).style('fill-opacity', 0.75).style('stroke', 'var(--color-bg)').style('stroke-width', 1)
+      .on('pointerenter pointermove', show).on('pointerleave', () => tip.attr('hidden', true));
+  }
+});
+
+dash.draw('rvBars', {
+  mount(el) {
+    const svg = d3.select(el).append('svg').attr('role', 'img').attr('aria-label', 'Barras: rentabilidad en el año de cada fondo, ordenadas de mayor a menor');
+    const tip = d3.select(el).append('div').attr('class', 'pf-tip').attr('hidden', true);
+    return {svg, tip};
+  },
+  update(el, {svg, tip}) {
+    const d = dash.data('rv');
+    svg.selectAll('*').remove();
+    if (d.status !== 'ok') { svg.attr('height', 40).append('text').attr('x', 0).attr('y', 20).text(d.status === 'error' ? 'No se ha podido cargar' : '—'); return; }
+    const rows = d.data.filter(r => r.ytd != null && (!PF.bloque || r.bloque === PF.bloque)).sort((a, b) => b.ytd - a.ytd);
+    const W = el.clientWidth || 600, bh = 18, gap = 4, m = {t: 6, r: 56, b: 6, l: Math.min(240, W * 0.45)};
+    const H = m.t + m.b + rows.length * (bh + gap);
+    svg.attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
+    const ext = d3.extent(rows, r => r.ytd); const lo = Math.min(0, ext[0]), hi = Math.max(0, ext[1]);
+    const x = d3.scaleLinear().domain([lo, hi]).nice().range([m.l, W - m.r]);
+    const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', (r, i) => `translate(0,${m.t + i * (bh + gap)})`);
+    g.append('text').attr('x', m.l - 6).attr('y', bh / 2).attr('dy', '0.35em').attr('text-anchor', 'end')
+      .text(r => r.fondo).each(function () {
+        const max = m.l - 10; let t = this.textContent;
+        while (this.getComputedTextLength() > max && t.length > 4) { t = t.slice(0, -2); this.textContent = t + '…'; }
+      });
+    g.append('rect').attr('x', r => x(Math.min(0, r.ytd))).attr('width', r => Math.max(1, Math.abs(x(r.ytd) - x(0)))).attr('height', bh).attr('rx', 2)
+      .style('fill', r => r.ytd >= 0 ? dash.colors[0] : 'var(--cds-chart-status-critical)');
+    g.append('text').attr('x', r => r.ytd >= 0 ? x(r.ytd) + 4 : x(0) + 4).attr('y', bh / 2).attr('dy', '0.35em').text(r => PF.pct(r.ytd, true));
+    svg.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', 0).attr('y2', H).style('stroke', 'var(--cds-chart-reference)');
+    g.on('pointerenter pointermove', (ev, r) => {
+      tip.attr('hidden', null).html('');
+      tip.append('strong').text(r.fondo);
+      tip.append('span').text(r.estilo + ' · Octubre ' + PF.pct(r.mes, true) + ' · 1 año ' + PF.pct(r.a1, true));
+      const [px, py] = d3.pointer(ev, el);
+      tip.style('left', Math.min(Math.max(px + 10, 0), (el.clientWidth || W) - 240) + 'px').style('top', Math.max(py - 50, 0) + 'px');
+    }).on('pointerleave', () => tip.attr('hidden', true));
+  }
+});
+</script>
+
+<script>dashStart();</script>
+</body>
+</html>
