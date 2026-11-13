@@ -160,6 +160,22 @@ h2{margin:0;font-family:var(--serif);font-optical-sizing:auto;font-size:clamp(31
 .qbox.cut{max-height:15em;overflow:hidden;position:relative}
 .qbox.cut::after{content:"";position:absolute;inset:auto 0 0 0;height:5em;background:linear-gradient(transparent,var(--bg))}
 .more{margin-top:8px;border:0;background:none;padding:0;font-size:13px;color:var(--ink);border-bottom:1px solid var(--line);cursor:pointer}
+.expo{display:grid;grid-template-columns:1fr 1fr;gap:28px 40px;margin-top:34px;max-width:900px}
+.expo .dest{grid-column:1/-1;margin:0;color:var(--muted);font-size:14px;max-width:70ch}
+.expo .dest b{color:var(--ink);font-weight:500}
+@media (max-width:720px){.expo{grid-template-columns:1fr}}
+.exp h3{margin:0 0 10px;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.er{display:grid;grid-template-columns:minmax(90px,36%) 1fr 54px;gap:10px;align-items:center;padding:4px 0;font-size:13px}
+.en{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.etr{position:relative;height:8px;background:var(--soft);border-radius:4px}
+.etr i{position:absolute;left:0;top:0;bottom:0;background:var(--ink);opacity:.78;border-radius:4px}
+.etr u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--muted);text-decoration:none;border-radius:1px}
+.ev{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.qbar{display:flex;gap:2px;height:14px;border-radius:7px;overflow:hidden}
+.q.ig{background:var(--ink);opacity:.85}.q.hy{background:var(--neg);opacity:.75}.q.sr{background:var(--line)}
+.qleg{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:13px;color:var(--muted)}
+.qleg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.qleg b{color:var(--ink);font-weight:500}
 .btn{display:inline-flex;align-items:center;gap:8px;margin-top:30px;padding:12px 20px;border-radius:12px;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:500;font-size:14px}
 .btn:hover{opacity:.88}
 .btn small{font-weight:400;opacity:.65}
@@ -401,6 +417,27 @@ function viewFund(isin) {
   if (rf) { pasado(); add('Posicionamiento', f.posicionamiento); add('Ha aportado', f.aporta); add('Ha restado', f.resta);
     if (f.tipo_yield && f.tir != null && f.tipo_yield.length > 14) add('Sobre la TIR', f.tipo_yield); }
   else { add('Principales posiciones', f.posiciones); pasado(); add('Lectura propia', f.lectura); }
+  const barras = (titulo, lista) => {
+    if (!lista || !lista.length) return null;
+    const max = Math.max(...lista.flatMap(([, p, i]) => [p, i || 0]), 1) * 1.05;
+    const hayIdx = lista.some(x => x[2] != null);
+    return h('div', { class: 'exp' }, h('h3', {}, titulo),
+      lista.map(([n, p, i]) => h('div', { class: 'er' }, h('span', { class: 'en' }, n),
+        h('span', { class: 'etr' }, h('i', { style: 'width:' + (p / max * 100).toFixed(1) + '%' }), i != null ? h('u', { style: 'left:' + (i / max * 100).toFixed(1) + '%', title: 'Índice: ' + nf(i, 1) + '%' }) : null),
+        h('span', { class: 'ev' }, (f.aprox ? '≈ ' : '') + nf(p, 1) + '%'))),
+      hayIdx ? h('div', { class: 'cap' }, 'La marca indica el peso en el índice de referencia') : (f.aprox ? h('div', { class: 'cap' }, 'Valores leídos de un gráfico de la ficha') : null));
+  };
+  const calidad = () => {
+    const c = f.calidad || {}; if (c.ig == null && c.hy == null) return null;
+    const sr = c.sr != null ? c.sr : Math.max(0, 100 - (c.ig || 0) - (c.hy || 0));
+    const seg = [['Investment grade', c.ig || 0, 'ig'], ['High yield', c.hy || 0, 'hy'], ['Sin rating / otros', sr, 'sr']];
+    return h('div', { class: 'exp' }, h('h3', {}, 'Calidad del emisor'),
+      h('div', { class: 'qbar' }, seg.filter(x => x[1] > 0).map(([n, p, k]) => h('span', { class: 'q ' + k, style: 'flex:' + p, title: n + ' ' + nf(p, 1) + '%' }))),
+      h('div', { class: 'qleg' }, seg.map(([n, p, k]) => h('span', {}, h('i', { class: 'q ' + k }), n + ' ', h('b', {}, nf(p, 0) + '%')))),
+      c.nota ? h('div', { class: 'cap' }, c.nota) : null);
+  };
+  const expo = (rf ? [calidad(), barras('Geografía', f.geografia)] : [barras('Sectores', f.sectores), barras('Geografía', f.geografia)]).filter(Boolean);
+  const exposicion = expo.length ? h('div', { class: 'expo' }, expo, f.destaca ? h('p', { class: 'dest' }, h('b', {}, 'A destacar. '), f.destaca) : null) : null;
   const nombrePdf = f.pdf ? f.pdf.split('/').pop() : '';
   const ficha = f.pdf ? h('a', { class: 'ficha', href: encodeURI(f.pdf), download: nombrePdf, 'aria-label': 'Descargar la ficha en PDF' },
     f.mini ? h('img', { src: encodeURI(f.mini), alt: 'Primera página de la ficha', loading: 'lazy' }) : null,
@@ -410,6 +447,7 @@ function viewFund(isin) {
     h('div', { class: 'tiles' }, ...(rf ? [extra.map(([l, v]) => tile(l, v, true, true)), tiles.map(([l, v]) => tile(l, v))] : [tiles.map(([l, v]) => tile(l, v)), extra.map(([l, v]) => tile(l, v, true))])),
     h('p', { class: 'note' }, 'Rentabilidad de la clase en euros. A 3, 5 y 10 años, anualizada.'),
     ficha,
+    exposicion,
     h('div', { class: 'blocks' }, blocks));
 }
 

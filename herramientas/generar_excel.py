@@ -18,6 +18,26 @@ rf, rv, vis, meta = D('renta_fija.json'), D('renta_variable.json'), D('vision_ge
 CIERRE = meta.get('cierre', '')
 
 
+def _lista(l, aprox=False):
+    if not l:
+        return ''
+    return ' · '.join('%s %s%%%s' % (x[0], ('%.1f' % x[1]).replace('.', ','), (' (índice %s%%)' % ('%.1f' % x[2]).replace('.', ',')) if len(x) > 2 and x[2] is not None else '') for x in l) + (' (aprox., leído de un gráfico)' if aprox else '')
+
+
+def _expo(f, rf):
+    c = f.get('calidad') or {}
+    out = []
+    if rf and c.get('ig') is not None:
+        out.append(('Calidad del emisor', 'Investment grade %s%% · High yield %s%% · Sin rating / otros %s%%' % tuple(('%.0f' % v) for v in (c['ig'], c['hy'], c.get('sr') if c.get('sr') is not None else max(0, 100 - c['ig'] - c['hy'])))))
+    if not rf and f.get('sectores'):
+        out.append(('Sectores', _lista(f['sectores'], f.get('aprox'))))
+    if f.get('geografia'):
+        out.append(('Geografía', _lista(f['geografia'], f.get('aprox'))))
+    if f.get('destaca'):
+        out.append(('A destacar', f['destaca']))
+    return out
+
+
 def link(pdf):
     if not pdf:
         return None
@@ -172,7 +192,7 @@ for k, f in enumerate(rv):
     i += 1
     rent = '   '.join(lab + ': ' + (('%+.2f%%' % f[key]).replace('.', ',') if f.get(key) is not None else 'n.d.')
                      for lab, key in [('Último mes', 'mes'), ('YTD', 'ytd'), ('1 año', 'a1'), ('3 años', 'r3'), ('5 años', 'r5'), ('10 años', 'r10')])
-    for l, v in [('ISIN / Gestora', '%s · %s' % (f['isin'], f['gestora'])), ('Estilo', f['estilo']), ('Rentabilidades', rent), ('Principales posiciones', f['posiciones'] or '—'),
+    for l, v in [('ISIN / Gestora', '%s · %s' % (f['isin'], f['gestora'])), ('Estilo', f['estilo']), ('Rentabilidades', rent), ('Principales posiciones', f['posiciones'] or '—')] + _expo(f, False) + [
                  ('Qué ha pasado (palabras del gestor)' if f.get('literal') else 'Qué ha pasado (resumen)', (f.get('literal') or f['comentario']).replace('\n\n', '\n')), ('Lectura propia', f['lectura'])]:
         dd.cell(i, 1, l).font = BB; x = dd.cell(i, 2, v); x.font = B; x.alignment = WR
         dd.row_dimensions[i].height = min(409, max(15, 15 * (len(str(v)) // 125 + 1))); i += 1
@@ -197,6 +217,9 @@ for k, f in enumerate(rf):
             x.number_format = fmt
         i += 1
     i += 1
+    for l, txt in _expo(f, True):
+        w.cell(i, 1, l).font = BB; w.cell(i, 1).alignment = WR
+        x = w.cell(i, 2, txt); x.font = B; x.alignment = WR; w.row_dimensions[i].height = min(409, max(15, 15 * (len(txt) // 120 + 1))); i += 1
     lit = (f.get('literal') or '').replace('\n\n', '\n')
     for l, txt in [('Qué ha pasado (palabras del gestor)' if lit else 'Qué ha pasado (resumen)', lit or f['que_ha_pasado']), ('Posicionamiento', f['posicionamiento']), ('Ha aportado (+)', f['aporta']), ('Ha restado (−)', f['resta'])]:
         w.cell(i, 1, l).font = BB; w.cell(i, 1).alignment = WR

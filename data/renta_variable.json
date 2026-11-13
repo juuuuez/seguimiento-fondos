@@ -20,7 +20,62 @@
   "r5": 2.0,
   "r10": null,
   "literal": "Renta 4 Activos Globales FI concluyó octubre de 2026 con una rentabilidad acumulada en el año del +2,4%, tras un avance del +0,4% en el mes, manteniendo su sólida trayectoria de preservación y crecimiento con un retorno acumulado del +100,8% desde el inicio de nuestra gestión en 2009.\n\nA nivel macro, a pesar de que los activos de renta fija a nivel mundial están sufriendo caídas y registrando rentabilidades negativas, la renta fija de Renta 4 Activos Globales ha logrado mantenerse en terreno positivo. Las mayores aportaciones positivas de la cartera provinieron de Visa, Roche, S&P Global y AstraZeneca. Por el contrario, los activos que menos aportaron o restaron en este periodo fueron Alphabet, Meta, ASML y Schneider Electric, además de la cobertura de divisa (futuro EUR/USD).\n\nLa estructura de la cartera permanece estable: la exposición a renta fija es del 72,0% y la renta variable se situó en el 26,0%, con una TIR de mercado de la renta fija del 4,56% a la que hemos añadido un 2% de oro, para navegar de forma segura el entorno actual de tipos.\n\nLa renta variable ha experimentado una corrección, liderada por los valores tecnológicos y de crecimiento que habían encabezado las alzas a principios de año. Este movimiento responde a la preocupación por la sostenibilidad de los beneficios en un contexto de capital más caro.\n\nLos inversores han buscado refugio en sectores defensivos y de calidad, con balances sólidos y poder de fijación de precios, anticipando una ralentización del crecimiento de los beneficios en 2027.\n\nEn la renta fija, la presión sobre los rendimientos de los bonos soberanos se ha intensificado, con los bancos centrales manteniendo su postura restrictiva para controlar la inflación y las dudas sobre la sostenibilidad de los déficits presupuestario y los altos niveles de endeudamiento de la mayoría de los países desarrollados.\n\nDe cara al futuro, consideramos tres escenarios clave: desescalada, mantenimiento del status quo actual y reescalada. Los dos primeros son favorables para los mercados de renta variable, mientras que el tercero sería claramente negativo.",
-  "mini": "fichas/miniaturas/Renta 4 Activos Globales FI - Ficha oct 2026.jpg"
+  "mini": "fichas/miniaturas/Renta 4 Activos Globales FI - Ficha oct 2026.jpg",
+  "sectores": [
+   [
+    "Gobierno",
+    22.5
+   ],
+   [
+    "Financiero",
+    15.3
+   ],
+   [
+    "Consumo básico",
+    10.6
+   ],
+   [
+    "Comunicaciones",
+    9.0
+   ],
+   [
+    "Industrial",
+    7.7
+   ],
+   [
+    "Utilities",
+    6.8
+   ]
+  ],
+  "geografia": [
+   [
+    "España",
+    41.7
+   ],
+   [
+    "EE.UU.",
+    16.7
+   ],
+   [
+    "Alemania",
+    6.9
+   ],
+   [
+    "Francia",
+    5.2
+   ],
+   [
+    "Irlanda",
+    4.3
+   ],
+   [
+    "Italia",
+    2.4
+   ]
+  ],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "ES0173130024",
@@ -43,7 +98,58 @@
   "r5": 5.91,
   "r10": null,
   "literal": "Renta 4 Megatendencias Tecnología cayó durante octubre un -7,7% (vs -3,7% del Nasdaq en EUR), pero en el año seguimos en el +17% vs 15,7% del Nasdaq (en EUR). Si bien, como hemos advertido en anteriores ocasiones sobre la inversión en fondos muy expuestos a una única temática en tecnología, este riesgo se pone de manifiesto en momentos de tensión. Algunos de los grandes fondos tecnológicos corregían en el mes alrededor del -15%.\n\nRenta 4 Megatendencias Tecnología es un fondo tecnológico global, invirtiendo el 80% en EE.UU., donde consideramos que están las mejores oportunidades de inversión, otro 5% en Europa, otro 5% en Japón (Advantest, Tokyo Electron…) y el 10% restante en China.\n\nLa cartera está compuesta por 58 empresas (tras haber incorporado con las caídas recientes ARM, Marvell, Intel, KLA), donde el TOP 10 suponen el 49% del total. Se trata de empresas donde tenemos una alta convicción, con posiciones relativas muy fuertes en sus respectivos mercados, las cuales crecen, ganan dinero y generan elevados niveles de caja operativa y libre. Son empresas sin apenas endeudamiento y al tener la mayoría de ellas posiciones de caja neta en el balance, los intereses generados por este exceso de tesorería (o por las recompras de acciones que están ejecutando) supone un apoyo al EPS.\n\nPara finalizar, respecto a las empresas en cartera, el crecimiento medio esperado en ventas para este FY27 es 31% yoy, con un margen EBITDA Ajustado esperado del 40% de media y en un crecimiento en EPS del 32% yoy. Por valoración, la cartera está a 15,9x EBITDA NTM con un FCF Yield NTM del 2,4%.",
-  "mini": "fichas/miniaturas/Renta 4 Megatendencias Tecnología FI - Ficha oct 2026.jpg"
+  "mini": "fichas/miniaturas/Renta 4 Megatendencias Tecnología FI - Ficha oct 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    60.2
+   ],
+   [
+    "Comunicaciones",
+    32.6
+   ],
+   [
+    "Industrial",
+    4.6
+   ],
+   [
+    "Consumo básico",
+    1.8
+   ],
+   [
+    "Consumo cíclico",
+    0.4
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    71.1
+   ],
+   [
+    "China",
+    9.6
+   ],
+   [
+    "Japón",
+    4.5
+   ],
+   [
+    "Taiwán",
+    3.9
+   ],
+   [
+    "Alemania",
+    2.4
+   ],
+   [
+    "Australia",
+    1.8
+   ]
+  ],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "ES0173128002",
@@ -66,7 +172,62 @@
   "r5": 4.37,
   "r10": 8.14,
   "literal": "Septiembre ha seguido mostrando a la tecnología como sector favorito, el Nasdaq 100 avanzó un 3,2%, mientras el Dow Jones perdió un -4,3%, el S&P 500 retrocedió un -0.45% y el Eurostoxx retrocedió un -2,4%. La subida de las rentabilidades de los bonos ha pesado sobre los sectores tradicionales, pero apenas ha frenado a las grandes tecnológicas, sostenidas por las expectativas de beneficios y la inversión en inteligencia artificial. Estados Unidos sigue llevando la delantera y el dólar terminó la semana en 1,125 por euro. Ni las tensiones geopolíticas ni la debilidad del último dato de empleo estadounidense han bastado para deshacer esa apuesta.\n\nActualmente seguimos en un mercado alcista, pero mucho más selectivo de lo que sugieren los índices. El dinero está premiando innovación, crecimiento y balances sólidos, mientras penaliza los negocios con menos capacidad para adaptarse o digerir una financiación más cara. Al final, unos tipos altos pueden convivir con bolsas al alza si los beneficios acompañan. Eso sí, la concentración del avance deja poco margen para decepciones entre los líderes. Las próximas semanas tendremos los resultados del tercer trimestre y las previsiones empresariales: ahí veremos cuánto de la promesa de la IA se convierte en beneficios y cuánto sigue siendo expectativa.",
-  "mini": "fichas/miniaturas/Renta 4 Global Acciones FI - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/Renta 4 Global Acciones FI - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    22.5
+   ],
+   [
+    "Consumo básico",
+    21.3
+   ],
+   [
+    "Industrial",
+    19.0
+   ],
+   [
+    "Consumo cíclico",
+    14.9
+   ],
+   [
+    "Comunicaciones",
+    7.5
+   ],
+   [
+    "Materiales",
+    4.4
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    47.3
+   ],
+   [
+    "Japón",
+    7.4
+   ],
+   [
+    "Alemania",
+    5.0
+   ],
+   [
+    "Francia",
+    4.9
+   ],
+   [
+    "Reino Unido",
+    4.8
+   ],
+   [
+    "Suecia",
+    4.6
+   ]
+  ],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "ES0112231016",
@@ -89,7 +250,12 @@
   "r5": 10.6,
   "r10": null,
   "literal": "",
-  "mini": ""
+  "mini": "",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "ES0173311103",
@@ -112,7 +278,12 @@
   "r5": 9.94,
   "r10": 12.05,
   "literal": "",
-  "mini": ""
+  "mini": "",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU2606014152",
@@ -135,7 +306,43 @@
   "r5": null,
   "r10": null,
   "literal": "",
-  "mini": "fichas/miniaturas/Invesco Global Equity Income A EUR Acc - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/Invesco Global Equity Income A EUR Acc - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Industrial",
+    27.6,
+    10.8
+   ],
+   [
+    "Financiero",
+    26.0,
+    15.7
+   ],
+   [
+    "Tecnología",
+    15.0,
+    31.8
+   ],
+   [
+    "Salud",
+    7.7,
+    9.2
+   ],
+   [
+    "Consumo discrecional",
+    7.2,
+    8.4
+   ],
+   [
+    "Consumo básico",
+    5.8,
+    4.8
+   ]
+  ],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "Sobreponderación: Industrial (27,6 % frente a 10,8 % del índice). Infraponderación: Tecnología (15,0 % frente a 31,8 %).",
+  "aprox": false
  },
  {
   "isin": "LU2295319300",
@@ -158,7 +365,74 @@
   "r5": 0.98,
   "r10": null,
   "literal": "",
-  "mini": "fichas/miniaturas/MS INVF Global Brands A (EUR) - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/MS INVF Global Brands A (EUR) - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    18.1,
+    31.8
+   ],
+   [
+    "Financiero",
+    16.7,
+    15.7
+   ],
+   [
+    "Industrial",
+    14.3,
+    10.8
+   ],
+   [
+    "Consumo básico",
+    12.9,
+    4.8
+   ],
+   [
+    "Salud",
+    12.4,
+    9.2
+   ],
+   [
+    "Consumo discrecional",
+    12.2,
+    8.4
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    67.9,
+    72.9
+   ],
+   [
+    "Francia",
+    10.6,
+    2.2
+   ],
+   [
+    "Reino Unido",
+    6.9,
+    3.4
+   ],
+   [
+    "Taiwán",
+    6.3,
+    null
+   ],
+   [
+    "Italia",
+    3.5,
+    0.8
+   ],
+   [
+    "Alemania",
+    2.8,
+    2.1
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Sobreponderación: Consumo básico (12,9 % frente a 4,8 % del índice). Infraponderación: Tecnología (18,1 % frente a 31,8 %). Más peso: Francia (10,6 % frente a 2,2 % del índice). Menos peso: EE.UU. (67,9 % frente a 72,9 %).",
+  "aprox": false
  },
  {
   "isin": "LU0112467450",
@@ -181,7 +455,69 @@
   "r5": 6.56,
   "r10": 6.81,
   "literal": "",
-  "mini": "fichas/miniaturas/Nordea 1 Global Stable Equity BP EUR - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/Nordea 1 Global Stable Equity BP EUR - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Salud",
+    24,
+    9
+   ],
+   [
+    "Consumo básico",
+    18,
+    5
+   ],
+   [
+    "Telecomunicaciones",
+    13,
+    8
+   ],
+   [
+    "Financiero",
+    12,
+    16
+   ],
+   [
+    "Tecnología",
+    12,
+    32
+   ],
+   [
+    "Industrial",
+    7,
+    11
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    59,
+    73
+   ],
+   [
+    "Francia",
+    11,
+    2
+   ],
+   [
+    "Japón",
+    9,
+    6
+   ],
+   [
+    "Reino Unido",
+    7,
+    3
+   ],
+   [
+    "Alemania",
+    5,
+    2
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Sobreponderación: Salud (24 % frente a 9 % del índice). Infraponderación: Tecnología (12 % frente a 32 %). Más peso: Francia (11 % frente a 2 % del índice). Menos peso: EE.UU. (59 % frente a 73 %).",
+  "aprox": true
  },
  {
   "isin": "LU0203975437",
@@ -204,7 +540,74 @@
   "r5": 12.69,
   "r10": 10.56,
   "literal": "Según los precios de negociación, el rendimiento del fondo fue del 4,63%.\n\nEl fondo Robeco BP Global Premium Equities subió en octubre y superó al índice MSCI World. La asignación por sectores fue el factor determinante de la rentabilidad relativa, impulsada por la importante infraponderación de la estrategia en el sector de las tecnologías de la información —que tuvo dificultades a lo largo del mes— y por las posiciones sobreponderadas en sectores defensivos como la sanidad y la energía. El sector tecnológico se vio favorecido por el repunte de los valores de la cartera, a pesar de la debilidad generalizada del sector; Capgemini y Gen Digital registraron un comportamiento especialmente sólido, mientras que también resultó positivo haber evitado invertir en Nvidia, Intel y Micron Technology. El sector de los servicios de comunicación contribuyó gracias a la exclusión de Meta Platforms y Alphabet. El sector sanitario también contribuyó a los resultados, gracias a la mejora de las valoraciones y a una mayor claridad en torno a la política sanitaria de Estados Unidos. El sector financiero fue el principal lastre, ya que los bancos europeos —entre ellos BBVA, NatWest, Bankinter, ABN AMRO, ING y Nordea— registraron pérdidas tras una reacción cautelosa ante los resultados del 3T. A nivel regional, América del Norte y el Reino Unido contribuyeron positivamente, mientras que Europa tuvo un efecto negativo.\n\nEvolución del mercado La renta variable global registró un ligero descenso en octubre, a medida que la ola de ventas impulsada por la IA se intensificó hacia finales de mes, y los resultados decepcionantes de varias grandes compañías tecnológicas lastraron a las acciones growth. El sector de energía repuntó gracias al alza de los precios del petróleo, vinculada al conflicto con Irán, mientras que los sectores defensivos y orientados al valor, como la sanidad, los servicios públicos y los bienes de consumo básico, registraron un sólido comportamiento. El value superó al growth a lo largo del mes, mientras que el índice MSCI World cerró más o menos en la misma línea que el S&P 500.",
-  "mini": "fichas/miniaturas/Robeco BP Global Premium Equities D EUR - Ficha oct 2026.jpg"
+  "mini": "fichas/miniaturas/Robeco BP Global Premium Equities D EUR - Ficha oct 2026.jpg",
+  "sectores": [
+   [
+    "Financiero",
+    23.6,
+    16.1
+   ],
+   [
+    "Salud",
+    19.0,
+    10.2
+   ],
+   [
+    "Industrial",
+    13.1,
+    10.8
+   ],
+   [
+    "Energía",
+    12.0,
+    4.6
+   ],
+   [
+    "Consumo básico",
+    8.4,
+    5.4
+   ],
+   [
+    "Tecnología",
+    6.7,
+    29.8
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    48.2,
+    72.8
+   ],
+   [
+    "Reino Unido",
+    14.7,
+    3.5
+   ],
+   [
+    "Francia",
+    9.0,
+    2.2
+   ],
+   [
+    "Japón",
+    6.5,
+    5.7
+   ],
+   [
+    "España",
+    5.4,
+    0.9
+   ],
+   [
+    "Países Bajos",
+    3.6,
+    1.3
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Sobreponderación: Salud (19,0 % frente a 10,2 % del índice). Infraponderación: Tecnología (6,7 % frente a 29,8 %). Más peso: Reino Unido (14,7 % frente a 3,5 % del índice). Menos peso: EE.UU. (48,2 % frente a 72,8 %).",
+  "aprox": false
  },
  {
   "isin": "LU1985811865",
@@ -227,7 +630,69 @@
   "r5": 11.23,
   "r10": null,
   "literal": "",
-  "mini": "fichas/miniaturas/MFS Meridian Contrarian Value AH1 EUR - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/MFS Meridian Contrarian Value AH1 EUR - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Industrial",
+    24.6,
+    9.3
+   ],
+   [
+    "Salud",
+    15.0,
+    11.5
+   ],
+   [
+    "Financiero",
+    14.5,
+    25.1
+   ],
+   [
+    "Consumo básico",
+    14.1,
+    7.1
+   ],
+   [
+    "Consumo discrecional",
+    11.6,
+    4.2
+   ],
+   [
+    "Materiales",
+    10.3,
+    3.9
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    22.9,
+    72.3
+   ],
+   [
+    "Reino Unido",
+    21.4,
+    3.9
+   ],
+   [
+    "Francia",
+    15.6,
+    2.3
+   ],
+   [
+    "Alemania",
+    9.0,
+    2.0
+   ],
+   [
+    "Países Bajos",
+    7.3,
+    0.8
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Sobreponderación: Industrial (24,6 % frente a 9,3 % del índice). Infraponderación: Financiero (14,5 % frente a 25,1 %). Más peso: Reino Unido (21,4 % frente a 3,9 % del índice). Menos peso: EE.UU. (22,9 % frente a 72,3 %).",
+  "aprox": false
  },
  {
   "isin": "LU2459474701",
@@ -250,7 +715,69 @@
   "r5": null,
   "r10": null,
   "literal": "",
-  "mini": "fichas/miniaturas/MFS Meridian Contrarian Value A1 EUR - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/MFS Meridian Contrarian Value A1 EUR - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Industrial",
+    24.6,
+    9.3
+   ],
+   [
+    "Salud",
+    15.0,
+    11.5
+   ],
+   [
+    "Financiero",
+    14.5,
+    25.1
+   ],
+   [
+    "Consumo básico",
+    14.1,
+    7.1
+   ],
+   [
+    "Consumo discrecional",
+    11.6,
+    4.2
+   ],
+   [
+    "Materiales",
+    10.3,
+    3.9
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    22.9,
+    72.3
+   ],
+   [
+    "Reino Unido",
+    21.4,
+    3.9
+   ],
+   [
+    "Francia",
+    15.6,
+    2.3
+   ],
+   [
+    "Alemania",
+    9.0,
+    2.0
+   ],
+   [
+    "Países Bajos",
+    7.3,
+    0.8
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Sobreponderación: Industrial (24,6 % frente a 9,3 % del índice). Infraponderación: Financiero (14,5 % frente a 25,1 %). Más peso: Reino Unido (21,4 % frente a 3,9 % del índice). Menos peso: EE.UU. (22,9 % frente a 72,3 %).",
+  "aprox": false
  },
  {
   "isin": "IE00BDGV0290",
@@ -273,7 +800,66 @@
   "r5": 9.69,
   "r10": 10.47,
   "literal": "",
-  "mini": "fichas/miniaturas/Guinness Global Equity Income (EUR acc) - Ficha oct 2026.jpg"
+  "mini": "fichas/miniaturas/Guinness Global Equity Income (EUR acc) - Ficha oct 2026.jpg",
+  "sectores": [
+   [
+    "Industrial",
+    26.7
+   ],
+   [
+    "Consumo básico",
+    20.8
+   ],
+   [
+    "Tecnología",
+    19.5
+   ],
+   [
+    "Salud",
+    15.2
+   ],
+   [
+    "Financiero",
+    11.9
+   ],
+   [
+    "Comunicación",
+    3.0
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    58.0
+   ],
+   [
+    "Reino Unido",
+    9.9
+   ],
+   [
+    "Suiza",
+    9.0
+   ],
+   [
+    "Francia",
+    7.6
+   ],
+   [
+    "Suecia",
+    5.4
+   ],
+   [
+    "China",
+    3.7
+   ],
+   [
+    "Alemania",
+    3.4
+   ]
+  ],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU1670710075",
@@ -296,7 +882,74 @@
   "r5": 10.31,
   "r10": 10.41,
   "literal": "",
-  "mini": "fichas/miniaturas/M&G (Lux) Global Dividend EUR A Acc - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/M&G (Lux) Global Dividend EUR A Acc - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    21.8,
+    33.2
+   ],
+   [
+    "Financiero",
+    17.3,
+    16.2
+   ],
+   [
+    "Materiales",
+    14.7,
+    3.5
+   ],
+   [
+    "Salud",
+    10.6,
+    8.4
+   ],
+   [
+    "Energía",
+    8.0,
+    4.0
+   ],
+   [
+    "Industrial",
+    7.5,
+    10.3
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    46.9,
+    64.7
+   ],
+   [
+    "Reino Unido",
+    8.3,
+    3.0
+   ],
+   [
+    "Canadá",
+    8.0,
+    2.9
+   ],
+   [
+    "Taiwán",
+    7.6,
+    3.5
+   ],
+   [
+    "Dinamarca",
+    4.9,
+    0.3
+   ],
+   [
+    "Australia",
+    4.7,
+    1.4
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Sobreponderación: Materiales (14,7 % frente a 3,5 % del índice). Infraponderación: Tecnología (21,8 % frente a 33,2 %). Más peso: Reino Unido (8,3 % frente a 3,0 % del índice). Menos peso: EE.UU. (46,9 % frente a 64,7 %).",
+  "aprox": false
  },
  {
   "isin": "LU0329202252",
@@ -319,7 +972,69 @@
   "r5": 8.28,
   "r10": 10.48,
   "literal": "",
-  "mini": "fichas/miniaturas/JPM Global Dividend A (acc) EUR - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/JPM Global Dividend A (acc) EUR - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Semiconductores y hardware",
+    20.8,
+    25.4
+   ],
+   [
+    "Bancos",
+    11.7,
+    9.7
+   ],
+   [
+    "Industriales cíclicos",
+    7.6,
+    8.4
+   ],
+   [
+    "Software",
+    7.6,
+    7.0
+   ],
+   [
+    "Servicios financieros",
+    6.6,
+    3.6
+   ],
+   [
+    "Energía",
+    4.6,
+    4.0
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    58.4,
+    64.1
+   ],
+   [
+    "Mercados emergentes",
+    10.9,
+    12.0
+   ],
+   [
+    "Reino Unido",
+    7.3,
+    3.0
+   ],
+   [
+    "Japón",
+    5.9,
+    5.2
+   ],
+   [
+    "Asia-Pacífico ex-Japón",
+    2.3,
+    2.2
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Infraponderación: Semiconductores y hardware (20,8 % frente a 25,4 %). Más peso: Reino Unido (7,3 % frente a 3,0 % del índice). Menos peso: EE.UU. (58,4 % frente a 64,1 %).",
+  "aprox": false
  },
  {
   "isin": "IE00B2NXKW18",
@@ -342,7 +1057,12 @@
   "r5": -1.12,
   "r10": 9.39,
   "literal": "",
-  "mini": ""
+  "mini": "",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU1438969351",
@@ -365,7 +1085,74 @@
   "r5": 6.68,
   "r10": 13.73,
   "literal": "",
-  "mini": "fichas/miniaturas/T. Rowe Price Global Focused Growth A EUR - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/T. Rowe Price Global Focused Growth A EUR - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    49.3,
+    33.2
+   ],
+   [
+    "Financiero",
+    9.0,
+    16.2
+   ],
+   [
+    "Salud",
+    8.9,
+    8.4
+   ],
+   [
+    "Consumo discrecional",
+    7.9,
+    8.3
+   ],
+   [
+    "Comunicación",
+    4.7,
+    8.0
+   ],
+   [
+    "Energía",
+    3.7,
+    3.9
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    61.3,
+    64.1
+   ],
+   [
+    "Taiwán",
+    8.4,
+    3.5
+   ],
+   [
+    "Japón",
+    4.6,
+    5.2
+   ],
+   [
+    "Países Bajos",
+    4.2,
+    1.2
+   ],
+   [
+    "Italia",
+    3.1,
+    0.6
+   ],
+   [
+    "Reino Unido",
+    2.8,
+    3.0
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Sobreponderación: Tecnología (49,3 % frente a 33,2 % del índice). Infraponderación: Financiero (9,0 % frente a 16,2 %). Más peso: Taiwán (8,4 % frente a 3,5 % del índice).",
+  "aprox": false
  },
  {
   "isin": "LU0552385618",
@@ -388,7 +1175,69 @@
   "r5": -0.13,
   "r10": 9.74,
   "literal": "",
-  "mini": "fichas/miniaturas/MS INVF Global Opportunity AH (EUR) - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/MS INVF Global Opportunity AH (EUR) - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    33.9,
+    33.2
+   ],
+   [
+    "Consumo discrecional",
+    24.0,
+    8.2
+   ],
+   [
+    "Comunicación",
+    20.8,
+    8.0
+   ],
+   [
+    "Financiero",
+    11.7,
+    16.2
+   ],
+   [
+    "Industrial",
+    8.4,
+    10.3
+   ],
+   [
+    "Consumo básico",
+    0,
+    4.5
+   ]
+  ],
+  "geografia": [
+   [
+    "Norteamérica",
+    39.3,
+    67.1
+   ],
+   [
+    "Europa (euro)",
+    13.1,
+    7.3
+   ],
+   [
+    "Europa (no euro)",
+    9.0,
+    6.1
+   ],
+   [
+    "Sudamérica",
+    2.8,
+    0.6
+   ],
+   [
+    "Japón",
+    1.9,
+    5.2
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Sobreponderación: Consumo discrecional (24,0 % frente a 8,2 % del índice). Infraponderación: Consumo básico (0 % frente a 4,5 %). Más peso: Europa (euro) (13,1 % frente a 7,3 % del índice). Menos peso: Norteamérica (39,3 % frente a 67,1 %).",
+  "aprox": false
  },
  {
   "isin": "BE0946564383",
@@ -411,7 +1260,59 @@
   "r5": 4.55,
   "r10": 12.85,
   "literal": "",
-  "mini": "fichas/miniaturas/DPAM B Equities NewGems Sustainable B EUR - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/DPAM B Equities NewGems Sustainable B EUR - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    41.4,
+    31.6
+   ],
+   [
+    "Comunicación",
+    11.5,
+    8.3
+   ],
+   [
+    "Consumo duradero",
+    10.5,
+    8.3
+   ],
+   [
+    "Industria",
+    10.1,
+    10.9
+   ],
+   [
+    "Salud",
+    9.5,
+    9.3
+   ]
+  ],
+  "geografia": [
+   [
+    "Norteamérica",
+    67.1,
+    76.3
+   ],
+   [
+    "Zona euro",
+    9.1,
+    8.3
+   ],
+   [
+    "Europa ex-euro",
+    8.3,
+    6.9
+   ],
+   [
+    "Japón",
+    0.0,
+    5.8
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Sobreponderación: Tecnología (41,4 % frente a 31,6 % del índice). Menos peso: Norteamérica (67,1 % frente a 76,3 %).",
+  "aprox": false
  },
  {
   "isin": "LU0171307068",
@@ -434,7 +1335,12 @@
   "r5": 6.52,
   "r10": null,
   "literal": "",
-  "mini": "fichas/miniaturas/BGF World Healthscience A2 EUR - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/BGF World Healthscience A2 EUR - Ficha sep 2026.jpg",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU1822774284",
@@ -457,7 +1363,12 @@
   "r5": 3.28,
   "r10": null,
   "literal": "",
-  "mini": "fichas/miniaturas/BGF World Healthscience A2 EUR Hedged - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/BGF World Healthscience A2 EUR Hedged - Ficha sep 2026.jpg",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU0157178582",
@@ -480,7 +1391,69 @@
   "r5": 8.78,
   "r10": 11.48,
   "literal": "",
-  "mini": "fichas/miniaturas/JPM Global Select Equity A (acc) EUR - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/JPM Global Select Equity A (acc) EUR - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Semiconductores y hardware",
+    26.1,
+    23.3
+   ],
+   [
+    "Bancos",
+    8.7,
+    9.0
+   ],
+   [
+    "Software",
+    8.1,
+    7.8
+   ],
+   [
+    "Industriales cíclicos",
+    7.4,
+    9.0
+   ],
+   [
+    "Farmacia",
+    7.0,
+    7.9
+   ],
+   [
+    "Servicios financieros",
+    5.6,
+    3.8
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    74.5,
+    73.0
+   ],
+   [
+    "Japón",
+    5.5,
+    5.9
+   ],
+   [
+    "Mercados emergentes",
+    4.0,
+    0.0
+   ],
+   [
+    "Reino Unido",
+    3.2,
+    3.4
+   ],
+   [
+    "Asia-Pacífico ex-Japón",
+    1.8,
+    2.4
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Más peso: Mercados emergentes (4,0 % frente a 0,0 % del índice).",
+  "aprox": false
  },
  {
   "isin": "LU0289089384",
@@ -503,7 +1476,69 @@
   "r5": 12.8,
   "r10": 10.33,
   "literal": "",
-  "mini": "fichas/miniaturas/JPM Europe Equity Plus A (perf) EUR - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/JPM Europe Equity Plus A (perf) EUR - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Finanzas",
+    28.9,
+    25.6
+   ],
+   [
+    "Industria",
+    20.8,
+    18.6
+   ],
+   [
+    "Tecnología",
+    10.6,
+    9.7
+   ],
+   [
+    "Energía",
+    7.0,
+    5.4
+   ],
+   [
+    "Consumo básico",
+    6.2,
+    8.2
+   ],
+   [
+    "Materiales",
+    5.3,
+    5.4
+   ]
+  ],
+  "geografia": [
+   [
+    "Reino Unido",
+    24.4,
+    22.5
+   ],
+   [
+    "Francia",
+    14.7,
+    14.9
+   ],
+   [
+    "Alemania",
+    14.0,
+    13.7
+   ],
+   [
+    "Suiza",
+    13.3,
+    14.2
+   ],
+   [
+    "Países Bajos",
+    11.3,
+    9.4
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Sobreponderación: Finanzas (28,9 % frente a 25,6 % del índice).",
+  "aprox": false
  },
  {
   "isin": "IE000IJHRNQ0",
@@ -526,7 +1561,46 @@
   "r5": null,
   "r10": null,
   "literal": "",
-  "mini": "fichas/miniaturas/Findlay Park American A EUR Acc - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/Findlay Park American A EUR Acc - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Industrial",
+    27.6
+   ],
+   [
+    "Tecnología",
+    23.1
+   ],
+   [
+    "Financiero",
+    10.9
+   ],
+   [
+    "Salud",
+    10.6
+   ],
+   [
+    "Materiales",
+    8.3
+   ],
+   [
+    "Consumo discrecional",
+    6.7
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    89.4
+   ],
+   [
+    "Canadá",
+    7.4
+   ]
+  ],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU1897556517",
@@ -549,7 +1623,12 @@
   "r5": 11.87,
   "r10": null,
   "literal": "",
-  "mini": ""
+  "mini": "",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU0302296495",
@@ -572,7 +1651,58 @@
   "r5": 19.77,
   "r10": 19.7,
   "literal": "",
-  "mini": "fichas/miniaturas/DNB Fund Technology A EUR Acc - Ficha oct 2026.jpg"
+  "mini": "fichas/miniaturas/DNB Fund Technology A EUR Acc - Ficha oct 2026.jpg",
+  "sectores": [
+   [
+    "Semiconductores",
+    23.0
+   ],
+   [
+    "Software y servicios",
+    20.5
+   ],
+   [
+    "Medios y entretenimiento",
+    16.4
+   ],
+   [
+    "Hardware tecnológico",
+    13.5
+   ],
+   [
+    "Financieros diversificados",
+    10.3
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    60.7
+   ],
+   [
+    "Suecia",
+    8.1
+   ],
+   [
+    "Corea del Sur",
+    5.4
+   ],
+   [
+    "Países Bajos",
+    4.7
+   ],
+   [
+    "Francia",
+    4.3
+   ],
+   [
+    "Japón",
+    3.6
+   ]
+  ],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU1213836080",
@@ -595,7 +1725,68 @@
   "r5": 13.97,
   "r10": 19.65,
   "literal": "",
-  "mini": "fichas/miniaturas/Fidelity Global Technology A-Acc-EUR - Ficha oct 2026.jpg"
+  "mini": "fichas/miniaturas/Fidelity Global Technology A-Acc-EUR - Ficha oct 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    64.3
+   ],
+   [
+    "Comunicación",
+    12.7
+   ],
+   [
+    "Consumo discrecional",
+    7.7
+   ],
+   [
+    "Industria",
+    5.7
+   ],
+   [
+    "Financiero",
+    3.5
+   ],
+   [
+    "Inmobiliario",
+    3.2
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    53.9,
+    77.2
+   ],
+   [
+    "Taiwán",
+    8.6,
+    8.9
+   ],
+   [
+    "China",
+    7.2,
+    0.7
+   ],
+   [
+    "Corea del Sur",
+    4.7,
+    5.0
+   ],
+   [
+    "Francia",
+    3.2,
+    0.2
+   ],
+   [
+    "Japón",
+    3.1,
+    2.9
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Más peso: China (7,2 % frente a 0,7 % del índice). Menos peso: EE.UU. (53,9 % frente a 77,2 %).",
+  "aprox": false
  },
  {
   "isin": "LU1883342377",
@@ -618,7 +1809,62 @@
   "r5": 13.12,
   "r10": 12.36,
   "literal": "",
-  "mini": "fichas/miniaturas/Amundi Funds Global Equity A EUR C - Ficha oct 2026.jpg"
+  "mini": "fichas/miniaturas/Amundi Funds Global Equity A EUR C - Ficha oct 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    29.7
+   ],
+   [
+    "Financiero",
+    22.7
+   ],
+   [
+    "Industrial",
+    10.5
+   ],
+   [
+    "Salud",
+    7.5
+   ],
+   [
+    "Materiales",
+    6.5
+   ],
+   [
+    "Consumo discrecional",
+    6.1
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    60.0
+   ],
+   [
+    "Corea del Sur",
+    8.0
+   ],
+   [
+    "Irlanda",
+    6.2
+   ],
+   [
+    "Japón",
+    5.0
+   ],
+   [
+    "Reino Unido",
+    4.5
+   ],
+   [
+    "Italia",
+    2.0
+   ]
+  ],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU1295552621",
@@ -641,7 +1887,54 @@
   "r5": 3.71,
   "r10": 9.98,
   "literal": "",
-  "mini": "fichas/miniaturas/Capital Group New Perspective (LUX) Bh-EUR - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/Capital Group New Perspective (LUX) Bh-EUR - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    32.6
+   ],
+   [
+    "Industrial",
+    12.5
+   ],
+   [
+    "Salud",
+    10.8
+   ],
+   [
+    "Consumo duradero",
+    10.6
+   ],
+   [
+    "Comunicación",
+    10.0
+   ],
+   [
+    "Financiero",
+    9.9
+   ]
+  ],
+  "geografia": [
+   [
+    "Norteamérica",
+    57.6
+   ],
+   [
+    "Europa",
+    22.5
+   ],
+   [
+    "Mercados emergentes",
+    10.6
+   ],
+   [
+    "Japón",
+    4.9
+   ]
+  ],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "IE00BK5TW727",
@@ -664,7 +1957,74 @@
   "r5": -4.08,
   "r10": null,
   "literal": "",
-  "mini": "fichas/miniaturas/Baillie Gifford WW Long Term Global Growth A EUR Acc - Ficha oct 2026.jpg"
+  "mini": "fichas/miniaturas/Baillie Gifford WW Long Term Global Growth A EUR Acc - Ficha oct 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    38.3,
+    31.2
+   ],
+   [
+    "Consumo discrecional",
+    21.0,
+    8.6
+   ],
+   [
+    "Comunicación",
+    12.7,
+    7.0
+   ],
+   [
+    "Salud",
+    8.8,
+    9.4
+   ],
+   [
+    "Industrial",
+    8.5,
+    10.2
+   ],
+   [
+    "Financiero",
+    5.0,
+    16.6
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    48.2,
+    64.6
+   ],
+   [
+    "China",
+    11.6,
+    2.2
+   ],
+   [
+    "Países Bajos",
+    9.6,
+    1.2
+   ],
+   [
+    "Taiwán",
+    7.2,
+    3.2
+   ],
+   [
+    "Brasil",
+    5.6,
+    0.4
+   ],
+   [
+    "Suecia",
+    3.9,
+    0.7
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Sobreponderación: Consumo discrecional (21,0 % frente a 8,6 % del índice). Infraponderación: Financiero (5,0 % frente a 16,6 %). Más peso: China (11,6 % frente a 2,2 % del índice). Menos peso: EE.UU. (48,2 % frente a 64,6 %).",
+  "aprox": false
  },
  {
   "isin": "ES0173130016",
@@ -687,7 +2047,37 @@
   "r5": 2.02,
   "r10": null,
   "literal": "El fondo Renta 4 Megatendencias Salud ha cerrado el mes de octubre con una rentabilidad del +11,0%. YTD: 14,3%. Desde el lanzamiento en febrero de 2020 la rentabilidad acumulada es del +39,6% que supone un +5,2% de rentabilidad anualizada.\n\nOctubre ha estado marcado por la rotación desde tecnología e IA hacia sectores defensivos, y salud ha sido uno de los grandes beneficiados. La corrección de IA, el bono americano a diez años en torno al 5%, el mercado descontando nuevas subidas de la Fed y el petróleo en niveles por encima de los 110$/barril, han dirigido flujos hacia el sector, que se mantiene como el segundo mejor del S&P 500 en el año, solo por detrás de energía. A ello se suma la cercanía de las elecciones de mitad de mandato en EEUU, cuyo desenlace condiciona a medicamentos, aseguradoras y hospitales.\n\nMantenemos una cartera con sesgo hacia farma de calidad y HC Services, selectiva en Medtech a la espera de una recuperación en 2027 y atentos a la recuperación de Life Sciences and Tools, sin perder de vista el riesgo de que la rotación de octubre se revierta si se estabilizan los tipos y repunta la tecnología, ni los riesgos regulatorios abiertos, entre ellos la investigación Section 232 sobre dispositivos médicos, que sigue pendiente de resolución y sobre la que los comentarios recientes del presidente sobre posibles aranceles antes de fin de año mantienen el riesgo de titular.\n\nLa exposición a bolsa se mantiene en el 96,5%. Mantenemos una cartera diversificada en 53 valores + 1 ETF de biotecnología, formando así parte de toda la cadena de valor que compone el sector salud.",
-  "mini": "fichas/miniaturas/Renta 4 Megatendencias Salud FI - Ficha oct 2026.jpg"
+  "mini": "fichas/miniaturas/Renta 4 Megatendencias Salud FI - Ficha oct 2026.jpg",
+  "sectores": [],
+  "geografia": [
+   [
+    "EE.UU.",
+    67.7
+   ],
+   [
+    "Suiza",
+    10.7
+   ],
+   [
+    "Irlanda",
+    4.9
+   ],
+   [
+    "Reino Unido",
+    3.1
+   ],
+   [
+    "Dinamarca",
+    2.5
+   ],
+   [
+    "Francia",
+    2.4
+   ]
+  ],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "NO0013528356",
@@ -710,7 +2100,54 @@
   "r5": null,
   "r10": null,
   "literal": "",
-  "mini": "fichas/miniaturas/DNB European Defence S EUR - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/DNB European Defence S EUR - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Industrial",
+    68.1
+   ],
+   [
+    "Tecnología",
+    22.4
+   ],
+   [
+    "Financiero",
+    4.3
+   ],
+   [
+    "Materiales",
+    3.8
+   ]
+  ],
+  "geografia": [
+   [
+    "Reino Unido",
+    19.8
+   ],
+   [
+    "Alemania",
+    17.8
+   ],
+   [
+    "Suecia",
+    16.5
+   ],
+   [
+    "Francia",
+    13.5
+   ],
+   [
+    "Países Bajos",
+    4.3
+   ],
+   [
+    "Suiza",
+    3.1
+   ]
+  ],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "IE00BYR8H148",
@@ -733,7 +2170,62 @@
   "r5": 13.11,
   "r10": 12.83,
   "literal": "",
-  "mini": "fichas/miniaturas/Jupiter Merian World Equity L EUR Acc - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/Jupiter Merian World Equity L EUR Acc - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    29.9
+   ],
+   [
+    "Financiero",
+    15.0
+   ],
+   [
+    "Salud",
+    11.2
+   ],
+   [
+    "Industrial",
+    9.9
+   ],
+   [
+    "Comunicación",
+    9.2
+   ],
+   [
+    "Consumo discrecional",
+    6.8
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    73.0
+   ],
+   [
+    "Japón",
+    5.5
+   ],
+   [
+    "Reino Unido",
+    4.7
+   ],
+   [
+    "Canadá",
+    2.9
+   ],
+   [
+    "Países Bajos",
+    2.7
+   ],
+   [
+    "Francia",
+    2.2
+   ]
+  ],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU2388163516",
@@ -756,7 +2248,12 @@
   "r5": 16.43,
   "r10": null,
   "literal": "",
-  "mini": ""
+  "mini": "",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU1833929729",
@@ -779,7 +2276,12 @@
   "r5": 12.12,
   "r10": null,
   "literal": "",
-  "mini": "fichas/miniaturas/ODDO BHF US Equity Trend (Algo Trends) CR-EUR - Ficha oct 2026.jpg"
+  "mini": "fichas/miniaturas/ODDO BHF US Equity Trend (Algo Trends) CR-EUR - Ficha oct 2026.jpg",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU0254836850",
@@ -802,7 +2304,62 @@
   "r5": 11.27,
   "r10": 9.12,
   "literal": "",
-  "mini": "fichas/miniaturas/Robeco Emerging Stars Equities D EUR - Ficha oct 2026.jpg"
+  "mini": "fichas/miniaturas/Robeco Emerging Stars Equities D EUR - Ficha oct 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    41.8
+   ],
+   [
+    "Financiero",
+    20.4
+   ],
+   [
+    "Consumo discrecional",
+    7.7
+   ],
+   [
+    "Industrial",
+    6.0
+   ],
+   [
+    "Energía",
+    3.7
+   ],
+   [
+    "Consumo básico",
+    2.8
+   ]
+  ],
+  "geografia": [
+   [
+    "Taiwán",
+    28.9
+   ],
+   [
+    "China",
+    20.0
+   ],
+   [
+    "Corea del Sur",
+    19.7
+   ],
+   [
+    "India",
+    11.7
+   ],
+   [
+    "Brasil",
+    3.9
+   ],
+   [
+    "Sudáfrica",
+    3.1
+   ]
+  ],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "IE000GBN91O8",
@@ -825,7 +2382,12 @@
   "r5": 16.09,
   "r10": 12.03,
   "literal": "",
-  "mini": ""
+  "mini": "",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU3191619025",
@@ -848,7 +2410,12 @@
   "r5": null,
   "r10": null,
   "literal": "",
-  "mini": ""
+  "mini": "",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU1822851884",
@@ -871,7 +2438,12 @@
   "r5": null,
   "r10": null,
   "literal": "",
-  "mini": ""
+  "mini": "",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "IE00BM95B621",
@@ -894,7 +2466,12 @@
   "r5": 20.87,
   "r10": null,
   "literal": "",
-  "mini": "fichas/miniaturas/Polar Capital Global Technology R EUR Acc - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/Polar Capital Global Technology R EUR Acc - Ficha sep 2026.jpg",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "FR0010722330",
@@ -917,7 +2494,12 @@
   "r5": 13.19,
   "r10": 13.79,
   "literal": "",
-  "mini": ""
+  "mini": "",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU0169527297",
@@ -940,7 +2522,79 @@
   "r5": 12.58,
   "r10": 8.71,
   "literal": "",
-  "mini": "fichas/miniaturas/JPM Europe Strategic Dividend A (acc) EUR - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/JPM Europe Strategic Dividend A (acc) EUR - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Bancos",
+    19.3,
+    15.4
+   ],
+   [
+    "Bienes de equipo",
+    10.8,
+    16.1
+   ],
+   [
+    "Farma y salud",
+    7.5,
+    11.3
+   ],
+   [
+    "Seguros",
+    7.1,
+    5.8
+   ],
+   [
+    "Energía",
+    7.1,
+    5.4
+   ],
+   [
+    "Servicios financieros",
+    6.5,
+    4.4
+   ]
+  ],
+  "geografia": [
+   [
+    "Reino Unido",
+    25.6,
+    22.6
+   ],
+   [
+    "Francia",
+    13.1,
+    14.9
+   ],
+   [
+    "Suiza",
+    10.4,
+    14.2
+   ],
+   [
+    "Países Bajos",
+    7.8,
+    9.4
+   ],
+   [
+    "Italia",
+    7.3,
+    5.1
+   ],
+   [
+    "España",
+    7.2,
+    6.3
+   ],
+   [
+    "Alemania",
+    7.1,
+    13.6
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Sobreponderación: Bancos (19,3 % frente a 15,4 % del índice). Infraponderación: Bienes de equipo (10,8 % frente a 16,1 %). Más peso: Reino Unido (25,6 % frente a 22,6 % del índice). Menos peso: Alemania (7,1 % frente a 13,6 %).",
+  "aprox": false
  },
  {
   "isin": "LU0714182432",
@@ -963,7 +2617,79 @@
   "r5": 7.17,
   "r10": 3.58,
   "literal": "",
-  "mini": "fichas/miniaturas/JPM Europe Strategic Dividend A (div) EUR - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/JPM Europe Strategic Dividend A (div) EUR - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Bancos",
+    19.3,
+    15.4
+   ],
+   [
+    "Bienes de equipo",
+    10.8,
+    16.1
+   ],
+   [
+    "Farma y salud",
+    7.5,
+    11.3
+   ],
+   [
+    "Seguros",
+    7.1,
+    5.8
+   ],
+   [
+    "Energía",
+    7.1,
+    5.4
+   ],
+   [
+    "Servicios financieros",
+    6.5,
+    4.4
+   ]
+  ],
+  "geografia": [
+   [
+    "Reino Unido",
+    25.6,
+    22.6
+   ],
+   [
+    "Francia",
+    13.1,
+    14.9
+   ],
+   [
+    "Suiza",
+    10.4,
+    14.2
+   ],
+   [
+    "Países Bajos",
+    7.8,
+    9.4
+   ],
+   [
+    "Italia",
+    7.3,
+    5.1
+   ],
+   [
+    "España",
+    7.2,
+    6.3
+   ],
+   [
+    "Alemania",
+    7.1,
+    13.6
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Sobreponderación: Bancos (19,3 % frente a 15,4 % del índice). Infraponderación: Bienes de equipo (10,8 % frente a 16,1 %). Más peso: Reino Unido (25,6 % frente a 22,6 % del índice). Menos peso: Alemania (7,1 % frente a 13,6 %).",
+  "aprox": false
  },
  {
   "isin": "LU1493953001",
@@ -986,7 +2712,67 @@
   "r5": 12.25,
   "r10": 10.84,
   "literal": "",
-  "mini": "fichas/miniaturas/T. Rowe Price Global Value Equity A EUR - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/T. Rowe Price Global Value Equity A EUR - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    20.3,
+    31.8
+   ],
+   [
+    "Finanzas",
+    19.6
+   ],
+   [
+    "Salud",
+    12.2,
+    9.2
+   ],
+   [
+    "Industria",
+    9.4
+   ],
+   [
+    "Comunicación",
+    9.1,
+    8.3
+   ],
+   [
+    "Energía",
+    6.7,
+    4.0
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    56.8,
+    72.8
+   ],
+   [
+    "Japón",
+    8.0,
+    5.9
+   ],
+   [
+    "Canadá",
+    7.1,
+    3.3
+   ],
+   [
+    "Francia",
+    4.9,
+    2.3
+   ],
+   [
+    "Reino Unido",
+    4.0,
+    3.4
+   ]
+  ],
+  "calidad": {},
+  "destaca": "Sobreponderación: Salud (12,2 % frente a 9,2 % del índice). Infraponderación: Tecnología (20,3 % frente a 31,8 %). Más peso: Canadá (7,1 % frente a 3,3 % del índice). Menos peso: EE.UU. (56,8 % frente a 72,8 %).",
+  "aprox": false
  },
  {
   "isin": "LU0826452848",
@@ -1009,7 +2795,62 @@
   "r5": 16.14,
   "r10": 14.31,
   "literal": "",
-  "mini": "fichas/miniaturas/DWS Invest II Global Equity High Conviction LC - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/DWS Invest II Global Equity High Conviction LC - Ficha sep 2026.jpg",
+  "sectores": [
+   [
+    "Tecnología",
+    31.5
+   ],
+   [
+    "Financiero",
+    23.1
+   ],
+   [
+    "Salud",
+    15.6
+   ],
+   [
+    "Comunicación",
+    7.4
+   ],
+   [
+    "Industrial",
+    6.6
+   ],
+   [
+    "Energía",
+    4.3
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    40.9
+   ],
+   [
+    "Corea del Sur",
+    10.4
+   ],
+   [
+    "Taiwán",
+    9.5
+   ],
+   [
+    "Francia",
+    7.9
+   ],
+   [
+    "Alemania",
+    6.3
+   ],
+   [
+    "Suiza",
+    4.7
+   ]
+  ],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "IE00B52VLZ70",
@@ -1032,7 +2873,12 @@
   "r5": 13.65,
   "r10": null,
   "literal": "",
-  "mini": ""
+  "mini": "",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "ES0146296001",
@@ -1055,7 +2901,12 @@
   "r5": null,
   "r10": null,
   "literal": "",
-  "mini": ""
+  "mini": "",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "ES0118537002",
@@ -1078,7 +2929,12 @@
   "r5": 3.25,
   "r10": 4.04,
   "literal": "",
-  "mini": ""
+  "mini": "",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU2278574715",
@@ -1101,7 +2957,12 @@
   "r5": 2.44,
   "r10": null,
   "literal": "",
-  "mini": "fichas/miniaturas/B&H Flexible LU - Ficha oct 2026.jpg"
+  "mini": "fichas/miniaturas/B&H Flexible LU - Ficha oct 2026.jpg",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "IE000ON4Z2S8",
@@ -1124,7 +2985,12 @@
   "r5": null,
   "r10": null,
   "literal": "",
-  "mini": ""
+  "mini": "",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "LU1989765471",
@@ -1147,7 +3013,12 @@
   "r5": 21.72,
   "r10": 11.27,
   "literal": "",
-  "mini": "fichas/miniaturas/CPR Invest Global Gold Mines A EUR Acc - Ficha oct 2026.jpg"
+  "mini": "fichas/miniaturas/CPR Invest Global Gold Mines A EUR Acc - Ficha oct 2026.jpg",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  },
  {
   "isin": "IE00BYVJR916",
@@ -1170,6 +3041,11 @@
   "r5": 19.62,
   "r10": 11.53,
   "literal": "",
-  "mini": "fichas/miniaturas/Jupiter Gold & Silver L EUR Acc - Ficha sep 2026.jpg"
+  "mini": "fichas/miniaturas/Jupiter Gold & Silver L EUR Acc - Ficha sep 2026.jpg",
+  "sectores": [],
+  "geografia": [],
+  "calidad": {},
+  "destaca": "",
+  "aprox": false
  }
 ]
