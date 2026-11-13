@@ -8,14 +8,15 @@ La web (`index.html`) no se toca: lee `data/*.json` al cargarse.
 - `index.html`: la página («Cuaderno de fondos»): portada con dos botones y buscador, listas por bloque, ficha de cada fondo y visión general. Todo el texto sale de `data/`. Solo cambiarla si algo falla o el usuario pide cambios de diseño. Diseño sobrio, colores neutros, sin textos descriptivos.
 - `data/renta_fija.json`, `data/renta_variable.json`, `data/vision_general.json`, `data/meta.json`: datos que lee la web.
 - `fichas/<Nombre del fondo> - Ficha <mes abreviado> <año>.pdf`: una ficha por fondo (mes abreviado: ene feb mar abr may jun jul ago sep oct nov dic).
+- `fichas/miniaturas/<mismo nombre>.jpg`: primera página de cada ficha (la web la enseña como cuadro que descarga el PDF).
 - `herramientas/`: este proceso. `rf.tsv` (fondos de renta fija) y `rv.tsv` (renta variable, mixtos y metales; 4ª columna: RV, MX o MT) con ISIN de la clase EN EUR. `navret.py` y `ftnav.py` (rentabilidades por valor liquidativo), `ext*.py` (extracción de texto de las fichas).
 
 ## Esquema de los datos (porcentajes en unidades de %, p. ej. 12.92 = 12,92 %)
-`renta_fija.json`, lista de objetos: isin, fondo, gestora, tipo, fecha (dd/mm/aaaa de la ficha), tir, tipo_yield, duracion, mes, ytd, a1, r3, r5, r10, breakeven_pb, patrimonio, fuente, que_ha_pasado, posicionamiento, perspectivas, aporta, resta, ficha (siempre ""), pdf ("fichas/<archivo>.pdf").
+`renta_fija.json`, lista de objetos: isin, fondo, gestora, tipo, fecha (dd/mm/aaaa de la ficha), tir, tipo_yield, duracion, mes, ytd, a1, r3, r5, r10, breakeven_pb, patrimonio, fuente, que_ha_pasado (resumen propio), literal (palabras literales del gestor, solo si la ficha las trae en español; "" si no), posicionamiento, aporta, resta, ficha (siempre ""), pdf ("fichas/<archivo>.pdf"), mini ("fichas/miniaturas/<archivo>.jpg"). NO hay campo `perspectivas`: se eliminó a petición del usuario y no debe volver.
 - `breakeven_pb = round(tir / duracion * 100)`; null si falta tir o duración.
 - `mes`, `ytd`, `a1`: rentabilidad de la clase EUR a fin de mes. Null si no hay dato.
 - `r3`, `r5`, `r10`: rentabilidad ANUALIZADA a 3, 5 y 10 años (también en renta variable). Null si el fondo no tiene tanto historial. Salen de `navret.py` (quefondos: llega a 3 y 5 años, su historial empieza en 2018) y de `ftnav.py --lista` (FT: llega a 10 años y cubre fondos que quefondos no tiene). Regla: r3 y r5 de quefondos y, si faltan, de FT; r10 siempre de FT. La web y el Excel los muestran tal cual.
-`renta_variable.json`: isin, fondo, gestora, bloque ("Renta variable", "Mixto" o "Metales / recursos"), estilo, fecha_ficha ("dd/mm/aaaa" o "Sin ficha"), mes, ytd, a1, r3, r5, r10, per, dividendo, posiciones, comentario, lectura, ficha (""), pdf.
+`renta_variable.json`: isin, fondo, gestora, bloque ("Renta variable", "Mixto" o "Metales / recursos"), estilo, fecha_ficha ("dd/mm/aaaa" o "Sin ficha"), mes, ytd, a1, r3, r5, r10, per, dividendo, posiciones, comentario (resumen), literal (igual que en renta fija), lectura, ficha (""), pdf, mini.
 `vision_general.json`: lista de {bloque ("Renta fija" o "Renta variable"), seccion, texto}; las secciones salen en orden; usa los mismos títulos de sección que los actuales.
 `meta.json`: {"cierre": "dd/mm/aaaa" (fin de mes de las rentabilidades), "actualizado": "dd/mm/aaaa" (día de la ejecución)}.
 
@@ -32,12 +33,13 @@ La web (`index.html`) no se toca: lee `data/*.json` al cargarse.
    - Comprimir con `pypdf` los PDF de más de 3 MB.
 3. Rentabilidades: `python3 -I herramientas/navret.py <lista.tsv> nav.json AAAA-MM-DD` (fin de mes; lista = rf.tsv y rv.tsv juntos, solo ISIN en la 1ª columna) y `python3 -I herramientas/ftnav.py --lista <lista.tsv> AAAA-MM-DD ft.json`. Combinar según la regla de r3/r5/r10 de arriba. Para un fondo suelto: `ftnav.py ISIN:AAAA-MM-DD`. Siempre la clase EUR (Dunas clase R, Storm RC EUR, B&H clase 2 salen del valor liquidativo, no de la ficha).
 4. Lectura de fichas: `pdftotext -layout`; `ext.py`, `ext2.py`, `extrv.py` ayudan a localizar TIR, duración, PER, dividendo, posiciones y comentario.
-   - Renta fija: tir (%), duración (años), patrimonio, qué ha pasado, posicionamiento, perspectivas, qué aporta y resta.
+   - Renta fija: tir (%), duración (años), patrimonio, qué ha pasado, posicionamiento, qué aporta y resta (SIN perspectivas).
+   - Comentario literal: `python3 -I herramientas/comentarios.py .` copia las palabras exactas del gestor de las fichas que las traen en español (Renta 4, DNCA, Lazard, Carmignac Global Bond, Robeco BP, Dunas; reglas en ese script). Si el mes siguiente otra ficha en español trae comentario del gestor (o cambia el formato), añadir/ajustar su regla en `REGLAS`/`POR_ISIN`; no traducir ni resumir nada en `literal`. Las fichas en inglés o sin comentario dejan `literal` vacío y la web enseña el resumen.
    - PIMCO Income (IE00B84J9L26), Man Global IG Opp (IE000MI53C66) y Man Dynamic Income (IE000WFG9PJ8) publican el yield en USD: `tir = publicado − (Fed − BCE)` con los tipos oficiales del momento (a 12/11/2026: Fed 3,875 % punto medio, BCE depósito 2,5 %) y dejarlo dicho en `tipo_yield`.
    - Jupiter Merian Global Equity Absolute Return (RV market neutral) y GAM Cat Bond no tienen tir ni duración (null).
-   - No inventar comentarios: si la ficha no trae, "Sin comentario en la ficha" y el análisis propio en `lectura`/`perspectivas`, marcado como "Lectura propia".
+   - No inventar comentarios: si la ficha no trae, "Sin comentario en la ficha" y el análisis propio en `lectura` (renta variable) o en `posicionamiento` (renta fija), marcado como "Lectura propia".
 5. `vision_general.json`: qué dicen las gestoras, en qué coinciden y discrepan, ganadores y perdedores del año, qué ha cambiado respecto al mes anterior, conclusiones propias (no es recomendación personalizada).
-6. Poner `pdf` en cada fila, borrar de `fichas/` las del mes anterior y escribir las nuevas. Actualizar `meta.json`.
+6. Poner `pdf` en cada fila, borrar de `fichas/` las del mes anterior y escribir las nuevas. Ejecutar `python3 -I herramientas/miniaturas.py .` (genera `fichas/miniaturas/` y el campo `mini`; es después de `comentarios.py`, que no toca `mini`). Actualizar `meta.json`.
 7. Comprobar: JSON válido, 29 filas de renta fija y 51 de variable, cada `pdf` existe, ningún archivo supera 25 MB.
 8. Excel del repositorio: `python3 -I herramientas/generar_excel.py . descargas/Seguimiento_Fondos.xlsx web`, y recalcular con LibreOffice (el skill `xlsx` trae `scripts/recalc.py`; debe dar 0 errores). La web lo ofrece en «Descargar el Excel».
 9. `git add -A`, commit y `git -c push.negotiate=true push origin main`. Esperar 1-2 minutos y comprobar con curl que `https://juuuuez.github.io/seguimiento-fondos/data/meta.json` muestra la fecha nueva.

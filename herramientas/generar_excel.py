@@ -173,9 +173,9 @@ for k, f in enumerate(rv):
     rent = '   '.join(lab + ': ' + (('%+.2f%%' % f[key]).replace('.', ',') if f.get(key) is not None else 'n.d.')
                      for lab, key in [('Último mes', 'mes'), ('YTD', 'ytd'), ('1 año', 'a1'), ('3 años', 'r3'), ('5 años', 'r5'), ('10 años', 'r10')])
     for l, v in [('ISIN / Gestora', '%s · %s' % (f['isin'], f['gestora'])), ('Estilo', f['estilo']), ('Rentabilidades', rent), ('Principales posiciones', f['posiciones'] or '—'),
-                 ('Qué dice la gestora', f['comentario']), ('Lectura propia', f['lectura'])]:
+                 ('Qué ha pasado (palabras del gestor)' if f.get('literal') else 'Qué ha pasado (resumen)', (f.get('literal') or f['comentario']).replace('\n\n', '\n')), ('Lectura propia', f['lectura'])]:
         dd.cell(i, 1, l).font = BB; x = dd.cell(i, 2, v); x.font = B; x.alignment = WR
-        dd.row_dimensions[i].height = max(15, 15 * (len(str(v)) // 125 + 1)); i += 1
+        dd.row_dimensions[i].height = min(409, max(15, 15 * (len(str(v)) // 125 + 1))); i += 1
     i += 1
 
 vision_sheet(wb, 'Visión RV', 'Renta variable', 4)
@@ -197,9 +197,10 @@ for k, f in enumerate(rf):
             x.number_format = fmt
         i += 1
     i += 1
-    for l, key in [('Qué ha pasado', 'que_ha_pasado'), ('Posicionamiento', 'posicionamiento'), ('Perspectivas / opinión', 'perspectivas'), ('Ha aportado (+)', 'aporta'), ('Ha restado (−)', 'resta')]:
+    lit = (f.get('literal') or '').replace('\n\n', '\n')
+    for l, txt in [('Qué ha pasado (palabras del gestor)' if lit else 'Qué ha pasado (resumen)', lit or f['que_ha_pasado']), ('Posicionamiento', f['posicionamiento']), ('Ha aportado (+)', f['aporta']), ('Ha restado (−)', f['resta'])]:
         w.cell(i, 1, l).font = BB; w.cell(i, 1).alignment = WR
-        x = w.cell(i, 2, f[key]); x.font = B; x.alignment = WR; w.row_dimensions[i].height = max(15, 15 * (len(f[key]) // 120 + 1)); i += 1
+        x = w.cell(i, 2, txt); x.font = B; x.alignment = WR; w.row_dimensions[i].height = min(409, max(15, 15 * (len(txt) // 120 + 1))); i += 1
     u = link(f['pdf'])
     if u:
         i += 1; w.cell(i, 1, 'Ficha (PDF)').font = BB; y = w.cell(i, 2, os.path.basename(f['pdf'])); y.hyperlink = u; y.font = LINK

@@ -145,6 +145,19 @@ h2{margin:0;font-family:var(--serif);font-optical-sizing:auto;font-size:clamp(31
 .blocks{display:grid;gap:26px;margin-top:34px;max-width:70ch}
 .blocks h3{margin:0 0 6px;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .blocks p{margin:0}
+.ficha{display:flex;gap:16px;align-items:center;margin-top:26px;padding:12px;width:max-content;max-width:100%;background:var(--surface);border:1px solid var(--line);border-radius:14px;text-decoration:none;box-shadow:var(--shadow);transition:border-color .18s ease}
+.ficha:hover{border-color:var(--ink)}
+.ficha img{display:block;width:110px;height:auto;border:1px solid var(--line);border-radius:4px;background:#fff}
+.ficha .ft{display:flex;flex-direction:column;gap:2px;padding-right:10px}
+.ficha .ft b{font-weight:500}
+.ficha .ft small{color:var(--muted);font-size:12px}
+.ficha .dl{margin-top:8px;font-size:12px;color:var(--ink);border-bottom:1px solid var(--line);align-self:flex-start}
+.cap{font-size:12px;color:var(--muted);margin:-4px 0 8px}
+.quote p{margin:0 0 12px}
+.quote{border-left:2px solid var(--line);padding-left:16px}
+.qbox.cut{max-height:15em;overflow:hidden;position:relative}
+.qbox.cut::after{content:"";position:absolute;inset:auto 0 0 0;height:5em;background:linear-gradient(transparent,var(--bg))}
+.more{margin-top:8px;border:0;background:none;padding:0;font-size:13px;color:var(--ink);border-bottom:1px solid var(--line);cursor:pointer}
 .btn{display:inline-flex;align-items:center;gap:8px;margin-top:30px;padding:12px 20px;border-radius:12px;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:500;font-size:14px}
 .btn:hover{opacity:.88}
 .btn small{font-weight:400;opacity:.65}
@@ -358,7 +371,7 @@ function bars(rows) {
 }
 
 /* ---------- ficha ---------- */
-const placeholder = t => !t || (t.length < 60 && /^sin (comentario|ficha)/i.test(t.trim()));
+const placeholder = t => !t || /^[\s—–-]*$/.test(t) || (t.length < 60 && /^sin (comentario|ficha)/i.test(t.trim()));
 function viewFund(isin) {
   const f = ALL.find(x => x.isin === isin);
   if (!f) return h('section', {}, h('h2', {}, 'Fondo no encontrado'));
@@ -370,15 +383,32 @@ function viewFund(isin) {
   const tile = (l, v, raw) => h('div', { class: 'tile' }, h('small', {}, l), h('strong', { class: raw ? '' : cls(v) }, raw ? (v == null ? '–' : v) : pct(v, 2)));
   const blocks = [];
   const add = (t, txt) => { if (!placeholder(txt)) blocks.push(h('div', {}, h('h3', {}, t), h('p', {}, txt))); };
-  if (rf) { add('Qué ha pasado', f.que_ha_pasado); add('Posicionamiento', f.posicionamiento); add('Perspectivas', f.perspectivas); add('Ha aportado', f.aporta); add('Ha restado', f.resta);
+  const pasado = () => {
+    if (f.literal) {
+      const q = h('div', { class: 'quote' }, f.literal.split(/\n\n+/).map(p => h('p', {}, p)));
+      const long = f.literal.length > 1500;
+      const box = h('div', { class: 'qbox' + (long ? ' cut' : '') }, q);
+      const kids = [h('h3', {}, 'Qué ha pasado'), h('div', { class: 'cap' }, 'Palabras del gestor, tal como figuran en la ficha'), box];
+      if (long) { const bt = h('button', { class: 'more', type: 'button' }, 'Leer todo'); bt.onclick = () => { const o = box.classList.toggle('cut'); bt.textContent = o ? 'Leer todo' : 'Leer menos'; }; kids.push(bt); }
+      blocks.push(h('div', {}, kids));
+    } else {
+      const txt = rf ? f.que_ha_pasado : f.comentario;
+      if (!placeholder(txt)) blocks.push(h('div', {}, h('h3', {}, 'Qué ha pasado'), h('div', { class: 'cap' }, 'Resumen'), h('p', {}, txt)));
+    }
+  };
+  if (rf) { pasado(); add('Posicionamiento', f.posicionamiento); add('Ha aportado', f.aporta); add('Ha restado', f.resta);
     if (f.tipo_yield && f.tir != null && f.tipo_yield.length > 14) add('Sobre la TIR', f.tipo_yield); }
-  else { add('Principales posiciones', f.posiciones); add('Qué dice la gestora', f.comentario); add('Lectura propia', f.lectura); }
+  else { add('Principales posiciones', f.posiciones); pasado(); add('Lectura propia', f.lectura); }
+  const nombrePdf = f.pdf ? f.pdf.split('/').pop() : '';
+  const ficha = f.pdf ? h('a', { class: 'ficha', href: encodeURI(f.pdf), download: nombrePdf, 'aria-label': 'Descargar la ficha en PDF' },
+    f.mini ? h('img', { src: encodeURI(f.mini), alt: 'Primera página de la ficha', loading: 'lazy' }) : null,
+    h('span', { class: 'ft' }, h('b', {}, 'Ficha mensual'), h('small', {}, f.fecha || f.fecha_ficha || ''), h('span', { class: 'dl' }, 'Descargar PDF'))) : null;
   return h('section', { class: 'fund' }, h('h2', {}, f.fondo),
     h('div', { class: 'sub' }, f.gestora + ' · ' + f.isin + (f.estilo ? ' · ' + f.estilo : f.tipo ? ' · ' + f.tipo : '')),
     h('div', { class: 'tiles' }, tiles.map(([l, v]) => tile(l, v)), extra.map(([l, v]) => tile(l, v, true))),
     h('p', { class: 'note' }, 'Rentabilidad de la clase en euros. A 3, 5 y 10 años, anualizada.'),
-    h('div', { class: 'blocks' }, blocks),
-    f.pdf ? h('a', { class: 'btn', href: f.pdf, target: '_blank', rel: 'noopener' }, 'Ver ficha', h('small', {}, f.fecha || '')) : null);
+    ficha,
+    h('div', { class: 'blocks' }, blocks));
 }
 
 /* ---------- visión general ---------- */
