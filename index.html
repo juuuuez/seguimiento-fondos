@@ -231,7 +231,7 @@ const icon = {
 };
 
 let D = { rf: [], rv: [], vis: [], meta: {} }, ALL = [];
-const ST = { rf: { key: 'ytd', dir: -1, mode: 'lista', q: '', g: '' }, rv: { key: 'ytd', dir: -1, mode: 'lista', q: '', chip: 'Todos', per: 'ytd' } };
+const ST = { rf: { key: 'fondo', dir: 1, mode: 'lista', q: '', g: '' }, rv: { key: 'fondo', dir: 1, mode: 'lista', q: '', g: '', chip: 'Todos', per: 'ytd' } };
 const PERIODS = [['ytd', 'Año'], ['a1', '1 año'], ['r3', '3 años'], ['r5', '5 años'], ['r10', '10 años']];
 
 async function load() {
@@ -301,10 +301,15 @@ function sortRows(rows, st) {
     return (typeof x === 'number' ? x - y : String(x).localeCompare(String(y), 'es')) * st.dir;
   });
 }
-const GEST = [[/renta 4/i, 'renta4', 'Renta 4'], [/buy ?& ?hold/i, 'buyandhold', 'Buy & Hold'], [/evli/i, 'evli', 'Evli'], [/pimco/i, 'pimco', 'PIMCO'], [/flossbach/i, 'fvs', 'Flossbach von Storch'],
+const GEST = [[/renta 4|numantia|avantage/i, 'renta4', 'Renta 4'], [/buy ?& ?hold/i, 'buyandhold', 'Buy & Hold'], [/evli/i, 'evli', 'Evli'], [/pimco/i, 'pimco', 'PIMCO'], [/flossbach/i, 'fvs', 'Flossbach von Storch'],
   [/m&g/i, 'mg', 'M&G'], [/man group/i, 'man', 'Man Group'], [/bnp|axa/i, 'bnp', 'BNP Paribas AM'], [/morgan stanley/i, 'ms', 'Morgan Stanley IM'], [/dnca/i, 'dnca', 'DNCA'], [/dunas/i, 'dunas', 'Dunas'],
-  [/schroders/i, 'schroders', 'Schroders'], [/jupiter/i, 'jupiter', 'Jupiter'], [/lazard/i, 'lazard', 'Lazard'], [/carmignac/i, 'carmignac', 'Carmignac'], [/algebris/i, 'algebris', 'Algebris'], [/gam/i, 'gam', 'GAM'], [/storm/i, 'storm', 'Storm']];
-const famOf = f => { const g = GEST.find(x => x[0].test(f.gestora)); return g ? { key: g[1], nombre: g[2], logo: 'logos/' + g[1] + '.png' } : { key: norm(f.gestora), nombre: f.gestora, logo: '' }; };
+  [/schroders/i, 'schroders', 'Schroders'], [/jupiter/i, 'jupiter', 'Jupiter'], [/lazard/i, 'lazard', 'Lazard'], [/carmignac/i, 'carmignac', 'Carmignac'], [/algebris/i, 'algebris', 'Algebris'], [/^gam\b/i, 'gam', 'GAM'], [/storm/i, 'storm', 'Storm'],
+  [/invesco/i, 'invesco', 'Invesco'], [/nordea/i, 'nordea', 'Nordea'], [/robeco/i, 'robeco', 'Robeco'], [/mfs/i, 'mfs', 'MFS'], [/guinness/i, 'guinness', 'Guinness'], [/j\.?p\.? morgan/i, 'jpm', 'J.P. Morgan AM'], [/seilern/i, 'seilern', 'Seilern'],
+  [/t\. rowe/i, 'troweprice', 'T. Rowe Price'], [/dpam/i, 'dpam', 'DPAM'], [/blackrock/i, 'blackrock', 'BlackRock'], [/findlay/i, 'findlay', 'Findlay Park'], [/groupama/i, 'groupama', 'Groupama AM'], [/dnb/i, 'dnb', 'DNB AM'],
+  [/fidelity/i, 'fidelity', 'Fidelity'], [/amundi|cpr/i, 'amundi', 'Amundi / CPR'], [/capital group/i, 'capital', 'Capital Group'], [/baillie/i, 'baillie', 'Baillie Gifford'], [/oddo/i, 'oddo', 'ODDO BHF AM'], [/polar/i, 'polar', 'Polar Capital'],
+  [/dws/i, 'dws', 'DWS'], [/horos/i, 'horos', 'Horos AM'], [/olea/i, 'olea', 'Olea Gestión'], [/goehring/i, 'gr', 'Goehring & Rozencwajg'], [/paradigma|adepa/i, 'paradigma', 'Paradigma'], [/ardtur/i, 'ardtur', 'Ardtur'], [/finserve|multimanager/i, 'finserve', 'Finserve']];
+const SIN_LOGO = new Set(['paradigma', 'ardtur', 'finserve']);
+const famOf = f => { const g = GEST.find(x => x[0].test(f.gestora)); return g ? { key: g[1], nombre: g[2], logo: SIN_LOGO.has(g[1]) ? '' : 'logos/' + g[1] + '.png' } : { key: norm(f.gestora), nombre: f.gestora, logo: '' }; };
 function viewSection(kind) {
   const st = ST[kind], rf = kind === 'rf';
   const title = rf ? 'Renta fija' : 'Renta variable y mixtos';
@@ -312,7 +317,7 @@ function viewSection(kind) {
   const draw = () => {
     let rows = ALL.filter(f => f.kind === kind);
     if (!rf && st.chip !== 'Todos') rows = rows.filter(f => f.bloque === st.chip);
-    if (rf && st.g) rows = rows.filter(f => famOf(f).key === st.g);
+    if (st.g) rows = rows.filter(f => famOf(f).key === st.g);
     const q = norm(st.q).split(/\s+/).filter(Boolean);
     if (q.length) rows = rows.filter(f => { const hay = norm(f.fondo + ' ' + f.gestora + ' ' + f.isin); return q.every(x => hay.includes(x)); });
     body.replaceChildren(st.mode === 'lista' ? list(rows) : chart(rows));
@@ -360,7 +365,7 @@ function viewSection(kind) {
   const carpetas = () => {
     const m = new Map();
     ALL.filter(f => f.kind === kind).forEach(f => { const g = famOf(f); if (!m.has(g.key)) m.set(g.key, { ...g, n: 0 }); m.get(g.key).n++; });
-    const items = [...m.values()].sort((a, b) => b.n - a.n || a.nombre.localeCompare(b.nombre, 'es'));
+    const items = [...m.values()].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
     const grid = h('div', { class: 'folders' });
     items.forEach(g => {
       const b = h('button', { type: 'button', class: 'folder', 'data-g': g.key, 'aria-pressed': st.g === g.key, title: g.nombre },
@@ -372,7 +377,7 @@ function viewSection(kind) {
     return grid;
   };
   const root = h('section', {}, h('div', { class: 'sechead' }, h('h2', {}, title),
-    h('div', { class: 'tools' }, seg, h('a', { class: 'linkbtn', href: '#/vision/' + kind }, 'Visión general'))), rf ? carpetas() : null, filters, body);
+    h('div', { class: 'tools' }, seg, h('a', { class: 'linkbtn', href: '#/vision/' + kind }, 'Visión general'))), carpetas(), filters, body);
   draw(); renderPer();
   return root;
 }

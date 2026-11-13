@@ -61,7 +61,7 @@ La web (`index.html`) no se toca: lee `data/*.json` al cargarse.
 4. Orden al incorporar una ficha nueva: copiar el PDF a `fichas/<Nombre> - Ficha <mes> <año>.pdf`, borrar el anterior, actualizar `fecha`/`fecha_ficha`, `pdf` y los datos de la ficha (tir, duración, posiciones, exposición en `exposicion.json`), y volver a pasar `comentarios.py`, `miniaturas.py` y `exposicion_aplicar.py`.
 
 ## Logos de las carpetas de gestoras
-La portada de renta fija agrupa los fondos en carpetas por gestora (`GEST` y `famOf` en `index.html`). Cada logo está en `logos/<clave>.png` (favicons/logos públicos de cada gestora; Evli, Morgan Stanley, Algebris, GAM y Carmignac recortados de sus propias fichas). Si entra una gestora nueva en `rf.tsv`/`rv.tsv`, añadir su línea en `GEST` y su logo; si no hay logo, la carpeta enseña las iniciales.
+Las portadas de renta fija y de renta variable agrupan los fondos en carpetas por gestora (`GEST` y `famOf` en `index.html`). Cada logo está en `logos/<clave>.png` (favicons/logos públicos de cada gestora; Evli, Morgan Stanley, Algebris, GAM y Carmignac recortados de sus propias fichas). Si entra una gestora nueva en `rf.tsv`/`rv.tsv`, añadir su línea en `GEST` y su logo; si no hay logo, la carpeta enseña las iniciales (hoy: Ardtur, Finserve y Paradigma). Logos en su color original sobre un recuadro blanco. Las listas salen por defecto en orden alfabético por nombre del fondo y las carpetas también.
 
 ## Pendiente conocido
 LBPAM (FR0014004IP7), Cartesio Income (LU1966822956) y Sigma (LU1984948874, ISIN dudoso) no tienen ficha pública: van como "Sin ficha".
