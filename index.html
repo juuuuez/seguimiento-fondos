@@ -7,12 +7,13 @@
 <title>Cuaderno de fondos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#f4f4f5; --surface:#ffffff; --ink:#17171a; --muted:#71717a; --line:#e4e4e7; --soft:#efeff1;
   --pos:#35654f; --neg:#9a3f3f; --posbar:#9fbfae; --negbar:#d3a3a3; --shadow:0 1px 2px rgba(20,20,26,.04), 0 6px 20px rgba(20,20,26,.05);
   --font:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
 }
 @media (prefers-color-scheme: dark){ :root{
   --bg:#0f0f11; --surface:#18181b; --ink:#ececee; --muted:#9a9aa3; --line:#2a2a2f; --soft:#212126;
@@ -39,13 +40,13 @@ footer a:hover{color:var(--ink)}
 
 /* Portada */
 .home{min-height:62vh;display:flex;flex-direction:column;justify-content:center;gap:44px;padding:24px 0 12px}
-h1{margin:0;font-size:clamp(38px,6.2vw,60px);font-weight:300;letter-spacing:-.035em;line-height:1.04;text-wrap:balance}
+h1{margin:0;font-family:var(--serif);font-optical-sizing:auto;font-size:clamp(42px,6.8vw,66px);font-weight:400;letter-spacing:-.015em;line-height:1.05;text-wrap:balance}
 .choices{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .choice{display:flex;flex-direction:column;justify-content:space-between;gap:34px;min-height:150px;padding:22px 24px;background:var(--surface);border:1px solid var(--line);
   border-radius:16px;text-decoration:none;box-shadow:var(--shadow);transition:transform .18s ease,border-color .18s ease}
 .choice:hover{transform:translateY(-2px);border-color:var(--ink)}
 .choice small{display:block;color:var(--muted);font-size:13px}
-.choice strong{display:block;font-size:24px;font-weight:400;letter-spacing:-.02em;line-height:1.15}
+.choice strong{display:block;font-family:var(--serif);font-optical-sizing:auto;font-size:27px;font-weight:400;letter-spacing:-.01em;line-height:1.12}
 .choice .row{display:flex;justify-content:space-between;align-items:flex-end}
 .choice svg{flex:none;color:var(--muted)}
 .choice:hover svg{color:var(--ink)}
@@ -69,7 +70,7 @@ h1{margin:0;font-size:clamp(38px,6.2vw,60px);font-weight:300;letter-spacing:-.03
 .results .vacio{padding:14px 12px;color:var(--muted);font-size:14px}
 
 /* Sección */
-h2{margin:0;font-size:clamp(28px,4.4vw,40px);font-weight:300;letter-spacing:-.03em;line-height:1.1}
+h2{margin:0;font-family:var(--serif);font-optical-sizing:auto;font-size:clamp(31px,4.8vw,44px);font-weight:400;letter-spacing:-.015em;line-height:1.1}
 .sechead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 24px;margin:6px 0 22px}
 .tools{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
 .seg{display:inline-flex;background:var(--soft);border-radius:10px;padding:3px}
