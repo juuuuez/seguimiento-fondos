@@ -68,7 +68,7 @@ ws['A1'] = 'Seguimiento de fondos de renta fija' + (' — cierre %s' % CIERRE if
 ws['A2'] = ('Datos tal como los publica cada gestora en su ficha (fecha en la columna F). Rentabilidades de la clase en EUR. '
             'Azul = dato; negro = fórmula. Los yields de PIMCO y de dos fondos de Man se muestran ya ajustados a EUR (ver "Tipo de yield").'); ws['A2'].font = SMALL
 hdr = ['Fondo', 'ISIN', 'Gestora', 'Tipo', 'Fuente', 'Fecha ficha', 'TIR / Yield', 'Tipo de yield', 'Duración (años)', 'Rent. último mes', 'Rent. YTD',
-       'Rent. 1 año', 'Breakeven 12m (pb)', 'Ranking YTD', 'Patrimonio', 'Ficha (PDF)', 'Pestaña']
+       'Rent. 1 año', 'Rent. 3 años (anual.)', 'Rent. 5 años (anual.)', 'Rent. 10 años (anual.)', 'Breakeven 12m (pb)', 'Ranking YTD', 'Patrimonio', 'Ficha (PDF)', 'Pestaña']
 header(ws, 4, hdr)
 first, last = 5, 4 + len(rf)
 tabs = {}
@@ -80,16 +80,17 @@ for k, f in enumerate(rf):
         ws.cell(r, c, v).font = B
     num(ws, r, 7, fr(f['tir']), PCT); ws.cell(r, 8, f['tipo_yield']).font = B
     num(ws, r, 9, f['duracion'], NUM); num(ws, r, 10, fr(f['mes']), PCT); num(ws, r, 11, fr(f['ytd']), PCT); num(ws, r, 12, fr(f['a1']), PCT)
-    x = ws.cell(r, 13, f'=IFERROR(IF(AND(ISNUMBER(G{r}),ISNUMBER(I{r}),I{r}>0),G{r}/I{r}*10000,"n.a."),"n.a.")'); x.number_format = '0'; x.font = B; x.alignment = Alignment(horizontal='right')
-    x = ws.cell(r, 14, f'=IF(ISNUMBER(K{r}),RANK(K{r},$K${first}:$K${last},0),"n.d.")'); x.font = B; x.alignment = Alignment(horizontal='center')
-    ws.cell(r, 15, f['patrimonio']).font = B
+    num(ws, r, 13, fr(f.get('r3')), PCT); num(ws, r, 14, fr(f.get('r5')), PCT); num(ws, r, 15, fr(f.get('r10')), PCT)
+    x = ws.cell(r, 16, f'=IFERROR(IF(AND(ISNUMBER(G{r}),ISNUMBER(I{r}),I{r}>0),G{r}/I{r}*10000,"n.a."),"n.a.")'); x.number_format = '0'; x.font = B; x.alignment = Alignment(horizontal='right')
+    x = ws.cell(r, 17, f'=IF(ISNUMBER(K{r}),RANK(K{r},$K${first}:$K${last},0),"n.d.")'); x.font = B; x.alignment = Alignment(horizontal='center')
+    ws.cell(r, 18, f['patrimonio']).font = B
     u = link(f['pdf'])
     if u:
-        x = ws.cell(r, 16, 'Abrir PDF'); x.hyperlink = u; x.font = LINK
+        x = ws.cell(r, 19, 'Abrir PDF'); x.hyperlink = u; x.font = LINK
     else:
-        ws.cell(r, 16, '—').font = B
-    x = ws.cell(r, 17, 'Ver detalle'); x.hyperlink = f"#'{tab}'!A1"; x.font = LINK
-    for c in range(1, 18):
+        ws.cell(r, 19, '—').font = B
+    x = ws.cell(r, 20, 'Ver detalle'); x.hyperlink = f"#'{tab}'!A1"; x.font = LINK
+    for c in range(1, 21):
         ws.cell(r, c).border = BOX
         if k % 2:
             ws.cell(r, c).fill = ALT
@@ -107,14 +108,14 @@ for j, (l, fm, fmt) in enumerate(stats):
 ws.cell(s + 10, 1, 'Notas').font = BB
 notes = ['Breakeven 12m (pb) = TIR / duración × 10.000: cuántos puntos básicos pueden subir los tipos en un año antes de que el cupón deje de compensar la pérdida de precio. Aproximación; no aplica a fondos sin TIR o duración.',
          'Los yields no son homogéneos: YTM, YTW, TIR de devengo o rentabilidad promedio según la gestora. Storm publica el suyo en NOK.',
-         'Todas las rentabilidades son de la clase en EUR (cuando la ficha era de otra clase se recalculan con el valor liquidativo de la clase correcta).',
+         'Todas las rentabilidades son de la clase en EUR (cuando la ficha era de otra clase se recalculan con el valor liquidativo de la clase correcta). A 3, 5 y 10 años, rentabilidad anualizada; vacío si el fondo no tiene tanto historial.',
          'Fondos sin ficha este mes: ver la pestaña "Pendientes".']
 for j, t in enumerate(notes):
     ws.merge_cells(start_row=s + 11 + j, start_column=1, end_row=s + 11 + j, end_column=12)
     x = ws.cell(s + 11 + j, 1, '• ' + t); x.font = Font(name=ARIAL, size=9); x.alignment = WR; ws.row_dimensions[s + 11 + j].height = 30
-for i, w in enumerate([38, 15, 20, 24, 22, 11, 10, 26, 10, 10, 10, 10, 11, 9, 14, 11, 11], 1):
+for i, w in enumerate([38, 15, 20, 24, 22, 11, 10, 26, 10, 10, 10, 10, 11, 11, 11, 11, 9, 14, 11, 11], 1):
     ws.column_dimensions[get_column_letter(i)].width = w
-ws.row_dimensions[4].height = 32; ws.freeze_panes = 'C5'; ws.auto_filter.ref = f'A4:Q{last}'
+ws.row_dimensions[4].height = 44; ws.freeze_panes = 'C5'; ws.auto_filter.ref = f'A4:T{last}'
 
 vision_sheet(wb, 'Visión RF', 'Renta fija', 1)
 
@@ -124,22 +125,23 @@ rv = sorted(rv, key=lambda f: BL.index(f['bloque']) if f['bloque'] in BL else 9)
 wr = wb.create_sheet('Resumen RV', 2)
 wr['A1'] = 'Seguimiento de renta variable, mixtos y metales' + (' — cierre %s' % CIERRE if CIERRE else ''); wr['A1'].font = T
 wr['A2'] = 'Rentabilidades de la clase en EUR calculadas con el valor liquidativo; métricas y posiciones de la ficha mensual (fecha en la columna F). Azul = dato; negro = fórmula.'; wr['A2'].font = SMALL
-header(wr, 4, ['Fondo', 'ISIN', 'Gestora', 'Bloque', 'Estilo / categoría', 'Fecha ficha', 'Rent. último mes', 'Rent. YTD', 'Rent. 1 año', 'Ranking YTD (bloque)',
-               'PER', 'Rent. dividendo', 'Principales posiciones', 'Ficha (PDF)', 'Detalle'])
+header(wr, 4, ['Fondo', 'ISIN', 'Gestora', 'Bloque', 'Estilo / categoría', 'Fecha ficha', 'Rent. último mes', 'Rent. YTD', 'Rent. 1 año', 'Rent. 3 años (anual.)',
+               'Rent. 5 años (anual.)', 'Rent. 10 años (anual.)', 'Ranking YTD (bloque)', 'PER', 'Rent. dividendo', 'Principales posiciones', 'Ficha (PDF)', 'Detalle'])
 f1, l1 = 5, 4 + len(rv)
 for k, f in enumerate(rv):
     r = f1 + k
     for c, v in enumerate([f['fondo'], f['isin'], f['gestora'], f['bloque'], f['estilo'], f['fecha_ficha']], 1):
         wr.cell(r, c, v).font = B
     num(wr, r, 7, fr(f['mes']), PCT); num(wr, r, 8, fr(f['ytd']), PCT); num(wr, r, 9, fr(f['a1']), PCT)
-    x = wr.cell(r, 10, f'=IF(ISNUMBER(H{r}),SUMPRODUCT(($D${f1}:$D${l1}=D{r})*ISNUMBER($H${f1}:$H${l1})*($H${f1}:$H${l1}>H{r}))+1,"n.d.")'); x.font = B; x.alignment = Alignment(horizontal='center')
-    wr.cell(r, 11, f['per'] or '—').font = B; wr.cell(r, 12, f['dividendo'] or '—').font = B; wr.cell(r, 13, f['posiciones'] or '—').font = B
+    num(wr, r, 10, fr(f.get('r3')), PCT); num(wr, r, 11, fr(f.get('r5')), PCT); num(wr, r, 12, fr(f.get('r10')), PCT)
+    x = wr.cell(r, 13, f'=IF(ISNUMBER(H{r}),SUMPRODUCT(($D${f1}:$D${l1}=D{r})*ISNUMBER($H${f1}:$H${l1})*($H${f1}:$H${l1}>H{r}))+1,"n.d.")'); x.font = B; x.alignment = Alignment(horizontal='center')
+    wr.cell(r, 14, f['per'] or '—').font = B; wr.cell(r, 15, f['dividendo'] or '—').font = B; wr.cell(r, 16, f['posiciones'] or '—').font = B
     u = link(f['pdf'])
     if u:
-        x = wr.cell(r, 14, 'Abrir PDF'); x.hyperlink = u; x.font = LINK
+        x = wr.cell(r, 17, 'Abrir PDF'); x.hyperlink = u; x.font = LINK
     else:
-        wr.cell(r, 14, '—').font = B
-    for c in range(1, 16):
+        wr.cell(r, 17, '—').font = B
+    for c in range(1, 19):
         wr.cell(r, c).border = BOX
         if k % 2:
             wr.cell(r, c).fill = ALT
@@ -155,9 +157,9 @@ for j, (l, fm, fmt) in enumerate([
     wr.cell(s2 + 1 + j, 1, l).font = B; x = wr.cell(s2 + 1 + j, 2, fm); x.font = B
     if fmt:
         x.number_format = fmt
-for i, w in enumerate([40, 15, 22, 18, 30, 11, 10, 10, 10, 10, 14, 14, 55, 11, 9], 1):
+for i, w in enumerate([40, 15, 22, 18, 30, 11, 10, 10, 10, 11, 11, 11, 10, 14, 14, 55, 11, 9], 1):
     wr.column_dimensions[get_column_letter(i)].width = w
-wr.row_dimensions[4].height = 32; wr.freeze_panes = 'C5'; wr.auto_filter.ref = f'A4:O{l1}'
+wr.row_dimensions[4].height = 44; wr.freeze_panes = 'C5'; wr.auto_filter.ref = f'A4:R{l1}'
 
 # ---------------- Detalle RV
 dd = wb.create_sheet('Detalle RV', 3); dd.column_dimensions['A'].width = 24; dd.column_dimensions['B'].width = 110
@@ -166,9 +168,10 @@ x = dd['A2']; x.value = '← Volver al resumen'; x.hyperlink = "#'Resumen RV'!A1
 i = 4
 for k, f in enumerate(rv):
     x = dd.cell(i, 1, f['fondo']); x.font = H2; dd.merge_cells(start_row=i, start_column=1, end_row=i, end_column=2)
-    y = wr.cell(f1 + k, 15, 'Ver'); y.hyperlink = f"#'Detalle RV'!A{i}"; y.font = LINK
+    y = wr.cell(f1 + k, 18, 'Ver'); y.hyperlink = f"#'Detalle RV'!A{i}"; y.font = LINK
     i += 1
-    rent = '   '.join(lab + ': ' + (('%+.2f%%' % f[key]).replace('.', ',') if f[key] is not None else 'n.d.') for lab, key in [('Último mes', 'mes'), ('YTD', 'ytd'), ('1 año', 'a1')])
+    rent = '   '.join(lab + ': ' + (('%+.2f%%' % f[key]).replace('.', ',') if f.get(key) is not None else 'n.d.')
+                     for lab, key in [('Último mes', 'mes'), ('YTD', 'ytd'), ('1 año', 'a1'), ('3 años', 'r3'), ('5 años', 'r5'), ('10 años', 'r10')])
     for l, v in [('ISIN / Gestora', '%s · %s' % (f['isin'], f['gestora'])), ('Estilo', f['estilo']), ('Rentabilidades', rent), ('Principales posiciones', f['posiciones'] or '—'),
                  ('Qué dice la gestora', f['comentario']), ('Lectura propia', f['lectura'])]:
         dd.cell(i, 1, l).font = BB; x = dd.cell(i, 2, v); x.font = B; x.alignment = WR
@@ -187,7 +190,8 @@ for k, f in enumerate(rf):
     for l, key in [('Fondo', 'fondo'), ('ISIN', 'isin'), ('Gestora', 'gestora'), ('Tipo', 'tipo'), ('Fecha de la ficha', 'fecha'), ('Fuente', 'fuente')]:
         w.cell(i, 1, l).font = BB; w.cell(i, 2, f[key]).font = B; i += 1
     for l, col, fmt in [('TIR / Yield', 'G', PCT), ('Tipo de yield', 'H', None), ('Duración (años)', 'I', NUM), ('Rentabilidad último mes', 'J', PCT),
-                        ('Rentabilidad YTD', 'K', PCT), ('Rentabilidad 1 año', 'L', PCT), ('Patrimonio', 'O', None)]:
+                        ('Rentabilidad YTD', 'K', PCT), ('Rentabilidad 1 año', 'L', PCT), ('Rentabilidad 3 años (anualizada)', 'M', PCT),
+                        ('Rentabilidad 5 años (anualizada)', 'N', PCT), ('Rentabilidad 10 años (anualizada)', 'O', PCT), ('Patrimonio', 'R', None)]:
         w.cell(i, 1, l).font = BB; x = w.cell(i, 2, f"='Resumen RF'!{col}{r}"); x.font = GREEN; x.alignment = Alignment(horizontal='left')
         if fmt:
             x.number_format = fmt

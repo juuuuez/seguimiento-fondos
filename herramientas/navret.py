@@ -49,6 +49,19 @@ for l in open(sys.argv[1]):
     def r(x):
         return round((e[0] / x[0] - 1) * 100, 2) if (ok and x[0] and (e[1] - x[1]).days > 15) else None
 
-    res[isin] = {'mes': r(a), 'ytd': r(y), '1a': r(o), 'nav': e[0], 'navdate': str(e[1]), 'patr_miles': pm.group(1) if pm else None}
+    def anual(n):
+        """Rentabilidad anualizada a n años (None si el historico no llega o el dato mas cercano esta a >35 dias)."""
+        try:
+            tgt = END.replace(year=END.year - n)
+        except ValueError:
+            tgt = END.replace(year=END.year - n, day=28)
+        v, k = at(tgt)
+        if not ok or v is None or (tgt - k).days > 35 or ks[0] > tgt + dt.timedelta(days=35):
+            return None
+        yrs = (e[1] - k).days / 365.25
+        return round(((e[0] / v) ** (1 / yrs) - 1) * 100, 2) if yrs > 0 else None
+
+    res[isin] = {'mes': r(a), 'ytd': r(y), '1a': r(o), '3a': anual(3), '5a': anual(5), '10a': anual(10),
+                 'nav': e[0], 'navdate': str(e[1]), 'patr_miles': pm.group(1) if pm else None}
     print(isin, res[isin])
 json.dump(res, open(sys.argv[2], 'w'))

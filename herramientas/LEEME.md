@@ -5,16 +5,17 @@ Cada día 10 una sesión de Claude descarga las fichas nuevas, actualiza `data/`
 La web (`index.html`) no se toca: lee `data/*.json` al cargarse.
 
 ## Estructura
-- `index.html`: la página. Solo cambiarla si algo falla.
+- `index.html`: la página («Cuaderno de fondos»): portada con dos botones y buscador, listas por bloque, ficha de cada fondo y visión general. Todo el texto sale de `data/`. Solo cambiarla si algo falla o el usuario pide cambios de diseño. Diseño sobrio, colores neutros, sin textos descriptivos.
 - `data/renta_fija.json`, `data/renta_variable.json`, `data/vision_general.json`, `data/meta.json`: datos que lee la web.
 - `fichas/<Nombre del fondo> - Ficha <mes abreviado> <año>.pdf`: una ficha por fondo (mes abreviado: ene feb mar abr may jun jul ago sep oct nov dic).
 - `herramientas/`: este proceso. `rf.tsv` (fondos de renta fija) y `rv.tsv` (renta variable, mixtos y metales; 4ª columna: RV, MX o MT) con ISIN de la clase EN EUR. `navret.py` y `ftnav.py` (rentabilidades por valor liquidativo), `ext*.py` (extracción de texto de las fichas).
 
 ## Esquema de los datos (porcentajes en unidades de %, p. ej. 12.92 = 12,92 %)
-`renta_fija.json`, lista de objetos: isin, fondo, gestora, tipo, fecha (dd/mm/aaaa de la ficha), tir, tipo_yield, duracion, mes, ytd, a1, breakeven_pb, patrimonio, fuente, que_ha_pasado, posicionamiento, perspectivas, aporta, resta, ficha (siempre ""), pdf ("fichas/<archivo>.pdf").
+`renta_fija.json`, lista de objetos: isin, fondo, gestora, tipo, fecha (dd/mm/aaaa de la ficha), tir, tipo_yield, duracion, mes, ytd, a1, r3, r5, r10, breakeven_pb, patrimonio, fuente, que_ha_pasado, posicionamiento, perspectivas, aporta, resta, ficha (siempre ""), pdf ("fichas/<archivo>.pdf").
 - `breakeven_pb = round(tir / duracion * 100)`; null si falta tir o duración.
 - `mes`, `ytd`, `a1`: rentabilidad de la clase EUR a fin de mes. Null si no hay dato.
-`renta_variable.json`: isin, fondo, gestora, bloque ("Renta variable", "Mixto" o "Metales / recursos"), estilo, fecha_ficha ("dd/mm/aaaa" o "Sin ficha"), mes, ytd, a1, per, dividendo, posiciones, comentario, lectura, ficha (""), pdf.
+- `r3`, `r5`, `r10`: rentabilidad ANUALIZADA a 3, 5 y 10 años (también en renta variable). Null si el fondo no tiene tanto historial. Salen de `navret.py` (quefondos: llega a 3 y 5 años, su historial empieza en 2018) y de `ftnav.py --lista` (FT: llega a 10 años y cubre fondos que quefondos no tiene). Regla: r3 y r5 de quefondos y, si faltan, de FT; r10 siempre de FT. La web y el Excel los muestran tal cual.
+`renta_variable.json`: isin, fondo, gestora, bloque ("Renta variable", "Mixto" o "Metales / recursos"), estilo, fecha_ficha ("dd/mm/aaaa" o "Sin ficha"), mes, ytd, a1, r3, r5, r10, per, dividendo, posiciones, comentario, lectura, ficha (""), pdf.
 `vision_general.json`: lista de {bloque ("Renta fija" o "Renta variable"), seccion, texto}; las secciones salen en orden; usa los mismos títulos de sección que los actuales.
 `meta.json`: {"cierre": "dd/mm/aaaa" (fin de mes de las rentabilidades), "actualizado": "dd/mm/aaaa" (día de la ejecución)}.
 
@@ -29,7 +30,7 @@ La web (`index.html`) no se toca: lee `data/*.json` al cargarse.
    - Morgan Stanley bloquea accesos automáticos: no forzar. Para MS EM Debt Opp A (EUR, LU2784406998) se usa la ficha de la clase AH (misma cartera).
    - No saltarse webs con login ni captcha. Sin ficha: `fecha`/`fecha_ficha` = "Sin ficha", `pdf` = "" y comentario "Sin ficha mensual pública".
    - Comprimir con `pypdf` los PDF de más de 3 MB.
-3. Rentabilidades: `python3 -I herramientas/navret.py herramientas/rv.tsv rv_nav.json AAAA-MM-DD` (y lo mismo con rf.tsv), donde la fecha es el fin de mes. Si un fondo sale null, `ftnav.py ISIN:AAAA-MM-DD`. Siempre la clase EUR (Dunas clase R, Storm RC EUR, B&H clase 2 salen del valor liquidativo, no de la ficha).
+3. Rentabilidades: `python3 -I herramientas/navret.py <lista.tsv> nav.json AAAA-MM-DD` (fin de mes; lista = rf.tsv y rv.tsv juntos, solo ISIN en la 1ª columna) y `python3 -I herramientas/ftnav.py --lista <lista.tsv> AAAA-MM-DD ft.json`. Combinar según la regla de r3/r5/r10 de arriba. Para un fondo suelto: `ftnav.py ISIN:AAAA-MM-DD`. Siempre la clase EUR (Dunas clase R, Storm RC EUR, B&H clase 2 salen del valor liquidativo, no de la ficha).
 4. Lectura de fichas: `pdftotext -layout`; `ext.py`, `ext2.py`, `extrv.py` ayudan a localizar TIR, duración, PER, dividendo, posiciones y comentario.
    - Renta fija: tir (%), duración (años), patrimonio, qué ha pasado, posicionamiento, perspectivas, qué aporta y resta.
    - PIMCO Income (IE00B84J9L26), Man Global IG Opp (IE000MI53C66) y Man Dynamic Income (IE000WFG9PJ8) publican el yield en USD: `tir = publicado − (Fed − BCE)` con los tipos oficiales del momento (a 12/11/2026: Fed 3,875 % punto medio, BCE depósito 2,5 %) y dejarlo dicho en `tipo_yield`.

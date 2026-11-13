@@ -4,489 +4,412 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Seguimiento de fondos</title>
+<title>Cuaderno de fondos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --color-fg:#1f2430; --color-fg-muted:#5d6678; --color-bg:#f6f7f9; --color-panel:#ffffff; --color-border-line:#dfe3ea;
-  --color-ok:#1c7c54; --color-warn:#a15c07; --color-bad:#b3261e;
-  --font-anthropic-sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  --font-anthropic-serif:Georgia,"Times New Roman",serif;
-  --cds-font-size-caption:13px; --cds-font-size-body:15px; --cds-font-size-heading:18px; --cds-font-size-title:30px; --cds-font-weight-medium:600;
-  --cds-gap-xs:6px; --cds-gap-sm:10px; --cds-gap-md:16px; --cds-gap-lg:24px;
-  --cds-pad-xs:6px; --cds-pad-sm:10px; --cds-pad-md:16px; --cds-pad-lg:20px; --cds-radius:8px;
-  --cds-text-secondary:#4b5365; --cds-chart-axis:#9aa3b2; --cds-chart-grid:#e6e9ef; --cds-chart-reference:#6b7487; --cds-chart-status-critical:#b3261e;
-  --cds-surface-popover:#ffffff; --cds-border:#cfd5df; --cds-shadow-popover:0 4px 14px rgba(20,28,45,.16);
-  --accent:#2f5d8a;
+  --bg:#f4f4f5; --surface:#ffffff; --ink:#17171a; --muted:#71717a; --line:#e4e4e7; --soft:#efeff1;
+  --pos:#35654f; --neg:#9a3f3f; --posbar:#9fbfae; --negbar:#d3a3a3; --shadow:0 1px 2px rgba(20,20,26,.04), 0 6px 20px rgba(20,20,26,.05);
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
 @media (prefers-color-scheme: dark){ :root{
-  --color-fg:#e8ebf1; --color-fg-muted:#a3acbd; --color-bg:#12151b; --color-panel:#1b2029; --color-border-line:#2c3340;
-  --color-ok:#5cc79a; --color-warn:#e0a24a; --color-bad:#f07d73;
-  --cds-text-secondary:#b4bccb; --cds-chart-axis:#667086; --cds-chart-grid:#2a303c; --cds-chart-reference:#8892a6; --cds-chart-status-critical:#f07d73;
-  --cds-surface-popover:#232a35; --cds-border:#3a4352; --cds-shadow-popover:0 4px 14px rgba(0,0,0,.5); --accent:#7fb0e0; color-scheme:dark; } }
-html,body{margin:0}
-body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-anthropic-sans);font-size:var(--cds-font-size-body);
-  padding-block:24px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));}
-#dash-root{max-width:1120px;margin:0 auto}
-.dash-select{font:inherit;padding:6px 10px;border:1px solid var(--color-border-line);border-radius:var(--cds-radius);background-color:var(--color-panel);color:var(--color-fg)}
-a{color:var(--accent)}
-.pf-aviso{font-size:12px;color:var(--color-fg-muted);border-top:1px solid var(--color-border-line);padding-top:var(--cds-pad-md);margin-top:var(--cds-gap-lg);max-width:80ch;line-height:1.5}
+  --bg:#0f0f11; --surface:#18181b; --ink:#ececee; --muted:#9a9aa3; --line:#2a2a2f; --soft:#212126;
+  --pos:#86bda2; --neg:#dd9393; --posbar:#44705b; --negbar:#7d4b4b; --shadow:none; color-scheme:dark; } }
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.5;
+  padding-block:0; padding-left:max(20px,env(safe-area-inset-left,0px)); padding-right:max(20px,env(safe-area-inset-right,0px));
+  min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit}
+button{font:inherit;color:inherit}
+[hidden]{display:none!important}
+.wrap{width:100%;max-width:1040px;margin:0 auto;flex:1;display:flex;flex-direction:column}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0 8px;min-height:64px}
+.brand{font-size:14px;font-weight:500;letter-spacing:.01em;text-decoration:none;color:var(--ink)}
+.brand[hidden]{display:none}
+.back{font-size:14px;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.back:hover{color:var(--ink)}
+main{flex:1;padding:8px 0 40px}
+footer{padding:20px 0 28px;font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18px;border-top:1px solid var(--line)}
+footer a{color:var(--muted)}
+footer a:hover{color:var(--ink)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
+
+/* Portada */
+.home{min-height:62vh;display:flex;flex-direction:column;justify-content:center;gap:44px;padding:24px 0 12px}
+h1{margin:0;font-size:clamp(38px,6.2vw,60px);font-weight:300;letter-spacing:-.035em;line-height:1.04;text-wrap:balance}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.choice{display:flex;flex-direction:column;justify-content:space-between;gap:34px;min-height:150px;padding:22px 24px;background:var(--surface);border:1px solid var(--line);
+  border-radius:16px;text-decoration:none;box-shadow:var(--shadow);transition:transform .18s ease,border-color .18s ease}
+.choice:hover{transform:translateY(-2px);border-color:var(--ink)}
+.choice small{display:block;color:var(--muted);font-size:13px}
+.choice strong{display:block;font-size:24px;font-weight:400;letter-spacing:-.02em;line-height:1.15}
+.choice .row{display:flex;justify-content:space-between;align-items:flex-end}
+.choice svg{flex:none;color:var(--muted)}
+.choice:hover svg{color:var(--ink)}
+@media (prefers-reduced-motion: reduce){.choice{transition:none}.choice:hover{transform:none}}
+@media (max-width:640px){.choices{grid-template-columns:1fr}.choice{min-height:120px}}
+
+/* Buscador */
+.search{position:relative}
+.search input{width:100%;padding:15px 18px 15px 48px;font:inherit;font-size:16px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  box-shadow:var(--shadow)}
+.search input::placeholder{color:var(--muted)}
+.search input:focus{outline:none;border-color:var(--ink)}
+.search svg{position:absolute;left:17px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.results{margin:8px 0 0;padding:6px;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);max-height:46vh;overflow:auto}
+.results[hidden]{display:none}
+.results a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:11px 12px;border-radius:10px;text-decoration:none}
+.results a:hover,.results a.on{background:var(--soft)}
+.results .n{min-width:0}
+.results .n b{font-weight:500;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.results .n span,.results .t{font-size:12px;color:var(--muted);white-space:nowrap}
+.results .vacio{padding:14px 12px;color:var(--muted);font-size:14px}
+
+/* Sección */
+h2{margin:0;font-size:clamp(28px,4.4vw,40px);font-weight:300;letter-spacing:-.03em;line-height:1.1}
+.sechead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 24px;margin:6px 0 22px}
+.tools{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.seg{display:inline-flex;background:var(--soft);border-radius:10px;padding:3px}
+.seg button{border:0;background:none;padding:6px 14px;border-radius:8px;font-size:13px;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.linkbtn{font-size:13px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+.linkbtn:hover{color:var(--ink);border-color:var(--ink)}
+.filters{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-bottom:14px}
+.filters .search{flex:1 1 260px;max-width:360px}
+.filters .search input{padding:10px 14px 10px 40px;font-size:14px;border-radius:12px;box-shadow:none}
+.filters .search svg{left:14px;width:16px;height:16px}
+
+/* Lista */
+.lista{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.lista .row{display:grid;gap:14px;align-items:center;padding:13px 20px;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+.lista .row:last-child{border-bottom:0}
+.lista a.row:hover{background:var(--soft)}
+.lista .head{font-size:12px;color:var(--muted);padding-top:12px;padding-bottom:12px;background:var(--surface);border-bottom:1px solid var(--line)}
+.lista .head button{border:0;background:none;padding:0;color:inherit;cursor:pointer;text-align:inherit;font-size:12px}
+.lista .head button:hover,.lista .head button.on{color:var(--ink)}
+.lista .head button.on::after{content:attr(data-dir);margin-left:4px}
+.rf .row{grid-template-columns:minmax(0,2.5fr) repeat(7,minmax(0,1fr))}
+.rv .row{grid-template-columns:minmax(0,3fr) repeat(5,minmax(0,1fr))}
+.nm{min-width:0}
+.nm b{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;font-weight:500;line-height:1.3}
+.nm span{display:block;font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.num{text-align:right;font-variant-numeric:tabular-nums;font-size:14px}
+.num.c{color:var(--muted)}
+.pos{color:var(--pos)} .neg{color:var(--neg)} .nd{color:var(--muted);opacity:.6}
+.mini{display:block;height:3px;margin-top:5px;border-radius:2px;margin-left:auto;background:var(--posbar)}
+.mini.neg{background:var(--negbar)}
+@media (max-width:720px){
+  .rf .row{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:8px}
+  .rv .row{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:8px}
+  .lista a.row .nm{grid-column:1/-1}
+  .lista .head>button:first-child{display:none}
+  .lista .head{row-gap:0}
+  .hide-m{display:none}
+  .lista .row{padding:13px 16px;gap:10px}
+  .nm b{-webkit-line-clamp:3;line-clamp:3}
+}
+
+/* Gráficos */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:22px}
+.scatter{position:relative}
+.scatter svg{display:block;width:100%;height:auto}
+.scatter text{fill:var(--muted);font-size:11px;font-family:var(--font)}
+.scatter .g{stroke:var(--line)}
+.scatter circle{fill:var(--ink);fill-opacity:.55;stroke:var(--surface);stroke-width:1.5;cursor:pointer;transition:fill-opacity .15s}
+.scatter circle:hover{fill-opacity:1}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);border-radius:8px;padding:6px 10px;font-size:12px;max-width:240px;z-index:3}
+.tip b{display:block;font-weight:500}
+.bars{display:flex;flex-direction:column;gap:2px}
+.bar{display:grid;grid-template-columns:minmax(120px,32%) 1fr 64px;gap:12px;align-items:center;padding:5px 6px;border-radius:8px;text-decoration:none}
+.bar:hover{background:var(--soft)}
+.bar .l{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar .tr{position:relative;height:10px}
+.bar .tr i{position:absolute;top:0;bottom:0;border-radius:3px;background:var(--posbar)}
+.bar .tr i.neg{background:var(--negbar)}
+.bar .tr u{position:absolute;top:-3px;bottom:-3px;width:1px;background:var(--line)}
+.bar .v{text-align:right;font-size:13px;font-variant-numeric:tabular-nums}
+@media (max-width:560px){.bar{grid-template-columns:minmax(90px,38%) 1fr 54px;gap:8px}}
+
+/* Ficha del fondo */
+.fund h2{margin-bottom:6px}
+.fund .sub{color:var(--muted);font-size:14px;margin-bottom:28px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:10px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+.tile small{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
+.tile strong{font-size:22px;font-weight:400;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.note{font-size:12px;color:var(--muted);margin:10px 2px 0}
+.blocks{display:grid;gap:26px;margin-top:34px;max-width:70ch}
+.blocks h3{margin:0 0 6px;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.blocks p{margin:0}
+.btn{display:inline-flex;align-items:center;gap:8px;margin-top:30px;padding:12px 20px;border-radius:12px;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:500;font-size:14px}
+.btn:hover{opacity:.88}
+.btn small{font-weight:400;opacity:.65}
+
+/* Visión general */
+.vision{max-width:68ch}
+.vision h3{margin:34px 0 8px;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.vision h3:first-of-type{margin-top:12px}
+.vision p{margin:0 0 12px}
 </style>
 </head>
 <body>
-<div id="dash-root">
-<style>
-.pf { display: flex; flex-direction: column; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); color: var(--color-fg); }
-.pf h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
-.pf h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; text-wrap: balance; }
-.pf p { margin: 0; max-width: 72ch; line-height: 1.5; }
-.pf-muted { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
-.pf-lead { font-size: var(--cds-font-size-body); }
-.pf-lead b { font-variant-numeric: tabular-nums; }
-.pf-tabs { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); border-bottom: 1px solid var(--color-border-line); }
-.pf-tab { appearance: none; background: none; border: 0; border-bottom: 2px solid transparent; padding: var(--cds-pad-sm) var(--cds-pad-md); font: inherit; color: var(--color-fg-muted); cursor: pointer; }
-.pf-tab[aria-selected="true"] { color: var(--color-fg); border-bottom-color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
-.pf-tab:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
-.pf-section { display: flex; flex-direction: column; gap: var(--cds-gap-lg); }
-.pf-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-width: 0; }
-.pf-chart { position: relative; min-height: 300px; }
-.pf-chart svg text { fill: var(--cds-text-secondary); font-size: var(--cds-font-size-caption); }
-.pf-chart .domain, .pf-chart .tick line { stroke: var(--cds-chart-axis); }
-.pf-chart .grid line { stroke: var(--cds-chart-grid); }
-.pf-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); box-shadow: var(--cds-shadow-popover); border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); max-width: 240px; z-index: 2; }
-.pf-tip strong { display: block; color: var(--color-fg); }
-.pf-tip span { color: var(--cds-text-secondary); }
-.pf-tablewrap { overflow-x: auto; }
-.pf-table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
-.pf-table th { text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; cursor: pointer; user-select: none; }
-.pf-table th.num, .pf-table td.num { text-align: right; }
-.pf-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
-.pf-table tr.pf-row { cursor: pointer; }
-.pf-table tr.pf-row:hover td { background: var(--color-bg); }
-.pf-table td.fund { min-width: 200px; font-weight: var(--cds-font-weight-medium); }
-.pf-table td.fund small { display: block; font-weight: 400; color: var(--color-fg-muted); }
-.pos { color: var(--color-ok); } .neg { color: var(--color-bad); }
-.pf-detail td { background: var(--color-bg); }
-.pf-detail dl { display: grid; grid-template-columns: minmax(110px, 160px) 1fr; gap: var(--cds-gap-xs) var(--cds-gap-md); margin: 0; font-size: var(--cds-font-size-caption); }
-.pf-detail dt { color: var(--color-fg-muted); }
-.pf-detail dd { margin: 0; line-height: 1.5; max-width: 80ch; }
-@media (max-width: 520px) { .pf-detail dl { grid-template-columns: 1fr; } }
-.pf-detail a { color: inherit; }
-.pf-controls { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; }
-.pf-vision { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--cds-gap-lg); }
-.pf-vision h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: var(--cds-gap-sm) 0 0; }
-.pf-vision p { font-size: var(--cds-font-size-caption); }
-[data-dash-source-state=refreshing] { opacity: .5; }
-.pf-links { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); }
-.pf-links a:first-child { font-weight: var(--cds-font-weight-medium); }
-.pf-search { font: inherit; padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background-color: var(--color-bg); color: var(--color-fg); min-width: 0; width: min(360px, 100%); }
-.pf-files { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-.pf-files li { display: flex; justify-content: space-between; gap: var(--cds-gap-sm); padding: var(--cds-pad-xs) 0; border-bottom: 1px solid var(--color-border-line); font-size: var(--cds-font-size-caption); }
-.pf-files li a { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); min-width: 0; }
-.pf-files li span { color: var(--color-fg-muted); white-space: nowrap; }
-</style>
-<div class="pf">
-  <header id="cabecera" style="display:flex;flex-direction:column;gap:var(--cds-gap-sm)">
-    <h1>Seguimiento de fondos</h1>
-    <p class="pf-lead" data-read lang="es">En renta fija, los fondos que sigues ofrecen una TIR media del <b data-draw="tirMedia" data-source="resumen" data-field="tir_media" data-row="0">—</b> con una duración media de <b data-draw="durMedia" data-source="resumen" data-field="dur_media" data-row="0">—</b> años. En renta variable, el fondo medio sube un <b data-draw="ytdRv" data-source="resumen" data-field="ytd_rv" data-row="0">—</b> en el año; el mejor es <b data-draw="mejorRv" data-source="resumen" data-field="mejor_rv" data-row="0">—</b>.</p>
-    <p class="pf-muted">Datos de las fichas mensuales más recientes de cada gestora. Rentabilidades de la clase en euros a cierre de <b data-draw="cierre">—</b>. Última actualización: <b data-draw="actualizado">—</b>. Las fichas en PDF están en la pestaña Fichas. <a href="descargas/Seguimiento_Fondos.xlsx">Descargar el Excel</a>.</p>
-  </header>
-
-  <nav class="pf-tabs" role="tablist" aria-label="Bloques">
-    <button class="pf-tab" role="tab" id="tab-rf" data-target="rf" aria-selected="true">Renta fija</button>
-    <button class="pf-tab" role="tab" id="tab-rv" data-target="rv" aria-selected="false">Renta variable, mixtos y metales</button>
-    <button class="pf-tab" role="tab" id="tab-vision" data-target="vision" aria-selected="false">Visión general</button>
-    <button class="pf-tab" role="tab" id="tab-fichas" data-target="fichas" aria-selected="false">Fichas</button>
-  </nav>
-
-  <section class="pf-section" id="rf" role="tabpanel" aria-labelledby="tab-rf">
-    <div class="pf-card" id="rf-mapa">
-      <h2>Rentabilidad que ofrece cada fondo frente a su riesgo de tipos</h2>
-      <p class="pf-muted">TIR o yield en euros (eje vertical) frente a duración en años (eje horizontal). Arriba a la izquierda: mucho cupón con poco riesgo de tipos. Pasa el dedo o el ratón por un punto para ver el fondo.</p>
-      <div class="pf-chart" data-draw="rfScatter" data-source="rf"></div>
-    </div>
-    <div class="pf-card" id="rf-tabla">
-      <h2>Los 29 fondos de renta fija</h2>
-      <p class="pf-muted">Pulsa una columna para ordenar y una fila para ver el comentario de la gestora y la ficha. Breakeven: cuántos puntos básicos pueden subir los tipos en un año antes de perder dinero.</p>
-      <div class="pf-tablewrap">
-        <table class="pf-table" data-source="rf" data-row-key="isin">
-          <thead><tr>
-            <th data-field="fondo" data-sort="fondo">Fondo</th>
-            <th data-field="tipo" data-sort="tipo">Tipo</th>
-            <th class="num" data-field="tir" data-sort="tir">TIR</th>
-            <th class="num" data-field="duracion" data-sort="duracion">Duración</th>
-            <th class="num" data-field="mes" data-sort="mes">Último mes</th>
-            <th class="num" data-field="ytd" data-sort="ytd">En el año</th>
-            <th class="num" data-field="a1" data-sort="a1">1 año</th>
-            <th class="num" data-field="breakeven_pb" data-sort="breakeven_pb">Breakeven</th>
-          </tr></thead>
-          <tbody data-draw="rfTable"></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <section class="pf-section" id="rv" role="tabpanel" aria-labelledby="tab-rv" hidden>
-    <div class="pf-controls">
-      <label for="rv-bloque" class="pf-muted">Mostrar</label>
-      <select class="dash-select" id="rv-bloque" aria-label="Bloque">
-        <option value="">Todos (51 fondos)</option>
-        <option value="Renta variable">Renta variable</option>
-        <option value="Mixto">Mixtos</option>
-        <option value="Metales / recursos">Metales y recursos</option>
-      </select>
-    </div>
-    <div class="pf-card" id="rv-ranking">
-      <h2>Rentabilidad en el año, de mayor a menor</h2>
-      <p class="pf-muted">Clase en euros, a cierre de <b data-draw="cierre">—</b>, calculada con el valor liquidativo.</p>
-      <div class="pf-chart" data-draw="rvBars" data-source="rv"></div>
-    </div>
-    <div class="pf-card" id="rv-tabla">
-      <h2>Detalle por fondo</h2>
-      <p class="pf-muted">Pulsa una fila para ver principales posiciones, comentario de la gestora y lectura propia.</p>
-      <div class="pf-tablewrap">
-        <table class="pf-table" data-source="rv" data-row-key="isin">
-          <thead><tr>
-            <th data-field="fondo" data-sort="fondo">Fondo</th>
-            <th data-field="bloque" data-sort="bloque">Bloque</th>
-            <th data-field="estilo" data-sort="estilo">Estilo</th>
-            <th class="num" data-field="mes" data-sort="mes">Último mes</th>
-            <th class="num" data-field="ytd" data-sort="ytd">En el año</th>
-            <th class="num" data-field="a1" data-sort="a1">1 año</th>
-          </tr></thead>
-          <tbody data-draw="rvTable"></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <section class="pf-section" id="vision" role="tabpanel" aria-labelledby="tab-vision" hidden>
-    <p class="pf-muted">Qué dicen las gestoras y conclusiones propias. No es una recomendación personalizada.</p>
-    <div class="pf-vision">
-      <div class="pf-card" id="vision-rf"><h2>Renta fija</h2><div data-draw="visionRf" data-source="vision" data-read lang="es"></div></div>
-      <div class="pf-card" id="vision-rv"><h2>Renta variable, mixtos y metales</h2><div data-draw="visionRv" data-source="vision" data-read lang="es"></div></div>
-    </div>
-  </section>
-
-  <section class="pf-section" id="fichas" role="tabpanel" aria-labelledby="tab-fichas" hidden>
-    <div class="pf-controls">
-      <label for="fichas-buscar" class="pf-muted">Buscar</label>
-      <input id="fichas-buscar" class="pf-search" type="search" placeholder="Nombre del fondo, gestora o ISIN" aria-label="Buscar ficha">
-    </div>
-    <p class="pf-muted">Fichas mensuales en PDF, guardadas en esta página. Se abren en una pestaña nueva.</p>
-    <div class="pf-vision">
-      <div class="pf-card" id="fichas-rf"><h2>Renta fija</h2><ul class="pf-files" data-draw="fichasRf" data-source="rf"></ul></div>
-      <div class="pf-card" id="fichas-rv"><h2>Renta variable, mixtos y metales</h2><ul class="pf-files" data-draw="fichasRv" data-source="rv"></ul></div>
-    </div>
-  </section>
+<div class="wrap">
+  <div class="topbar"><a class="back" id="back" href="#/" hidden>← Inicio</a><a class="brand" id="brand" href="#/" hidden>Cuaderno de fondos</a></div>
+  <main id="app" aria-live="polite"></main>
+  <footer id="foot"></footer>
 </div>
 
-
-<p class="pf-aviso">Documento de uso interno y orientativo, elaborado a partir de las fichas mensuales publicadas por cada gestora. No constituye asesoramiento personalizado ni una oferta de venta o suscripcion. Las rentabilidades pasadas no garantizan rentabilidades futuras. Las fichas en PDF son material de las gestoras, muchas de ellas dirigido solo a inversores profesionales.</p>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script>
-/* Mini-runtime: carga los JSON de /data y dibuja cada bloque marcado con data-draw. Sin dependencias externas salvo d3. */
-(function () {
-  const DS = {}, DRAWS = {}, CALCS = {}, made = new WeakMap();
-  const SRC = {rf: 'data/renta_fija.json', rv: 'data/renta_variable.json', vision: 'data/vision_general.json', meta: 'data/meta.json'};
-  window.dash = {
-    colors: ['var(--accent)'],
-    data(id) { return DS[id] || {status: 'loading', data: id === 'resumen' ? null : [], columns: []}; },
-    calc(id, c) { CALCS[id] = c; },
-    draw(name, fn) { if (fn === undefined) { run(name); return; } DRAWS[name] = fn; },
-    setLink(name) { try { history.replaceState(null, '', '#' + name); } catch (e) {} setTimeout(redrawAll, 30); },
-    params() { return {}; }, setParams() {}, resetParams() {}, refresh() {}, onData() {}, loader() {},
-    redrawAll
+const $ = (s, el = document) => el.querySelector(s);
+function h(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  for (const k in (attrs || {})) {
+    const v = attrs[k];
+    if (v == null || v === false) continue;
+    if (k === 'class') e.className = v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v === true ? '' : v);
+  }
+  kids.flat().forEach(c => { if (c == null || c === false) return; e.append(c.nodeType ? c : document.createTextNode(c)); });
+  return e;
+}
+const svgNS = 'http://www.w3.org/2000/svg';
+function s(tag, attrs, ...kids) { const e = document.createElementNS(svgNS, tag); for (const k in (attrs || {})) e.setAttribute(k, attrs[k]); kids.forEach(c => e.append(c.nodeType ? c : document.createTextNode(c))); return e; }
+const norm = t => (t || '').toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+const nf = (v, d) => v.toLocaleString('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d });
+const pct = (v, d = 1, sign = true) => (v == null || isNaN(v)) ? '–' : (sign && v > 0 ? '+' : '') + nf(v, d) + '%';
+const cls = v => (v == null || isNaN(v)) ? 'nd' : (v >= 0 ? 'pos' : 'neg');
+const icon = {
+  search: () => s('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.6, 'stroke-linecap': 'round' }, s('circle', { cx: 11, cy: 11, r: 7 }), s('path', { d: 'M20 20l-3.5-3.5' })),
+  arrow: () => s('svg', { width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, s('path', { d: 'M5 12h14M13 6l6 6-6 6' }))
+};
+
+let D = { rf: [], rv: [], vis: [], meta: {} }, ALL = [];
+const ST = { rf: { key: 'ytd', dir: -1, mode: 'lista', q: '' }, rv: { key: 'ytd', dir: -1, mode: 'lista', q: '', chip: 'Todos', per: 'ytd' } };
+const PERIODS = [['ytd', 'Año'], ['a1', '1 año'], ['r3', '3 años'], ['r5', '5 años'], ['r10', '10 años']];
+
+async function load() {
+  const j = u => fetch(u).then(r => { if (!r.ok) throw new Error(u); return r.json(); });
+  const [rf, rv, vis, meta] = await Promise.all([j('data/renta_fija.json'), j('data/renta_variable.json'), j('data/vision_general.json'), j('data/meta.json').catch(() => ({}))]);
+  D = { rf, rv, vis, meta };
+  ALL = [...rf.map(f => ({ ...f, kind: 'rf', bloque: 'Renta fija' })), ...rv.map(f => ({ ...f, kind: 'rv', fecha: f.fecha_ficha }))];
+  $('#foot').replaceChildren(
+    h('span', {}, meta.cierre ? 'Datos a ' + meta.cierre : ''),
+    h('a', { href: 'descargas/Seguimiento_Fondos.xlsx' }, 'Excel'),
+    h('span', {}, 'Información orientativa. Las rentabilidades pasadas no garantizan resultados futuros.'));
+}
+
+/* ---------- buscador ---------- */
+function search(opts) {
+  opts = opts || {};
+  const input = h('input', { type: 'search', placeholder: 'Buscar por nombre o ISIN', 'aria-label': 'Buscar por nombre o ISIN', autocomplete: 'off', spellcheck: 'false', value: opts.value || '' });
+  const list = h('ul', { class: 'results', hidden: true, role: 'listbox' });
+  const box = h('div', { class: 'search' }, icon.search(), input, opts.inline ? null : list);
+  let cur = -1;
+  const find = q => {
+    const t = norm(q).split(/\s+/).filter(Boolean);
+    if (!t.length) return [];
+    return ALL.map(f => { const hay = norm(f.fondo + ' ' + f.gestora + ' ' + f.isin); if (!t.every(x => hay.includes(x))) return null;
+      return { f, sc: (norm(f.fondo).startsWith(t[0]) || norm(f.isin).startsWith(t[0])) ? 0 : 1 }; }).filter(Boolean).sort((a, b) => a.sc - b.sc || a.f.fondo.localeCompare(b.f.fondo, 'es')).map(x => x.f);
   };
-  function run(name) {
-    const fn = DRAWS[name]; if (!fn) return;
-    document.querySelectorAll('[data-draw="' + name + '"]').forEach((el) => {
-      try {
-        if (typeof fn === 'function') fn(el);
-        else { if (!made.has(el)) made.set(el, fn.mount ? fn.mount(el) : undefined); fn.update(el, made.get(el)); }
-      } catch (e) { console.error('draw ' + name, e); }
-    });
-  }
-  function redrawAll() { Object.keys(DRAWS).forEach(run); }
-  function computeCalcs() {
-    Object.keys(CALCS).forEach((id) => {
-      const c = CALCS[id];
-      try { DS[id] = {status: 'ok', data: c.fn.apply(null, c.inputs.map((i) => (DS[i] ? DS[i].data : [])))}; }
-      catch (e) { DS[id] = {status: 'error', data: null}; console.error(e); }
-    });
-  }
-  let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(redrawAll, 120); });
-  window.dashStart = function () {
-    Promise.all(Object.keys(SRC).map((k) =>
-      fetch(SRC[k]).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
-        .then((d) => { DS[k] = {status: 'ok', data: d}; })
-        .catch(() => { DS[k] = {status: 'error', data: []}; })
-    )).then(() => { computeCalcs(); redrawAll(); });
+  const render = () => {
+    if (opts.inline) { opts.onInput && opts.onInput(input.value); return; }
+    const r = find(input.value); cur = -1;
+    list.replaceChildren();
+    if (!input.value.trim()) { list.hidden = true; return; }
+    list.hidden = false;
+    if (!r.length) { list.append(h('li', { class: 'vacio' }, 'Ningún fondo coincide')); return; }
+    r.slice(0, 12).forEach(f => list.append(h('li', {}, h('a', { href: '#/fondo/' + encodeURIComponent(f.isin) },
+      h('span', { class: 'n' }, h('b', {}, f.fondo), h('span', {}, f.gestora + ' · ' + f.isin)), h('span', { class: 't' }, f.kind === 'rf' ? 'Renta fija' : f.bloque)))));
+    if (r.length > 12) list.append(h('li', { class: 'vacio' }, '+' + (r.length - 12) + ' más: afina la búsqueda'));
   };
-})();
-</script>
-<script>
-window.PF = window.PF || {};
-PF.pct = (v, signed) => (v == null || v === '' || isNaN(+v)) ? 'n.d.' : ((signed && +v > 0 ? '+' : '') + (+v).toLocaleString('es-ES', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '%');
-PF.num = (v, d) => (v == null || v === '' || isNaN(+v)) ? 'n.d.' : (+v).toLocaleString('es-ES', {minimumFractionDigits: d, maximumFractionDigits: d});
-PF.cls = (v) => (v == null || isNaN(+v)) ? '' : (+v >= 0 ? 'pos' : 'neg');
-PF.sort = {rf: {key: 'ytd', dir: -1}, rv: {key: 'ytd', dir: -1}};
-PF.open = {rf: null, rv: null};
-PF.bloque = '';
-PF.sorted = (rows, s) => rows.slice().sort((a, b) => {
-  const x = a[s.key], y = b[s.key];
-  const nx = x == null || x === '' || (typeof x === 'number' && isNaN(x)), ny = y == null || y === '' || (typeof y === 'number' && isNaN(y));
-  if (nx && ny) return 0; if (nx) return 1; if (ny) return -1;
-  return (typeof x === 'number' ? x - y : String(x).localeCompare(String(y), 'es')) * s.dir;
-});
+  input.addEventListener('input', render);
+  input.addEventListener('keydown', e => {
+    if (opts.inline) return;
+    const items = [...list.querySelectorAll('a')];
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); cur = (cur + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % (items.length || 1); items.forEach((a, i) => a.classList.toggle('on', i === cur)); }
+    else if (e.key === 'Enter' && items.length) { location.hash = (items[cur >= 0 ? cur : 0]).getAttribute('href'); }
+    else if (e.key === 'Escape') { input.value = ''; render(); }
+  });
+  return box;
+}
 
-dash.calc('resumen', {
-  title: 'Resumen del universo',
-  description: 'Media de TIR y duración en renta fija, media de rentabilidad en el año en renta variable y mejor fondo.',
-  inputs: ['rf', 'rv'],
-  fn: (rentaFija, rentaVariable) => {
-    const tirs = rentaFija.filter(r => r.tir != null), durs = rentaFija.filter(r => r.duracion != null);
-    const acc = rentaVariable.filter(r => r.bloque === 'Renta variable' && r.ytd != null);
-    const best = acc.reduce((m, r) => (!m || r.ytd > m.ytd) ? r : m, null);
-    return [{
-      tir_media: tirs.reduce((s, r) => s + r.tir, 0) / (tirs.length || 1),
-      dur_media: durs.reduce((s, r) => s + r.duracion, 0) / (durs.length || 1),
-      ytd_rv: acc.reduce((s, r) => s + r.ytd, 0) / (acc.length || 1),
-      mejor_rv: best ? best.fondo + ' (' + PF.pct(best.ytd, true) + ')' : ''
-    }];
+/* ---------- portada ---------- */
+function choice(href, small, big, glyph) {
+  return h('a', { class: 'choice', href }, h('div', { class: 'row' }, h('div', {}, h('small', {}, small), h('strong', {}, big)), glyph), h('span', {}, icon.arrow()));
+}
+const glyphRF = () => s('svg', { width: 34, height: 34, viewBox: '0 0 34 34', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, s('path', { d: 'M4 26h6v-6h6v-6h6v-6h8' }));
+const glyphRV = () => s('svg', { width: 34, height: 34, viewBox: '0 0 34 34', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, s('path', { d: 'M4 24l7-9 6 5 6-11 7 7' }));
+function viewHome() {
+  return h('section', { class: 'home' }, h('h1', {}, 'Cuaderno de fondos'),
+    h('div', { class: 'choices' }, choice('#/rf', 'Fondos de', 'Renta fija', glyphRF()), choice('#/rv', 'Fondos de', 'Renta variable y mixtos', glyphRV())),
+    search());
+}
+
+/* ---------- sección ---------- */
+function sortRows(rows, st) {
+  return rows.slice().sort((a, b) => {
+    const x = a[st.key], y = b[st.key];
+    const nx = x == null || x === '', ny = y == null || y === '';
+    if (nx && ny) return a.fondo.localeCompare(b.fondo, 'es'); if (nx) return 1; if (ny) return -1;
+    return (typeof x === 'number' ? x - y : String(x).localeCompare(String(y), 'es')) * st.dir;
+  });
+}
+function viewSection(kind) {
+  const st = ST[kind], rf = kind === 'rf';
+  const title = rf ? 'Renta fija' : 'Renta variable y mixtos';
+  const body = h('div', {});
+  const draw = () => {
+    let rows = ALL.filter(f => f.kind === kind);
+    if (!rf && st.chip !== 'Todos') rows = rows.filter(f => f.bloque === st.chip);
+    const q = norm(st.q).split(/\s+/).filter(Boolean);
+    if (q.length) rows = rows.filter(f => { const hay = norm(f.fondo + ' ' + f.gestora + ' ' + f.isin); return q.every(x => hay.includes(x)); });
+    body.replaceChildren(st.mode === 'lista' ? list(rows) : chart(rows));
+  };
+  const cols = rf ? [['tir', 'TIR', ''], ['duracion', 'Dur.', 'hide-m c'], ['ytd', 'Año'], ['a1', '1 año'], ['r3', '3 años'], ['r5', '5 años', 'hide-m'], ['r10', '10 años', 'hide-m']]
+                  : [['ytd', 'Año'], ['a1', '1 año'], ['r3', '3 años'], ['r5', '5 años', 'hide-m'], ['r10', '10 años', 'hide-m']];
+  const list = rows => {
+    const sorted = sortRows(rows, st);
+    const maxAbs = Math.max(1, ...sorted.map(f => Math.abs(f.ytd || 0)));
+    const head = h('div', { class: 'row head' }, h('button', { 'data-k': 'fondo', class: st.key === 'fondo' ? 'on' : '', 'data-dir': st.dir > 0 ? '↑' : '↓', onclick: () => sortBy('fondo') }, 'Fondo'),
+      cols.map(([k, l, c]) => h('div', { class: 'num ' + (c || '').replace(' c', '') }, h('button', { class: st.key === k ? 'on' : '', 'data-dir': st.dir > 0 ? '↑' : '↓', onclick: () => sortBy(k) }, l))));
+    const out = h('div', { class: 'lista ' + kind }, head);
+    if (!sorted.length) out.append(h('div', { class: 'row' }, h('span', { class: 'nm' }, 'Ningún fondo coincide')));
+    sorted.forEach(f => out.append(h('a', { class: 'row', href: '#/fondo/' + encodeURIComponent(f.isin) },
+      h('div', { class: 'nm' }, h('b', {}, f.fondo), h('span', {}, f.gestora)),
+      cols.map(([k, , c]) => {
+        const v = f[k];
+        if (k === 'tir') return h('div', { class: 'num ' + (c || '') }, v == null ? h('span', { class: 'nd' }, '–') : nf(v, 1) + '%');
+        if (k === 'duracion') return h('div', { class: 'num c ' + (c || '').replace(' c', '') }, v == null ? h('span', { class: 'nd' }, '–') : nf(v, 1));
+        return h('div', { class: 'num ' + (c || '') }, h('span', { class: cls(v) }, pct(v)),
+          k === 'ytd' && v != null ? h('i', { class: 'mini ' + (v < 0 ? 'neg' : ''), style: 'width:' + Math.max(4, Math.abs(v) / maxAbs * 100) + '%' }) : null);
+      }))));
+    return out;
+  };
+  const sortBy = k => { if (st.key === k) st.dir = -st.dir; else { st.key = k; st.dir = k === 'fondo' ? 1 : -1; } draw(); };
+  const chart = rows => rf ? scatter(rows) : bars(rows);
+  const seg = h('div', { class: 'seg', role: 'group', 'aria-label': 'Vista' },
+    h('button', { 'aria-pressed': st.mode === 'lista', onclick: e => setMode('lista') }, 'Lista'),
+    h('button', { 'aria-pressed': st.mode === 'grafico', onclick: e => setMode('grafico') }, 'Gráfico'));
+  const setMode = m => { st.mode = m; [...seg.querySelectorAll('button')].forEach((b, i) => b.setAttribute('aria-pressed', String((i === 0) === (m === 'lista')))); draw(); renderPer(); };
+  const perBox = h('div', {});
+  const renderPer = () => {
+    perBox.replaceChildren();
+    if (rf || st.mode !== 'grafico') return;
+    perBox.append(h('div', { class: 'seg', role: 'group', 'aria-label': 'Periodo' }, PERIODS.map(([k, l]) => h('button', { 'aria-pressed': st.per === k, onclick: () => { st.per = k; draw(); renderPer(); } }, l))));
+  };
+  const sinput = search({ inline: true, value: st.q, onInput: v => { st.q = v; draw(); } });
+  const filters = h('div', { class: 'filters' }, sinput, perBox);
+  if (!rf) {
+    const CHIPS = [['Todos', 'Todos'], ['Renta variable', 'Renta variable'], ['Mixto', 'Mixtos'], ['Metales / recursos', 'Metales']];
+    const chips = h('div', { class: 'seg', role: 'group', 'aria-label': 'Bloque' }, CHIPS.map(([c, l]) =>
+      h('button', { 'data-c': c, 'aria-pressed': st.chip === c, onclick: () => { st.chip = c; [...chips.querySelectorAll('button')].forEach(b => b.setAttribute('aria-pressed', String(b.dataset.c === c))); draw(); } }, l)));
+    filters.prepend(chips);
   }
-});
-
-function pfLead(name, fmt) {
-  dash.draw(name, (el) => {
-    const d = dash.data('resumen');
-    el.textContent = (d.status === 'ok' && d.data && d.data[0]) ? fmt(d.data[0]) : '—';
-  });
+  const root = h('section', {}, h('div', { class: 'sechead' }, h('h2', {}, title),
+    h('div', { class: 'tools' }, seg, h('a', { class: 'linkbtn', href: '#/vision/' + kind }, 'Visión general'))), filters, body);
+  draw(); renderPer();
+  return root;
 }
-pfLead('tirMedia', r => PF.pct(r.tir_media));
-pfLead('durMedia', r => PF.num(r.dur_media, 1));
-pfLead('ytdRv', r => PF.pct(r.ytd_rv));
-pfLead('mejorRv', r => r.mejor_rv);
 
-// Pestañas
-document.querySelectorAll('.pf-tab').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    const t = btn.getAttribute('data-target');
-    document.querySelectorAll('.pf-tab').forEach(b => b.setAttribute('aria-selected', String(b === btn)));
-    document.querySelectorAll('.pf-section').forEach(s => { s.hidden = s.id !== t; });
-    dash.setLink(t);
+function scatter(rows) {
+  const pts = rows.filter(f => f.tir != null && f.duracion != null);
+  const box = h('div', { class: 'panel scatter' });
+  if (!pts.length) { box.append('Sin datos'); return box; }
+  const W = 880, H = 420, m = { l: 46, r: 18, t: 14, b: 42 };
+  const niceMax = v => { const st = v <= 6 ? 1 : v <= 14 ? 2 : 5; return Math.ceil(v / st) * st; };
+  const xm = niceMax(Math.max(...pts.map(f => f.duracion)) * 1.04), ym = niceMax(Math.max(...pts.map(f => f.tir)) * 1.04);
+  const x = v => m.l + v / xm * (W - m.l - m.r), y = v => H - m.b - v / ym * (H - m.t - m.b);
+  const svg = s('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'TIR frente a duración de cada fondo' });
+  const tick = (max) => { const st = max <= 6 ? 1 : max <= 12 ? 2 : 5; const o = []; for (let v = 0; v <= max + 1e-9; v += st) o.push(v); return o; };
+  tick(ym).forEach(v => { svg.append(s('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), class: 'g' }), s('text', { x: m.l - 8, y: y(v) + 4, 'text-anchor': 'end' }, v + '%')); });
+  tick(xm).forEach(v => svg.append(s('text', { x: x(v), y: H - m.b + 18, 'text-anchor': 'middle' }, v)));
+  svg.append(s('text', { x: W - m.r, y: H - 6, 'text-anchor': 'end' }, 'Duración, años'), s('text', { x: m.l, y: 10 }, 'TIR'));
+  const tip = h('div', { class: 'tip', hidden: true });
+  pts.forEach(f => {
+    const c = s('circle', { cx: x(f.duracion), cy: y(f.tir), r: 6, tabindex: 0, role: 'link', 'aria-label': f.fondo });
+    const show = ev => { const r = box.getBoundingClientRect(); tip.hidden = false; tip.replaceChildren(h('b', {}, f.fondo), nf(f.tir, 1) + '% · ' + nf(f.duracion, 1) + ' años');
+      tip.style.left = Math.min(Math.max(ev.clientX - r.left + 12, 0), r.width - 200) + 'px'; tip.style.top = Math.max(ev.clientY - r.top - 54, 0) + 'px'; };
+    c.addEventListener('pointerenter', show); c.addEventListener('pointermove', show); c.addEventListener('pointerleave', () => tip.hidden = true);
+    c.addEventListener('click', () => location.hash = '#/fondo/' + encodeURIComponent(f.isin));
+    c.addEventListener('keydown', e => { if (e.key === 'Enter') location.hash = '#/fondo/' + encodeURIComponent(f.isin); });
+    svg.append(c);
   });
-});
-(function () {
-  const h = (location.hash || '').replace('#', '');
-  if (!h) return;
-  document.querySelectorAll('.pf-tab').forEach(b => { if (b.getAttribute('data-target') === h) b.click(); });
-})();
-
-// Ordenar al pulsar cabecera
-document.querySelectorAll('.pf-table').forEach((tbl) => {
-  const src = tbl.getAttribute('data-source');
-  tbl.querySelectorAll('th[data-sort]').forEach((th) => {
-    th.addEventListener('click', () => {
-      const k = th.getAttribute('data-sort'), s = PF.sort[src];
-      if (s.key === k) s.dir = -s.dir; else { s.key = k; s.dir = (k === 'fondo' || k === 'tipo' || k === 'bloque' || k === 'estilo') ? 1 : -1; }
-      dash.draw(src === 'rf' ? 'rfTable' : 'rvTable');
-    });
+  box.append(svg, tip);
+  return box;
+}
+function bars(rows) {
+  const key = ST.rv.per;
+  const data = rows.filter(f => f[key] != null).sort((a, b) => b[key] - a[key]);
+  const box = h('div', { class: 'panel' });
+  if (!data.length) { box.append('Sin datos'); return box; }
+  const lo = Math.min(0, ...data.map(f => f[key])), hi = Math.max(0, ...data.map(f => f[key])), span = hi - lo || 1, z = (0 - lo) / span * 100;
+  const wrap = h('div', { class: 'bars' });
+  data.forEach(f => {
+    const v = f[key], w = Math.abs(v) / span * 100;
+    wrap.append(h('a', { class: 'bar', href: '#/fondo/' + encodeURIComponent(f.isin), title: f.fondo }, h('span', { class: 'l' }, f.fondo),
+      h('span', { class: 'tr' }, h('u', { style: 'left:' + z + '%' }), h('i', { class: v < 0 ? 'neg' : '', style: 'left:' + (v < 0 ? z - w : z) + '%;width:' + Math.max(w, .4) + '%' })),
+      h('span', { class: 'v ' + cls(v) }, pct(v))));
   });
-});
+  box.append(wrap);
+  return box;
+}
 
-const sel = document.getElementById('rv-bloque');
-if (sel) sel.addEventListener('change', () => { PF.bloque = sel.value; dash.draw('rvTable'); dash.draw('rvBars'); });
+/* ---------- ficha ---------- */
+const placeholder = t => !t || (t.length < 60 && /^sin (comentario|ficha)/i.test(t.trim()));
+function viewFund(isin) {
+  const f = ALL.find(x => x.isin === isin);
+  if (!f) return h('section', {}, h('h2', {}, 'Fondo no encontrado'));
+  const rf = f.kind === 'rf';
+  const tiles = [['Último mes', f.mes], ['Año', f.ytd], ['1 año', f.a1], ['3 años', f.r3], ['5 años', f.r5], ['10 años', f.r10]];
+  const extra = [];
+  if (rf) { extra.push(['TIR', f.tir == null ? null : nf(f.tir, 2) + '%'], ['Duración', f.duracion == null ? null : nf(f.duracion, 1) + ' años']); }
+  else { if (f.per) extra.push(['PER', f.per]); if (f.dividendo) extra.push(['Dividendo', f.dividendo]); }
+  const tile = (l, v, raw) => h('div', { class: 'tile' }, h('small', {}, l), h('strong', { class: raw ? '' : cls(v) }, raw ? (v == null ? '–' : v) : pct(v, 2)));
+  const blocks = [];
+  const add = (t, txt) => { if (!placeholder(txt)) blocks.push(h('div', {}, h('h3', {}, t), h('p', {}, txt))); };
+  if (rf) { add('Qué ha pasado', f.que_ha_pasado); add('Posicionamiento', f.posicionamiento); add('Perspectivas', f.perspectivas); add('Ha aportado', f.aporta); add('Ha restado', f.resta);
+    if (f.tipo_yield && f.tir != null && f.tipo_yield.length > 14) add('Sobre la TIR', f.tipo_yield); }
+  else { add('Principales posiciones', f.posiciones); add('Qué dice la gestora', f.comentario); add('Lectura propia', f.lectura); }
+  return h('section', { class: 'fund' }, h('h2', {}, f.fondo),
+    h('div', { class: 'sub' }, f.gestora + ' · ' + f.isin + (f.estilo ? ' · ' + f.estilo : f.tipo ? ' · ' + f.tipo : '')),
+    h('div', { class: 'tiles' }, tiles.map(([l, v]) => tile(l, v)), extra.map(([l, v]) => tile(l, v, true))),
+    h('p', { class: 'note' }, 'Rentabilidad de la clase en euros. A 3, 5 y 10 años, anualizada.'),
+    h('div', { class: 'blocks' }, blocks),
+    f.pdf ? h('a', { class: 'btn', href: f.pdf, target: '_blank', rel: 'noopener' }, 'Ver ficha', h('small', {}, f.fecha || '')) : null);
+}
+
+/* ---------- visión general ---------- */
+function viewVision(kind) {
+  const bloque = kind === 'rf' ? 'Renta fija' : 'Renta variable';
+  const out = h('div', { class: 'vision' });
+  D.vis.filter(r => r.bloque === bloque).forEach(r => {
+    if (r.seccion && out.dataset.sec !== r.seccion) { out.dataset.sec = r.seccion; out.append(h('h3', {}, r.seccion.replace(/^\d+\.\s*/, ''))); }
+    out.append(h('p', {}, r.texto));
+  });
+  return h('section', {}, h('div', { class: 'sechead' }, h('h2', {}, 'Visión general')), out);
+}
+
+/* ---------- router ---------- */
+function route() {
+  const hsh = decodeURIComponent((location.hash || '#/').slice(1)).split('/').filter(Boolean);
+  const app = $('#app'); app.replaceChildren();
+  const brand = $('#brand'), back = $('#back');
+  let view, backTo = null;
+  if (!hsh.length) { view = viewHome(); document.title = 'Cuaderno de fondos'; }
+  else if (hsh[0] === 'rf' || hsh[0] === 'rv') { view = viewSection(hsh[0]); backTo = ['#/', 'Inicio']; document.title = (hsh[0] === 'rf' ? 'Renta fija' : 'Renta variable y mixtos') + ' · Cuaderno de fondos'; }
+  else if (hsh[0] === 'fondo') { view = viewFund(hsh[1]); const f = ALL.find(x => x.isin === hsh[1]); backTo = f ? ['#/' + f.kind, f.kind === 'rf' ? 'Renta fija' : 'Renta variable y mixtos'] : ['#/', 'Inicio']; document.title = (f ? f.fondo : 'Fondo') + ' · Cuaderno de fondos'; }
+  else if (hsh[0] === 'vision') { view = viewVision(hsh[1]); backTo = ['#/' + hsh[1], hsh[1] === 'rf' ? 'Renta fija' : 'Renta variable y mixtos']; document.title = 'Visión general · Cuaderno de fondos'; }
+  else { view = viewHome(); }
+  brand.hidden = !backTo; back.hidden = !backTo;
+  if (backTo) { back.href = backTo[0]; back.textContent = '← ' + backTo[1]; }
+  app.append(view);
+  window.scrollTo(0, 0);
+  const si = $('.home .search input'); if (si && matchMedia('(hover:hover)').matches) si.focus({ preventScroll: true });
+}
+window.addEventListener('hashchange', route);
+load().then(route).catch(() => { $('#app').replaceChildren(h('p', {}, 'No se han podido cargar los datos.')); });
 </script>
-
-<script>
-function pfDetailRow(cols, items, link) {
-  const tr = document.createElement('tr'); tr.className = 'pf-detail';
-  const td = document.createElement('td'); td.colSpan = cols; tr.appendChild(td);
-  const dl = document.createElement('dl'); td.appendChild(dl);
-  items.forEach(([k, v]) => {
-    if (!v) return;
-    const dt = document.createElement('dt'); dt.textContent = k;
-    const dd = document.createElement('dd'); dd.textContent = v;
-    dl.append(dt, dd);
-  });
-  const links = (link || []).filter(l => l && l[1]);
-  if (links.length) {
-    const dt = document.createElement('dt'); dt.textContent = 'Ficha';
-    const dd = document.createElement('dd'); dd.className = 'pf-links';
-    links.forEach(([txt, href]) => { const a = document.createElement('a'); a.href = href; a.target = '_blank'; a.rel = 'noopener'; a.textContent = txt; dd.appendChild(a); });
-    dl.append(dt, dd);
-  }
-  return tr;
-}
-function pfCell(tr, text, cls) { const td = document.createElement('td'); td.textContent = text; if (cls) td.className = cls; tr.appendChild(td); return td; }
-
-dash.draw('rfTable', (tb) => {
-  const d = dash.data('rf');
-  tb.replaceChildren();
-  if (d.status !== 'ok') { const tr = document.createElement('tr'); pfCell(tr, d.status === 'error' ? 'No se han podido cargar los datos' : '—'); tb.appendChild(tr); return; }
-  PF.sorted(d.data, PF.sort.rf).forEach((r) => {
-    const tr = document.createElement('tr'); tr.className = 'pf-row'; tr.setAttribute('data-key', encodeURIComponent(r.isin)); tr.tabIndex = 0;
-    const f = pfCell(tr, r.fondo, 'fund'); const sm = document.createElement('small'); sm.textContent = r.gestora + ' · ' + r.isin + ' · ficha ' + r.fecha; f.appendChild(sm);
-    pfCell(tr, r.tipo);
-    pfCell(tr, PF.pct(r.tir), 'num');
-    pfCell(tr, PF.num(r.duracion, 2), 'num');
-    pfCell(tr, PF.pct(r.mes, true), 'num ' + PF.cls(r.mes));
-    pfCell(tr, PF.pct(r.ytd, true), 'num ' + PF.cls(r.ytd));
-    pfCell(tr, PF.pct(r.a1, true), 'num ' + PF.cls(r.a1));
-    pfCell(tr, r.breakeven_pb == null ? 'n.a.' : PF.num(r.breakeven_pb, 0) + ' pb', 'num');
-    const toggle = () => { PF.open.rf = PF.open.rf === r.isin ? null : r.isin; dash.draw('rfTable'); };
-    tr.addEventListener('click', toggle);
-    tr.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
-    tb.appendChild(tr);
-    if (PF.open.rf === r.isin) tb.appendChild(pfDetailRow(8, [
-      ['Tipo de yield', r.tipo_yield], ['Patrimonio', r.patrimonio], ['Qué ha pasado', r.que_ha_pasado], ['Posicionamiento', r.posicionamiento],
-      ['Perspectivas / opinión', r.perspectivas], ['Ha aportado', r.aporta], ['Ha restado', r.resta], ['Fuente', r.fuente]], [['Ver ficha (PDF)', r.pdf], ['Web de la gestora', r.ficha]]));
-  });
-});
-
-dash.draw('rvTable', (tb) => {
-  const d = dash.data('rv');
-  tb.replaceChildren();
-  if (d.status !== 'ok') { const tr = document.createElement('tr'); pfCell(tr, d.status === 'error' ? 'No se han podido cargar los datos' : '—'); tb.appendChild(tr); return; }
-  PF.sorted(d.data.filter(r => !PF.bloque || r.bloque === PF.bloque), PF.sort.rv).forEach((r) => {
-    const tr = document.createElement('tr'); tr.className = 'pf-row'; tr.setAttribute('data-key', encodeURIComponent(r.isin)); tr.tabIndex = 0;
-    const f = pfCell(tr, r.fondo, 'fund'); const sm = document.createElement('small'); sm.textContent = r.gestora + ' · ' + r.isin + ' · ficha: ' + r.fecha_ficha; f.appendChild(sm);
-    pfCell(tr, r.bloque); pfCell(tr, r.estilo);
-    pfCell(tr, PF.pct(r.mes, true), 'num ' + PF.cls(r.mes));
-    pfCell(tr, PF.pct(r.ytd, true), 'num ' + PF.cls(r.ytd));
-    pfCell(tr, PF.pct(r.a1, true), 'num ' + PF.cls(r.a1));
-    const toggle = () => { PF.open.rv = PF.open.rv === r.isin ? null : r.isin; dash.draw('rvTable'); };
-    tr.addEventListener('click', toggle);
-    tr.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
-    tb.appendChild(tr);
-    if (PF.open.rv === r.isin) tb.appendChild(pfDetailRow(6, [
-      ['Principales posiciones', r.posiciones], ['PER', r.per], ['Rentabilidad por dividendo', r.dividendo],
-      ['Qué dice la gestora', r.comentario], ['Lectura propia', r.lectura]], [['Ver ficha (PDF)', r.pdf], ['Web de la gestora', r.ficha]]));
-  });
-});
-
-function pfVision(name, bloque) {
-  dash.draw(name, (el) => {
-    const d = dash.data('vision');
-    el.replaceChildren();
-    if (d.status !== 'ok') { el.textContent = '—'; return; }
-    let sec = null;
-    d.data.filter(r => r.bloque === bloque).forEach((r) => {
-      if (r.seccion !== sec) { sec = r.seccion; const h = document.createElement('h3'); h.textContent = sec; el.appendChild(h); }
-      const p = document.createElement('p'); p.textContent = r.texto; el.appendChild(p);
-    });
-  });
-}
-pfVision('visionRf', 'Renta fija');
-pfVision('visionRv', 'Renta variable');
-
-function pfMeta(name, key) {
-  dash.draw(name, (el) => {
-    const d = dash.data('meta');
-    el.textContent = (d.status === 'ok' && d.data && d.data[key]) ? d.data[key] : '—';
-  });
-}
-pfMeta('cierre', 'cierre');
-pfMeta('actualizado', 'actualizado');
-
-PF.q = '';
-function pfFiles(name, src, fechaKey) {
-  dash.draw(name, (ul) => {
-    const d = dash.data(src);
-    ul.replaceChildren();
-    if (d.status !== 'ok') { const li = document.createElement('li'); li.textContent = '—'; ul.appendChild(li); return; }
-    const q = PF.q.toLowerCase();
-    const rows = d.data.filter(r => r.pdf).filter(r => !q || (r.fondo + ' ' + r.gestora + ' ' + r.isin).toLowerCase().includes(q))
-      .sort((a, b) => a.fondo.localeCompare(b.fondo, 'es'));
-    if (!rows.length) { const li = document.createElement('li'); li.textContent = 'Ninguna ficha coincide con la búsqueda'; ul.appendChild(li); return; }
-    rows.forEach((r) => {
-      const li = document.createElement('li');
-      const a = document.createElement('a'); a.href = r.pdf; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.fondo;
-      const s = document.createElement('span'); s.textContent = 'ficha ' + r[fechaKey];
-      li.append(a, s); ul.appendChild(li);
-    });
-  });
-}
-pfFiles('fichasRf', 'rf', 'fecha');
-pfFiles('fichasRv', 'rv', 'fecha_ficha');
-const busc = document.getElementById('fichas-buscar');
-if (busc) busc.addEventListener('input', () => { PF.q = busc.value.trim(); dash.draw('fichasRf'); dash.draw('fichasRv'); });
-</script>
-
-<script>
-dash.draw('rfScatter', {
-  mount(el) {
-    const svg = d3.select(el).append('svg').attr('role', 'img').attr('aria-label', 'Gráfico de dispersión: TIR frente a duración de cada fondo de renta fija');
-    const tip = d3.select(el).append('div').attr('class', 'pf-tip').attr('hidden', true);
-    return {svg, tip};
-  },
-  update(el, {svg, tip}) {
-    const d = dash.data('rf');
-    svg.selectAll('*').remove();
-    if (d.status !== 'ok') { svg.attr('height', 40).append('text').attr('x', 0).attr('y', 20).text(d.status === 'error' ? 'No se ha podido cargar' : '—'); return; }
-    const rows = d.data.filter(r => r.tir != null && r.duracion != null);
-    const W = el.clientWidth || 600, H = 320, m = {t: 12, r: 16, b: 40, l: 44};
-    svg.attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
-    const x = d3.scaleLinear().domain([0, d3.max(rows, r => r.duracion) * 1.05]).nice().range([m.l, W - m.r]);
-    const y = d3.scaleLinear().domain([0, d3.max(rows, r => r.tir) * 1.08]).nice().range([H - m.b, m.t]);
-    svg.append('g').attr('class', 'grid').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(W - m.l - m.r)).tickFormat('')).call(g => g.select('.domain').remove());
-    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(Math.max(3, Math.floor(W / 90))).tickFormat(v => PF.num(v, 0)));
-    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(v => PF.num(v, 0) + '%'));
-    svg.append('text').attr('x', W - m.r).attr('y', H - 6).attr('text-anchor', 'end').text('Duración (años)');
-    const show = (ev, r) => {
-      tip.attr('hidden', null).html('');
-      tip.append('strong').text(r.fondo);
-      tip.append('span').text('TIR ' + PF.pct(r.tir) + ' · Duración ' + PF.num(r.duracion, 2) + ' · En el año ' + PF.pct(r.ytd, true));
-      const [px, py] = d3.pointer(ev, el);
-      const tw = 240, left = Math.min(Math.max(px + 10, 0), (el.clientWidth || W) - tw);
-      tip.style('left', left + 'px').style('top', Math.max(py - 50, 0) + 'px');
-    };
-    svg.append('g').selectAll('circle').data(rows).join('circle')
-      .attr('cx', r => x(r.duracion)).attr('cy', r => y(r.tir)).attr('r', 6)
-      .style('fill', dash.colors[0]).style('fill-opacity', 0.75).style('stroke', 'var(--color-bg)').style('stroke-width', 1)
-      .on('pointerenter pointermove', show).on('pointerleave', () => tip.attr('hidden', true));
-  }
-});
-
-dash.draw('rvBars', {
-  mount(el) {
-    const svg = d3.select(el).append('svg').attr('role', 'img').attr('aria-label', 'Barras: rentabilidad en el año de cada fondo, ordenadas de mayor a menor');
-    const tip = d3.select(el).append('div').attr('class', 'pf-tip').attr('hidden', true);
-    return {svg, tip};
-  },
-  update(el, {svg, tip}) {
-    const d = dash.data('rv');
-    svg.selectAll('*').remove();
-    if (d.status !== 'ok') { svg.attr('height', 40).append('text').attr('x', 0).attr('y', 20).text(d.status === 'error' ? 'No se ha podido cargar' : '—'); return; }
-    const rows = d.data.filter(r => r.ytd != null && (!PF.bloque || r.bloque === PF.bloque)).sort((a, b) => b.ytd - a.ytd);
-    const W = el.clientWidth || 600, bh = 18, gap = 4, m = {t: 6, r: 56, b: 6, l: Math.min(240, W * 0.45)};
-    const H = m.t + m.b + rows.length * (bh + gap);
-    svg.attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
-    const ext = d3.extent(rows, r => r.ytd); const lo = Math.min(0, ext[0]), hi = Math.max(0, ext[1]);
-    const x = d3.scaleLinear().domain([lo, hi]).nice().range([m.l, W - m.r]);
-    const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', (r, i) => `translate(0,${m.t + i * (bh + gap)})`);
-    g.append('text').attr('x', m.l - 6).attr('y', bh / 2).attr('dy', '0.35em').attr('text-anchor', 'end')
-      .text(r => r.fondo).each(function () {
-        const max = m.l - 10; let t = this.textContent;
-        while (this.getComputedTextLength() > max && t.length > 4) { t = t.slice(0, -2); this.textContent = t + '…'; }
-      });
-    g.append('rect').attr('x', r => x(Math.min(0, r.ytd))).attr('width', r => Math.max(1, Math.abs(x(r.ytd) - x(0)))).attr('height', bh).attr('rx', 2)
-      .style('fill', r => r.ytd >= 0 ? dash.colors[0] : 'var(--cds-chart-status-critical)');
-    g.append('text').attr('x', r => r.ytd >= 0 ? x(r.ytd) + 4 : x(0) + 4).attr('y', bh / 2).attr('dy', '0.35em').text(r => PF.pct(r.ytd, true));
-    svg.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', 0).attr('y2', H).style('stroke', 'var(--cds-chart-reference)');
-    g.on('pointerenter pointermove', (ev, r) => {
-      tip.attr('hidden', null).html('');
-      tip.append('strong').text(r.fondo);
-      tip.append('span').text(r.estilo + ' · Último mes ' + PF.pct(r.mes, true) + ' · 1 año ' + PF.pct(r.a1, true));
-      const [px, py] = d3.pointer(ev, el);
-      tip.style('left', Math.min(Math.max(px + 10, 0), (el.clientWidth || W) - 240) + 'px').style('top', Math.max(py - 50, 0) + 'px');
-    }).on('pointerleave', () => tip.attr('hidden', true));
-  }
-});
-</script>
-
-<script>dashStart();</script>
 </body>
 </html>
