@@ -307,8 +307,23 @@ const GEST = [[/renta 4|numantia|avantage/i, 'renta4', 'Renta 4'], [/buy ?& ?hol
   [/invesco/i, 'invesco', 'Invesco'], [/nordea/i, 'nordea', 'Nordea'], [/robeco/i, 'robeco', 'Robeco'], [/mfs/i, 'mfs', 'MFS'], [/guinness/i, 'guinness', 'Guinness'], [/j\.?p\.? morgan/i, 'jpm', 'J.P. Morgan AM'], [/seilern/i, 'seilern', 'Seilern'],
   [/t\. rowe/i, 'troweprice', 'T. Rowe Price'], [/dpam/i, 'dpam', 'DPAM'], [/blackrock/i, 'blackrock', 'BlackRock'], [/findlay/i, 'findlay', 'Findlay Park'], [/groupama/i, 'groupama', 'Groupama AM'], [/dnb/i, 'dnb', 'DNB AM'],
   [/fidelity/i, 'fidelity', 'Fidelity'], [/amundi|cpr/i, 'amundi', 'Amundi / CPR'], [/capital group/i, 'capital', 'Capital Group'], [/baillie/i, 'baillie', 'Baillie Gifford'], [/oddo/i, 'oddo', 'ODDO BHF AM'], [/polar/i, 'polar', 'Polar Capital'],
-  [/dws/i, 'dws', 'DWS'], [/horos/i, 'horos', 'Horos AM'], [/olea/i, 'olea', 'Olea Gestión'], [/goehring/i, 'gr', 'Goehring & Rozencwajg'], [/paradigma|adepa/i, 'paradigma', 'Paradigma'], [/ardtur/i, 'ardtur', 'Ardtur'], [/finserve|multimanager/i, 'finserve', 'Finserve']];
-const SIN_LOGO = new Set(['paradigma', 'ardtur', 'finserve']);
+  [/dws/i, 'dws', 'DWS'], [/horos/i, 'horos', 'Horos AM'], [/olea/i, 'olea', 'Olea Gestión'], [/goehring/i, 'gr', 'Goehring & Rozencwajg'], [/paradigma|adepa/i, 'paradigma', 'Paradigma'], [/ardtur/i, 'ardtur', 'Ardtur'], [/finserve|multimanager/i, 'finserve', 'Finserve'],
+  [/goldman/i, 'goldman','Goldman Sachs AM'],
+  [/gqg/i, 'gqg','GQG Partners'],
+  [/janus/i, 'janus','Janus Henderson'],
+  [/fundsmith/i, 'fundsmith','Fundsmith'],
+  [/alger/i, 'alger','Alger'],
+  [/magallanes/i, 'magallanes','Magallanes'],
+  [/brandes/i, 'brandes','Brandes'],
+  [/variopartner/i, 'variopartner','Variopartner'],
+  [/candriam/i, 'candriam','Candriam'],
+  [/bellevue/i, 'bellevue','Bellevue'],
+  [/allianz/i, 'allianz','Allianz GI'],
+  [/franklin/i, 'franklin','Franklin Templeton'],
+  [/pictet/i, 'pictet','Pictet'],
+  [/cartesio/i, 'cartesio','Cartesio'],
+  [/nomura/i, 'nomura','Nomura']];
+const SIN_LOGO = new Set(['paradigma', 'ardtur', 'finserve', 'goldman', 'gqg', 'janus', 'fundsmith', 'alger', 'magallanes', 'brandes', 'variopartner', 'candriam', 'bellevue', 'allianz', 'franklin', 'pictet', 'cartesio', 'nomura']);
 const famOf = f => { const g = GEST.find(x => x[0].test(f.gestora)); return g ? { key: g[1], nombre: g[2], logo: SIN_LOGO.has(g[1]) ? '' : 'logos/' + g[1] + '.png' } : { key: norm(f.gestora), nombre: f.gestora, logo: '' }; };
 function viewSection(kind) {
   const st = ST[kind], rf = kind === 'rf';

@@ -67,3 +67,6 @@ Las portadas de renta fija y de renta variable agrupan los fondos en carpetas po
 LBPAM (FR0014004IP7), Cartesio Income (LU1966822956) y Sigma (LU1984948874, ISIN dudoso) no tienen ficha pública: van como "Sin ficha".
 
 Extractores de apoyo: `extraer_exposicion_rv.py <n> <isin…>` y `extraer_exposicion_rf.py <n> <isin…>` (leen /tmp/t/*_ISIN.txt = `pdftotext -layout` de cada ficha).
+
+## Fondos añadidos de la lista del usuario (16/11/2026)
+40 fondos de renta variable con ficha pública (fundinfo ES-prof o en inglés) añadidos desde la lista «GLOBAL / SECTORIAL / MIXTOS / INDEXADOS». Rentabilidades: `navret.py` y `ftnav.py` a 31/10/2026. Sin extraer todavía (pendiente): posiciones, sectores, geografía, comentario del gestor y PER/dividendo cuando la ficha no lo traía en texto. Sin ficha pública (no añadidos): Groupama Global Active Equity (FR0010722348), Cartesio Income (LU1966822956), Cobas (LU1372006947), Vanguard EME y los de ETF. Estilo de cada fondo = categoría de la lista; las tres tablas de bloque siguen en «Renta variable», «Mixto» o «Metales / recursos».
