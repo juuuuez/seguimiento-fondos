@@ -3215,15 +3215,72 @@
   "r10": null,
   "per": "",
   "dividendo": "",
-  "posiciones": "",
+  "posiciones": "Microsoft 5,0 %, Shell 4,0 %, Bank of America 3,9 %, Amazon 3,4 %, Salesforce 2,8 % (top 10 = 31,2 %)",
   "comentario": "Sin comentario en la ficha.",
   "lectura": "Lectura propia: -0,05 % en el mes; 17,81 % en el año; 22,15 % anualizado a 3 años.",
   "literal": "",
   "ficha": "",
   "pdf": "fichas/Amundi Funds Global Equity A2 - Ficha oct 2026.pdf",
   "mini": "fichas/miniaturas/Amundi Funds Global Equity A2 - Ficha oct 2026.jpg",
-  "sectores": [],
-  "geografia": [],
+  "sectores": [
+   [
+    "Tecnología",
+    29.7,
+    null
+   ],
+   [
+    "Financiero",
+    22.7,
+    null
+   ],
+   [
+    "Industrial",
+    10.5,
+    null
+   ],
+   [
+    "Salud",
+    7.5,
+    null
+   ],
+   [
+    "Materiales",
+    6.5,
+    null
+   ],
+   [
+    "Consumo discrecional",
+    6.1,
+    null
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    68.6,
+    null
+   ],
+   [
+    "Corea del Sur",
+    7.9,
+    null
+   ],
+   [
+    "Japón",
+    5.0,
+    null
+   ],
+   [
+    "Irlanda",
+    2.7,
+    null
+   ],
+   [
+    "Taiwán",
+    1.8,
+    null
+   ]
+  ],
   "calidad": {},
   "destaca": "",
   "aprox": false
@@ -3328,15 +3385,72 @@
   "r10": null,
   "per": "",
   "dividendo": "",
-  "posiciones": "",
+  "posiciones": "Comfort Systems USA 2,6 %, DPM Metals 2,5 %, Frontdoor 2,4 %, Sterling Infrastructure 2,3 %, Bel Fuse 2,2 % (21,8 % en 10 valores)",
   "comentario": "Sin comentario en la ficha.",
   "lectura": "Lectura propia: 3,5 % en el mes; 13,92 % en el año; 22,32 % anualizado a 3 años.",
   "literal": "",
   "ficha": "",
   "pdf": "fichas/Janus Henderson Horizon Global Smaller Companies A2 EUR - Ficha sep 2026.pdf",
   "mini": "fichas/miniaturas/Janus Henderson Horizon Global Smaller Companies A2 EUR - Ficha sep 2026.jpg",
-  "sectores": [],
-  "geografia": [],
+  "sectores": [
+   [
+    "Industrial",
+    27.1,
+    19.3
+   ],
+   [
+    "Financiero",
+    13.6,
+    14.5
+   ],
+   [
+    "Tecnología",
+    13.2,
+    13.5
+   ],
+   [
+    "Salud",
+    10.9,
+    11.6
+   ],
+   [
+    "Consumo discrecional",
+    10.2,
+    10.1
+   ],
+   [
+    "Materiales",
+    7.1,
+    8.6
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    59.4,
+    61.0
+   ],
+   [
+    "Japón",
+    13.6,
+    13.0
+   ],
+   [
+    "Australia",
+    5.4,
+    3.7
+   ],
+   [
+    "Canadá",
+    4.4,
+    4.3
+   ],
+   [
+    "Reino Unido",
+    3.5,
+    4.4
+   ]
+  ],
   "calidad": {},
   "destaca": "",
   "aprox": false
@@ -3356,7 +3470,7 @@
   "r10": null,
   "per": "",
   "dividendo": "",
-  "posiciones": "",
+  "posiciones": "Cheesecake Factory 1,0 %, Hecla Mining 0,9 %, Mueller Industries 0,9 %, Knowles 0,9 %, Kirby 0,9 % (943 valores)",
   "comentario": "Sin comentario en la ficha.",
   "lectura": "Lectura propia: 1,48 % en el mes; 18,78 % en el año; 20,71 % anualizado a 3 años.",
   "literal": "",
@@ -3364,7 +3478,33 @@
   "pdf": "fichas/Goldman Sachs Global Small Cap CORE - Ficha sep 2026.pdf",
   "mini": "fichas/miniaturas/Goldman Sachs Global Small Cap CORE - Ficha sep 2026.jpg",
   "sectores": [],
-  "geografia": [],
+  "geografia": [
+   [
+    "Norteamérica",
+    65.4,
+    null
+   ],
+   [
+    "Japón",
+    13.0,
+    null
+   ],
+   [
+    "Europa excepto Reino Unido",
+    12.1,
+    null
+   ],
+   [
+    "Asia excepto Japón",
+    5.1,
+    null
+   ],
+   [
+    "Reino Unido",
+    4.4,
+    null
+   ]
+  ],
   "calidad": {},
   "destaca": "",
   "aprox": false
@@ -3384,15 +3524,77 @@
   "r10": null,
   "per": "17,5x",
   "dividendo": "1,4%",
-  "posiciones": "",
+  "posiciones": "NVIDIA 5,7 %, Apple 5,2 %, Microsoft 3,2 %, Amazon 2,4 %, Alphabet A 2,3 % (top 10 = 25,4 %)",
   "comentario": "Sin comentario en la ficha.",
   "lectura": "Lectura propia: -0,5 % en el mes; 16,51 % en el año.",
   "literal": "",
   "ficha": "",
   "pdf": "fichas/Robeco QI Global Dev Active Equities D EUR - Ficha oct 2026.pdf",
   "mini": "fichas/miniaturas/Robeco QI Global Dev Active Equities D EUR - Ficha oct 2026.jpg",
-  "sectores": [],
-  "geografia": [],
+  "sectores": [
+   [
+    "Tecnología",
+    32.8,
+    29.8
+   ],
+   [
+    "Financiero",
+    16.1,
+    16.1
+   ],
+   [
+    "Salud",
+    13.2,
+    10.2
+   ],
+   [
+    "Servicios de comunicación",
+    8.4,
+    7.2
+   ],
+   [
+    "Consumo no básico",
+    8.4,
+    8.7
+   ],
+   [
+    "Industrial",
+    7.7,
+    10.8
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    70.6,
+    72.8
+   ],
+   [
+    "Japón",
+    7.8,
+    5.7
+   ],
+   [
+    "España",
+    2.9,
+    0.9
+   ],
+   [
+    "Francia",
+    2.8,
+    2.2
+   ],
+   [
+    "Canadá",
+    2.6,
+    3.4
+   ],
+   [
+    "Singapur",
+    1.9,
+    0.4
+   ]
+  ],
   "calidad": {},
   "destaca": "",
   "aprox": false
@@ -3412,15 +3614,72 @@
   "r10": null,
   "per": "",
   "dividendo": "",
-  "posiciones": "",
+  "posiciones": "SK hynix 10,3 %, TSMC 8,8 %, Meta 6,7 %, Spotify 6,0 %, ASML 5,1 % (top 10 = 56,4 %)",
   "comentario": "Sin comentario en la ficha.",
   "lectura": "Lectura propia: -2,67 % en el mes; 2,65 % en el año; 16,4 % anualizado a 3 años.",
   "literal": "",
   "ficha": "",
   "pdf": "fichas/MS INVF Global Opportunity A EUR - Ficha sep 2026.pdf",
   "mini": "fichas/miniaturas/MS INVF Global Opportunity A EUR - Ficha sep 2026.jpg",
-  "sectores": [],
-  "geografia": [],
+  "sectores": [
+   [
+    "Tecnología",
+    33.9,
+    33.2
+   ],
+   [
+    "Consumo discrecional",
+    24.0,
+    8.2
+   ],
+   [
+    "Comunicación",
+    20.8,
+    8.0
+   ],
+   [
+    "Financiero",
+    11.7,
+    16.2
+   ],
+   [
+    "Industrial",
+    8.4,
+    10.3
+   ]
+  ],
+  "geografia": [
+   [
+    "Norteamérica",
+    39.3,
+    67.1
+   ],
+   [
+    "Cuenca del Pacífico",
+    30.3,
+    9.5
+   ],
+   [
+    "Europa (euro)",
+    13.1,
+    7.3
+   ],
+   [
+    "Europa (no euro)",
+    9.0,
+    6.1
+   ],
+   [
+    "Sudamérica",
+    2.8,
+    0.6
+   ],
+   [
+    "Japón",
+    1.9,
+    5.2
+   ]
+  ],
   "calidad": {},
   "destaca": "",
   "aprox": false
@@ -3440,14 +3699,45 @@
   "r10": 9.2,
   "per": "",
   "dividendo": "",
-  "posiciones": "",
+  "posiciones": "Stryker, Church & Dwight, Uber, L’Oréal, Sage (principales posiciones)",
   "comentario": "Sin comentario en la ficha.",
   "lectura": "Lectura propia: 5,99 % en el mes; 5,91 % en el año; 7,12 % anualizado a 3 años.",
   "literal": "",
   "ficha": "",
   "pdf": "fichas/Fundsmith Equity Fund R EUR Acc - Ficha ago 2026.pdf",
   "mini": "fichas/miniaturas/Fundsmith Equity Fund R EUR Acc - Ficha ago 2026.jpg",
-  "sectores": [],
+  "sectores": [
+   [
+    "Tecnología de la información",
+    17.0,
+    null
+   ],
+   [
+    "Salud",
+    16.8,
+    null
+   ],
+   [
+    "Consumo discrecional",
+    14.6,
+    null
+   ],
+   [
+    "Consumo básico",
+    14.2,
+    null
+   ],
+   [
+    "Industrial",
+    13.6,
+    null
+   ],
+   [
+    "Financiero",
+    10.6,
+    null
+   ]
+  ],
   "geografia": [],
   "calidad": {},
   "destaca": "",
