@@ -3243,15 +3243,72 @@
   "r10": null,
   "per": "15,5x",
   "dividendo": "1,0%",
-  "posiciones": "",
-  "comentario": "Sin comentario en la ficha.",
+  "posiciones": "NVIDIA 7,0 %, Microsoft 5,2 %, Alphabet 5,2 %, Apple 5,1 %, Amazon 4,7 % (top 10 = 42,4 %)",
+  "comentario": "Ficha de septiembre en inglés, sin comentario del gestor.",
   "lectura": "Lectura propia: -7,45 % en el mes; 2,48 % en el año; 5,89 % anualizado a 3 años.",
   "literal": "",
   "ficha": "",
   "pdf": "fichas/GQG Partners Global Equity - Ficha sep 2026.pdf",
   "mini": "fichas/miniaturas/GQG Partners Global Equity - Ficha sep 2026.jpg",
-  "sectores": [],
-  "geografia": [],
+  "sectores": [
+   [
+    "Tecnología de la información",
+    52.4,
+    33.2
+   ],
+   [
+    "Financiero",
+    9.9,
+    16.2
+   ],
+   [
+    "Consumo discrecional",
+    4.7,
+    8.2
+   ],
+   [
+    "Industrial",
+    6.2,
+    10.3
+   ],
+   [
+    "Salud",
+    5.3,
+    8.4
+   ],
+   [
+    "Energía",
+    4.8,
+    4.0
+   ]
+  ],
+  "geografia": [
+   [
+    "EE.UU.",
+    68.4,
+    64.2
+   ],
+   [
+    "Francia",
+    4.6,
+    2.0
+   ],
+   [
+    "Países Bajos",
+    3.7,
+    1.3
+   ],
+   [
+    "Brasil",
+    3.5,
+    0.5
+   ],
+   [
+    "Reino Unido",
+    3.3,
+    3.0
+   ]
+  ],
   "calidad": {},
   "destaca": "",
   "aprox": false
@@ -3411,14 +3468,39 @@
   "r10": 17.41,
   "per": "24,6x",
   "dividendo": "",
-  "posiciones": "",
-  "comentario": "Sin comentario en la ficha.",
+  "posiciones": "Microsoft 8,7 %, Nebius 4,0 %; 74 valores",
+  "comentario": "Ficha de septiembre en inglés, sin comentario del gestor.",
   "lectura": "Lectura propia: -7,49 % en el mes; 11,77 % en el año; 31,44 % anualizado a 3 años.",
   "literal": "",
   "ficha": "",
   "pdf": "fichas/Alger American Asset Growth A EUR - Ficha sep 2026.pdf",
   "mini": "fichas/miniaturas/Alger American Asset Growth A EUR - Ficha sep 2026.jpg",
-  "sectores": [],
+  "sectores": [
+   [
+    "Tecnología de la información",
+    53.1
+   ],
+   [
+    "Salud",
+    11.0
+   ],
+   [
+    "Consumo discrecional",
+    7.2
+   ],
+   [
+    "Industrial",
+    6.4
+   ],
+   [
+    "Financiero",
+    1.9
+   ],
+   [
+    "Materiales",
+    1.0
+   ]
+  ],
   "geografia": [],
   "calidad": {},
   "destaca": "",
