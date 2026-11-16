@@ -297,7 +297,9 @@ function choice(href, small, big, glyph) {
 const glyphRF = () => s('svg', { width: 34, height: 34, viewBox: '0 0 34 34', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, s('path', { d: 'M4 26h6v-6h6v-6h6v-6h8' }));
 const glyphRV = () => s('svg', { width: 34, height: 34, viewBox: '0 0 34 34', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, s('path', { d: 'M4 24l7-9 6 5 6-11 7 7' }));
 function topYear(kind) {
-  const rows = ALL.filter(f => f.kind === kind && typeof f.ytd === 'number').sort((a, b) => b.ytd - a.ytd).slice(0, 5);
+  const seen = new Set();
+  const rows = ALL.filter(f => f.kind === kind && typeof f.ytd === 'number').sort((a, b) => b.ytd - a.ytd)
+    .filter(f => { const k = f.fondo.split(/\s+/).slice(0, 4).join(' ').toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; }).slice(0, 5);
   return h('div', { class: 'top' }, h('h3', {}, 'Top 5 en el año · ' + (kind === 'rf' ? 'renta fija' : 'renta variable y mixtos')),
     h('ol', {}, rows.map(f => h('li', {}, h('a', { href: '#/fondo/' + f.isin }, h('span', { class: 'tn' }, f.fondo), h('b', { class: f.ytd >= 0 ? 'pos' : 'neg' }, pct(f.ytd, 2)))))));
 }
