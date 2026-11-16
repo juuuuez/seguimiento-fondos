@@ -323,7 +323,7 @@ const GEST = [[/renta 4|numantia|avantage/i, 'renta4', 'Renta 4'], [/buy ?& ?hol
   [/pictet/i, 'pictet','Pictet'],
   [/cartesio/i, 'cartesio','Cartesio'],
   [/nomura/i, 'nomura','Nomura']];
-const SIN_LOGO = new Set(['paradigma', 'ardtur', 'finserve', 'goldman', 'gqg', 'janus', 'fundsmith', 'alger', 'magallanes', 'brandes', 'variopartner', 'candriam', 'bellevue', 'allianz', 'franklin', 'pictet', 'cartesio', 'nomura']);
+const SIN_LOGO = new Set(['paradigma', 'ardtur', 'finserve', 'alger', 'magallanes', 'variopartner', 'franklin', 'pictet', 'cartesio', 'nomura']);
 const famOf = f => { const g = GEST.find(x => x[0].test(f.gestora)); return g ? { key: g[1], nombre: g[2], logo: SIN_LOGO.has(g[1]) ? '' : 'logos/' + g[1] + '.png' } : { key: norm(f.gestora), nombre: f.gestora, logo: '' }; };
 function viewSection(kind) {
   const st = ST[kind], rf = kind === 'rf';
